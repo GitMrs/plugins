@@ -1,0 +1,1679 @@
+<!--非结构化配置（画布）-->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DSG---非结构化</title>
+  <link rel="stylesheet" href="./public/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./public/bootstrapTable/bootstrap-table.min.css">
+  <link rel="stylesheet" href="./public/bootstrapvalidator/css/bootstrapValidator.min.css">
+  <link rel="stylesheet" href="./public/bootstrap-select/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="./public/fonts/font1/iconfont.css">
+  <link rel="stylesheet" href="./public/fonts/font3/iconfont.css">
+  <link rel="stylesheet" href="./public/jqueryUi/css/base/jquery-ui-1.9.2.custom.min.css">
+  <link rel="stylesheet" href="./public/colpick/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="./public/colpick/css/colpick.css" type="text/css" />
+  <!--ztree-->
+  <!--<link rel="stylesheet" href="./public/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">-->
+  <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
+  <!--<link rel="stylesheet" href="./public/zTree/css/awesomeStyle/awesome.css" type="text/css">-->
+  <!--<link rel="stylesheet" href="./public/layui/css/layui.css">-->
+  <!--step-->
+  <!--<link href="./public/step/css/gloab.css" rel="stylesheet">-->
+  <link href="./public/step/css/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/tableList.css">
+  <link rel="stylesheet" href="./css/UnstructuredDataMain.css">
+
+
+</head>
+
+<body>
+  <!--contain BOX-->
+  <div id="containBox">
+    <!--header-->
+    <!--起始部分-->
+    <header>
+      <div class="login">
+        <img src="./images/newInstallation/logo2.png" alt="">
+      </div>
+      <!--起始区-->
+      <div class="startingArea">
+        <div @click="dragMsg" class="startBtns" v-for="(item,index) in HserverType" draggable="true"
+          @dragstart="drag($event,index)">
+          <img class="header-img" :src="item.img" alt="" :title="item.title">
+          <span class="header-title" v-html="item.title"></span>
+        </div>
+        <div @click="saveProcess(index)" class="startBtns" v-for="(item,index) in HserverTypeClick">
+          <span class="icon iconfont header-img" :class="item.icon" :title="item.title"></span>
+          <span class="header-title" v-html="item.title"></span>
+        </div>
+      </div>
+      <!--流程名-->
+      <!--流程名称-->
+      <div class="flowNameTi">
+        <span>流程名称 ： [ </span>
+        <span v-html="importProcessData.flowName"></span> ]
+      </div>
+    </header>
+
+    <!--view-->
+    <!--画布拖拽的内容-->
+    <div id="viewBoxs">
+      <div class="viewBox">
+        <!--视图层内容-->
+        <div id="viewContentBoxs"
+          :style="{transform: 'scale('+VLdatas.scale+')',width:LIlineDatas.canvasW1+'px',height:LIlineDatas.canvasH1+'px',left:VLdatas.left1+'px',top:VLdatas.top1+'px'}">
+          <!--背景层-->
+          <div id="shadeBd"></div>
+          <div id="shadeBd1"></div>
+          <!--视图层1  canvas1  连线层-->
+          <canvas id="canvasLine" :width="LIlineDatas.canvasW1+'px'" :height="LIlineDatas.canvasH1+'px'"></canvas>
+          <!--视图层1  canvas1  鼠标移动层层-->
+          <canvas id="canvasLineOver" :width="LIlineDatas.canvasW1+'px'" :height="LIlineDatas.canvasH1+'px'"></canvas>
+          <!--展示流程层  -->
+          <div id="showProcessViews" @drop="drop($event)" @dragover="allowDrop($event)" @mousedown="viewmobile($event)">
+            <div @mouseenter="mouseenterModel($event,index)" @mouseleave="mouseleaveModel()" class="modelView"
+              :class="{selectModel:DRcontextmenuData.index1==index,lineCanvasHoverFlicker:LIlineDatas.istrue&&LIlineDatas.index2==index}"
+              @contextmenu="contextmenuSModel($event,index)" @click="clickSelectModel(index)"
+              :data-index="index"
+              @dblclick="dbclickSelectModel(index,true)" draggable="true" @dragstart="dragFlow($event,index)"
+              v-for="(item,index) in DRdropDatas"
+              :style="{left:item.left+'px',top:item.top+'px'}">
+              <div class="modelViewTitle">
+                <span class="modelViewIcon">
+                  <img class="modelimg1" src="./images/newInstallation/modelbd.png" alt="">
+                  <img class="modelimg2" :src="item.iconImg" alt="">
+                </span>
+                <span class="modelViewTitleMsg" style="padding-left:20px;width:75%;" v-if="item.type==1">
+                  <i v-html="item.ItemConTitle[0]" :title="item.ItemConTitle[0]"></i>
+                  <i v-html="item.ItemConTitle[1]" :title="item.ItemConTitle[1]"></i>
+                </span>
+                <span class="modelViewTitleMsg" style="padding-left:20px;width:75%;" v-if="item.type==2">
+                  <i v-html="JSON.parse(item.step2).remotePath" :title="JSON.parse(item.step2).remotePath"></i>
+                  <!--<i v-html="item.step1.ftp_port " :title="item.step1.ftp_port"></i>-->
+                </span>
+                <span class="modelViewTitleMsg" style="padding-left:20px;width:75%;" v-if="item.type==3">
+                  <i v-html="'kafka'" :title="'kafka'"></i>
+                  <i v-html="'kafka'" :title="'kafka'"></i>
+                  <i>
+                    <i class="icon iconfont icon-shangchuan" :class="{'upload_active':item.isupload}"></i>
+                  </i>
+                </span>
+                <span class="modelViewTitleMsg" style="padding-left:20px;width:75%;" v-if="item.type==4">
+                  <i v-html="'oracle'" :title="'oracle'"></i>
+                  <!--<i v-html="'kafka'" :title="'kafka'"></i>-->
+                  <i>
+                    <i class="icon iconfont icon-shangchuan" :class="{'upload_active':item.isupload}"></i>
+                  </i>
+                </span>
+              </div>
+              <div class="modelViewCont" v-if="item.ItemCon.length>0">
+                <div class="modelViewContTitle" v-for="(item3,index3) in item.ItemCon" v-if="index3<10">
+                  <span v-html="item3.paramName+' : '"></span>
+                  <span v-html="item3.value"></span>
+                </div>
+                <div class="noResult" v-if="item.ItemCon.length==0">当前无显示</div>
+              </div>
+            </div>
+            <!--视图  连线 上的标签-->
+            <div @contextmenu="contextmenuSModel($event,index2,2)" :class="{'hide':!item2.isshow}" class="serverLabel"
+              @dblclick="editServerNames(index2,1)" v-for="(item2,index2) in serverNames"
+              :style="{left:item2.left+'px',top:item2.top+'px'}">
+              <span>serviceName</span>
+              <span :title="item2.name!=''?item2.name:'未配置'" v-html="item2.name!=''?item2.name:'未配置'"></span>
+            </div>
+          </div>
+          <!--连线 按钮-->
+          <div :style="{left:LIlineDatas.left1+'px',top:LIlineDatas.top1+'px'}" @mousedown="selectOverDown($event)"
+            class="lineBtnIcon icon iconfont icon-jiantouarrow488"></div>
+          <!--拖动元素-->
+          <div id="dropimg" :style="{width:280*VLdatas.scale+'px',height:160*VLdatas.scale+'px'}"></div>
+        </div>
+        <!--工具类  start-->
+        <!--连线按钮 -->
+        <div id="lineBtn"></div>
+        <!--左侧 悬浮框缩小后的按钮-->
+        <div title="查看当前视图" class="asideOperationBtn icon iconfont icon-chuangkouwindow29"
+          @click="asideOperationBtn(true)"></div>
+        <div title="当前选中模块菜单" class="asideConfigurationBtn icon iconfont icon-caidan"
+          @click="asideConfigurationBtn(true)"></div>
+        <div title="设置" class="asideSetupBtn icon iconfont icon-shezhi" @click="asideSetupBtn(true)"></div>
+        <!--左侧悬浮工具  视图操控层-->
+        <div id="asideOperation" class="hide">
+          <div class="contextmenuBoxTitle asideConfigurationTitle">当前视图窗口
+            <div class="asideConfigurationClose" @click="asideOperationBtn(false)"></div>
+          </div>
+          <div class="asideOperationConBtns">
+            <span class="scaleTitle">比例 : </span>
+            <span class="scaleTitleV" v-html="(VLdatas.scale*100).toFixed(2)+'%'"></span>
+            <span @click="narrow" title="缩小" class="icon iconfont icon-unie039 viewTool"></span>
+            <span class="directionTools">
+              <i title="向左" @click="directionClick(0)" class="dirL icon iconfont icon-xiangzuo"></i>
+              <i title="向上" @click="directionClick(1)" class="dirT icon iconfont icon-xiangshang2"></i>
+              <i title="向右" @click="directionClick(2)" class="dirR icon iconfont icon-msnui-triangle-right"></i>
+              <i title="向下" @click="directionClick(3)" class="dirB icon iconfont icon-xiangxia"></i>
+            </span>
+            <span @click="blowUp" title="放大" class="icon iconfont icon-unie038 viewTool"></span>
+          </div>
+          <div class="asideOperationCon">
+            <div class="xviewBox" :class="{xviewBoxSelect:DRcontextmenuData.index1==index}"
+              v-for="(item,index) in DRdropDatas" :style="{left:item.left*0.0625+'px',top:item.top*0.0625+'px'}">
+
+            </div>
+            <div
+              :style="{width:VLdatas.width+'px',height:VLdatas.height+'px',left:VLdatas.left2+'px',top:VLdatas.top2+'px'}"
+              class="showViewBox" @mousedown="xvdown"></div>
+          </div>
+        </div>
+        <!--左侧悬浮工具  同步流程步骤--- 配置-->
+        <!--单机右键的事件-->
+        <div id="asideConfiguration" class="hide">
+          <div v-if="DRcontextmenuData.index1==-1" class="contextmenuBoxTitle asideConfigurationTitle">
+            操作设置
+            <div class="asideConfigurationClose" @click="asideConfigurationBtn(false)"></div>
+          </div>
+          <div v-if="DRcontextmenuData.index1!=-1" class="contextmenuBoxTitle asideConfigurationTitle"
+            :title="DRcontextmenuData.index1>-1?('名称 : '+DRdropDatas[DRcontextmenuData.index1].name+'\n版本 : '+DRdropDatas[DRcontextmenuData.index1].version+'\n其他信息 : '+DRdropDatas[DRcontextmenuData.index1].msg):''">
+            <span
+              v-html="DRdragDropDatas.index1>-1?((DRdropDatas[DRcontextmenuData.index1].name)+' / '+DRdropDatas[DRcontextmenuData.index1].version):''"></span>
+            操作设置
+            <div class="asideConfigurationClose" @click="asideConfigurationBtn(false)"></div>
+          </div>
+          <div class="asideConfigurationBoxs" v-if="DRcontextmenuData.index1!=-1">
+            <div @click="clickSelectMenu(index)" class="asideConfigurationBox"
+              v-for="(item,index) in DRnEWData[DRcontextmenuData.type].child">
+              <span class="menuIcon icon iconfont" :class="item.icon" :title="item.name"></span>
+              <!--<span v-html="item.name"></span>-->
+            </div>
+          </div>
+          <div class="isshow" v-if="DRcontextmenuData.index1==-1">当前无选中</div>
+        </div>
+        <!--左侧悬浮工具 设置参数--- 配置-->
+        <div id="asideSetup" class="hide">
+          <div class="contextmenuBoxTitle asideConfigurationTitle">当前设置窗口
+            <div class="asideConfigurationClose" @click="asideSetupBtn(false)"></div>
+          </div>
+          <div class="asideSetupContent">
+            <span @click="asideSetupSelect(index)" v-for="(item,index) in VLsetUpDatas" :title="item.name"
+              :class="item.icon" class="icon iconfont menuIcon"></span>
+          </div>
+        </div>
+        <!--工具类  end-->
+      </div>
+    </div>
+
+
+    <!--0.0---保存弹框-->
+    <div id="saveProssBox" class="hide">
+      <form class="form-horizontal" action="" id="saveProssForm">
+        <div class="form-group" v-for="item in saveProssBox">
+          <label class="col-xs-5 control-label text-right" :for="item.paramName" v-html="item.viewName"></label>
+          <div class="col-xs-5">
+            <input :id="item.paramName" :name="item.paramName" type="text" class="form-control" v-model="item.value"
+              :placeholder="item.title">
+          </div>
+        </div>
+        <div class="stepBtn">
+          <button class="btn btn-default layerbtn" @click="saveProssFn">保存</button>
+          <button class="btn btn-default layerbtn" @click="cancelS1">关闭</button>
+        </div>
+      </form>
+    </div>
+
+    <!--0.1---设置中弹框  1.0--连线设置-->
+    <div id="setUpLineBoxs" class="hide">
+      <div class="flex_box_1" style="width: 100%;height: 100%;position: relative;overflow-y: auto;overflow-x: hidden;"
+        v-if="VLsetUpData.index1!=-1">
+        <div class="title_step">
+          <span class="num1"><i>i</i></span><span style="color:#ffffff;padding-left:30px;">连线配置</span>
+        </div>
+        <div class="shadow"></div>
+        <!--连线  value==0-->
+        <div class="flex_1_col_1_ov" v-if="VLsetUpDatas[VLsetUpData.index1].value==0">
+          <form id="setUpLineForm" class="form-horizontal">
+            <div class="form-group setUpLineBox" v-for="(item,index) in VLsetUpLine" :title="item.title">
+              <label class="col-xs-6 control-label" v-html="item.name+' : '"></label>
+              <div class="col-xs-5" v-if="item.type!=2">
+                <input :style="{'border-right-color':'#'+item.value1}" :class="{inputBorder:item.iscolor}"
+                  class="form-control" type="text" :id="item.namedata+0" :name="item.namedata+0" v-model="item.value1">
+              </div>
+              <div class="col-xs-5" v-if="(item.value2==''||item.value2)&&item.type!=2">
+                <input :style="{'border-right-color':'#'+item.value2}" :class="{inputBorder:item.iscolor}"
+                  class="form-control" type="text" :id="item.namedata+1" :name="item.namedata+1" v-model="item.value2">
+              </div>
+              <label class="col-xs-2 hover" v-if="item.type==2" @click="item.value1='1'">
+                <input type="radio" :name="item.namedata" :checked="item.value1=='1'">
+                <span style="margin-left:5px;float: left;">是</span>
+              </label>
+              <label class="col-xs-2 hover" v-if="item.type==2" @click="item.value1='0'">
+                <input type="radio" :name="item.namedata" :checked="item.value1=='0'">
+                <span style="margin-left:5px;float: left;">否</span>
+              </label>
+            </div>
+          </form>
+        </div>
+        <!--按钮-->
+        <div class="stepBtn_firstBtn">
+          <button style="margin-right: 15px;" @click="addSetUpLine" class="btn btn-default layerbtn">保存</button>
+          <button style="margin-right: 0;" @click="cancel" class="btn btn-default layerbtn">关闭</button>
+        </div>
+      </div>
+    </div>
+
+    <!--1.0--右键菜单-->
+    <!--2.0---右键菜单-->
+    <div id="contextmenuBox"
+      :style="{height:DRcontextmenuData.height+'px',left:DRcontextmenuData.left2+'px',top:DRcontextmenuData.top2+'px'}"
+      v-if="DRcontextmenuData.istrue">
+      <div class="contextmenuBoxTitle">操作设置</div>
+      <div @mouseenter="menuChild(index,0)" @mouseleave="menuChild(index,1)" @click="clickSelectMenu(index)"
+        class="contextmenuBox" v-for="(item,index) in DRnEWData[DRcontextmenuData.type].child">
+        <span class="menuIcon icon iconfont" :class="item.icon"></span>
+        <span v-html="item.name"></span>
+        <span v-if="item.child&&item.child.length>0" class="menuIocnAdd icon iconfont icon-zengjia"></span>
+        <div class="childMenu" v-show="item.isshowChild" v-if="item.child&&item.child.length>0">
+          <div class="contextmenuBoxCh" @click="clickSelectMenuCh(index2,index)" v-for="(item2,index2) in item.child">
+            <span class="menuIcon icon iconfont" :class="item2.icon"></span>
+            <span v-html="item2.name"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--3.0--流程导航-->
+    <div v-if="prossList[prossDatas.type]" id="prossView"
+      :style="{left:prossDatas.left+'px',top:prossDatas.top+'px',width:prossList[prossDatas.type].length*60+20+'px'}">
+      <div class="PVTitleD">模块导航</div>
+      <div class="PVBoxs" :class="'PVBoxsAc'+item1.check" v-for="(item1,index1) in prossList[prossDatas.type]">
+        <span class="PVTitle" v-html="item1.name"></span>
+        <span class="PVIcon">
+          <i></i>
+        </span>
+      </div>
+      <span class="prossList"></span>
+      <span style="clear:both;"></span>
+      <i class="iconS"></i>
+    </div>
+
+    <!--layer.Box-->
+    <!--view视图中配置的弹框-->
+    <!--公共的弹框-->
+    <div id="N_time" class="hide">
+      <p style="color:#ffffff;">请选择定时器类型</p>
+      <span class="radio_timeType">
+        <input name="time_Type" id="time_Real1" type="radio" value="r" v-model="COM1ShowD.time_Type" /><label
+          for="time_Real1">:实时定时器</label>
+      </span>
+      <span class="radio_timeType">
+        <input name="time_Type" id="time_Cycle1" type="radio" value="c" v-model="COM1ShowD.time_Type" /><label
+          for="time_Cycle1">:周期定时器</label>
+      </span>
+      <div class="save_type">
+        <button class="btn btn-default layerbtn" @click="cancel2()">取消</button>
+        <button class="btn btn-default layerbtn" @click="checkTimer">确定</button>
+      </div>
+    </div>
+
+    <!--公共的 发送的数据格式-->
+    <div id="N_type" class="hide">
+      <div class="form-group">
+        <label class="col-xs-5 text-right" for="">文件格式 :</label>
+        <div class="col-xs-5">
+          <select data-width="100%" class="selectpicker" v-model="COM1COLD.fileFormat">
+            <option value="asc">ASCII编码</option>
+            <option value="hex">十六进制编码</option>
+          </select>
+        </div>
+      </div>
+      <div v-show="COM1COLD.fileFormat=='asc'" class="form-group">
+        <label class="col-xs-5 text-right" for="">ASCII编码 :</label>
+        <div class="col-xs-5">
+          <input class="form-control" type="text" v-model="COM1COLD.fileFormat1">
+        </div>
+      </div>
+      <div style="overflow: auto;" v-show="COM1COLD.fileFormat=='hex'" class="form-group">
+        <label class="col-xs-5 text-right" for="">十六进制编码 :</label>
+        <div class="col-xs-5">
+          <div class="" style="  margin-bottom: 8px;" v-for="(item3,index3) in COM1COLD.fileFormat2">
+            <input style="padding-left: 30px;" class="form-control" v-model="item3.value" type="text">
+            <i style="float: left;margin: -22px -30px 0 5px;">0X</i>
+            <i style="float: right;    margin: -22px -30px 0 0;" @click="COM1COLD.fileFormat2.push({value:''})"
+              class="glyphicon glyphicon-plus" v-if="index3==0"></i>
+            <i style="float: right;    margin: -22px -30px 0 0;" @click="COM1COLD.fileFormat2.splice(index3,1)"
+              class="glyphicon glyphicon-trash" v-if="index3!=0"></i>
+          </div>
+        </div>
+      </div>
+      <div class="stepBtn_firstBtn">
+        <button class="btn btn-default layerbtn" @click="checkType"
+          v-html="COM1Data.step1==COM1Data.steps?'保存':'下一步'"></button>
+      </div>
+    </div>
+
+    <!--http--0.1-->
+    <div id="N_http" class="hide">
+      <div class="rowStep">
+        <ul class="step_http flex_box_1">
+          <li :class="{'active':item<COM1Data.step1+1}" class="flex_1_col_1" v-for="item in COM1Data.steps"
+            style="cursor:pointer;">
+            <span class="line_bg lbg-l" v-if="item!=1"></span>
+            <span class="num"><i v-html="item"></i></span>
+            <span class="line_bg lbg-r" v-if="item!=COM1Data.steps"></span>
+          </li>
+        </ul>
+      </div>
+      <div v-if="COM1Data.type1==1" class="data_index">
+        <div class="flex_box_1 width-80-cen" style="padding-left: 20px;">
+          <div class="title_step">
+            <span class="num1"><i v-html="COM1Data.step1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="COM1Data.title1[COM1Data.type1][COM1Data.step1]"></span>
+          </div>
+          <div class="shadow"></div>
+          <!--1-->
+          <div v-if="COM1Data.step1==1" class="flex_1_col_1_ov">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default" style="width:60px;" v-html="N_HTTP_1.urlType"></button>
+                <button type="button" class="btn btn-default dropdown-toggle"
+                  style="background-color:#0b426c;width:35px;" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu requestType">
+                  <li @click="N_HTTP_1.urlType='POST'">POST</li>
+                  <li @click="N_HTTP_1.urlType='GET'">GET</li>
+                </ul>
+              </div>
+              <input type="text" v-model="N_HTTP_1.urlPath" class="form-control" style="background-color:#123178;"
+                aria-label="Texr input with segmented button dropdown">
+            </div>
+            <div class="tableRow">
+              <span class="tabTitle">参数</span>
+              <span class="tabTitle">值</span>
+              <span style="width:20%;height:27px;" @click="N_HTTP_1.params.push({value:'',name:''})"><i
+                  class="glyphicon glyphicon-plus"
+                  style="display:inline-block;padding-left:26px;padding-top:5px;color:#ffffff;"></i></span>
+            </div>
+            <div class="tableRow1" v-for="(item,index) in N_HTTP_1.params">
+              <span class="tabTitle"><input type="text" class="form-control" v-model="item.name"></span>
+              <span class="tabTitle"><input type="text" class="form-control" v-model="item.value"></span>
+              <span style="width:20%;height:27px;" class="delThisBtn" @click="N_HTTP_1.params.splice(index,1)"><i
+                  class="glyphicon glyphicon-trash"
+                  style="display:inline-block;padding-left:26px;padding-top:5px;"></i></span>
+            </div>
+          </div>
+          <!--2-->
+          <div v-if="0">
+            <div v-if="COM1Data.step1==2" class="flex_1_col_1_ov">
+              <div v-if="0">
+                <div class="form-group">
+                  <label class="col-xs-5 text-right" for="">要返回的类型 :</label>
+                  <div class="col-xs-5">
+                    <label for="fileTypeText1">text</label>
+                    <input type="radio" id="fileTypeText1" name="fileType" value="txt" v-model="COM1getD.fileType">
+                    <label for="fileTypeJson1">json/cjson</label>
+                    <input type="radio" id="fileTypeJson1" name="fileType" value="json" v-model="COM1getD.fileType">
+                  </div>
+                </div>
+                <div v-show="COM1getD.fileType=='txt'" class="form-group">
+                  <label class="col-xs-5 text-right">文件格式 :</label>
+                  <div class="col-xs-5">
+                    <select data-width="100%" class="selectpicker" v-model="COM1getD.fileFormat">
+                      <option value="asc">ASCII编码</option>
+                      <option value="hex">十六进制编码</option>
+                    </select>
+                  </div>
+                </div>
+                <div v-show="COM1getD.fileFormat=='asc'&&COM1getD.fileType=='txt'" class="form-group">
+                  <label class="col-xs-5 text-right" for="">ASCII编码 :</label>
+                  <div class="col-xs-5">
+                    <input class="form-control" type="text" v-model="COM1getD.fileFormat1">
+                  </div>
+                </div>
+                <div style="overflow: auto;" v-show="COM1getD.fileFormat=='hex'&&COM1getD.fileType=='txt'"
+                  class="form-group">
+                  <label class="col-xs-5 text-right" for="">十六进制编码 :</label>
+                  <div class="col-xs-5">
+                    <div class="" style="  margin-bottom: 8px;" v-for="(item3,index3) in COM1getD.fileFormat2">
+                      <input style="padding-left: 30px;" class="form-control" v-model="item3.value" type="text">
+                      <i style="float: left;margin: -22px -30px 0 5px;">0X</i>
+                      <i style="float: right;    margin: -22px -30px 0 0;"
+                        @click="COM1getD.fileFormat2.push({value:''})" class="glyphicon glyphicon-plus"
+                        v-if="index3==0"></i>
+                      <i style="float: right;    margin: -22px -30px 0 0;"
+                        @click="COM1getD.fileFormat2.splice(index3,1)" class="glyphicon glyphicon-trash"
+                        v-if="index3!=0"></i>
+                    </div>
+                  </div>
+                </div>
+                <div v-show="COM1getD.fileType=='txt'" class="form-group">
+                  <label class="col-xs-5 text-right" for="isColName1">是否有列名</label>
+                  <div class="col-xs-5">
+                    <input type="checkbox" name="isColName" id="isColName1" v-model="COM1getD.isColName">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-xs-4 text-right" for="">远程目录 :</label>
+                <div class="col-xs-5">
+                  <input class="form-control" type="text" v-model="COM1getD.remotePath">
+                </div>
+                <div title="多个目录用英文字符分号（','）分隔" class="text-ellipsis col-xs-3">
+                  多个目录用英文字符分号（','）分隔
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-xs-4 text-right" for="">要返回的类型 :</label>
+                <div class="col-xs-5">
+                  <label for="fileTypeText1">text</label>
+                  <input class="margin-r-8" type="radio" id="fileTypeText1" name="fileType" value="txt"
+                    v-model="COM1getD.fileType">
+                  <label for="fileTypeJson1">json/cjson</label>
+                  <input class="margin-r-8" type="radio" id="fileTypeJson1" name="fileType" value="json"
+                    v-model="COM1getD.fileType">
+                  <label for="fileTypeXml1">xml</label>
+                  <input class="margin-r-8" type="radio" id="fileTypeXml1" name="fileType" value="xml"
+                    v-model="COM1getD.fileType">
+                  <label for="fileTypeExcel1">excel</label>
+                  <input class="margin-r-8" type="radio" id="fileTypeExcel1" name="fileType" value="excel"
+                    v-model="COM1getD.fileType">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-xs-4 text-right" for="">编码格式 :</label>
+                <div class="col-xs-5">
+                  <select data-width="100%" class="selectpicker" v-model="COM1getD.codedFormat">
+                    <option value="UTF-8">UTF-8</option>
+                    <option value="GBK">GBK</option>
+                  </select>
+                </div>
+              </div>
+              <div v-show="COM1getD.fileType=='txt'" class="form-group">
+                <label class="col-xs-4 text-right" for="">后缀名 :</label>
+                <div class="col-xs-5">
+                  <input type="input" class="form-control" v-model="COM1getD.suffix">
+                </div>
+                <div title="可不填" class="text-ellipsis col-xs-3">
+                  可不填
+                </div>
+              </div>
+              <div v-show="COM1getD.fileType=='txt'" class="form-group">
+                <label class="col-xs-4 text-right">文件格式 :</label>
+                <div class="col-xs-5">
+                  <select data-width="100%" class="selectpicker" v-model="COM1getD.fileFormat">
+                    <option value="asc">ASCII编码</option>
+                    <option value="hex">十六进制编码</option>
+                  </select>
+                </div>
+              </div>
+              <div v-show="COM1getD.fileFormat=='asc'&&COM1getD.fileType=='txt'" class="form-group">
+                <label class="col-xs-4 text-right" for="">ASCII编码 :</label>
+                <div class="col-xs-5">
+                  <input class="form-control" type="text" v-model="COM1getD.fileFormat1">
+                </div>
+              </div>
+              <div style="overflow: auto;" v-show="COM1getD.fileFormat=='hex'&&COM1getD.fileType=='txt'"
+                class="form-group">
+                <label class="col-xs-4 text-right" for="">十六进制编码 :</label>
+                <div class="col-xs-5">
+                  <div class="" style="  margin-bottom: 8px;" v-for="(item3,index3) in COM1getD.fileFormat2">
+                    <input style="padding-left: 30px;" class="form-control" v-model="item3.value" type="text">
+                    <i style="float: left;margin: -22px -30px 0 5px;">0X</i>
+                    <i style="float: right;    margin: -22px -30px 0 0;" @click="COM1getD.fileFormat2.push({value:''})"
+                      class="glyphicon glyphicon-plus" v-if="index3==0"></i>
+                    <i style="float: right;    margin: -22px -30px 0 0;" @click="COM1getD.fileFormat2.splice(index3,1)"
+                      class="glyphicon glyphicon-trash" v-if="index3!=0"></i>
+                  </div>
+                </div>
+              </div>
+              <div v-show="COM1getD.fileType=='txt'" class="form-group">
+                <label class="col-xs-4 text-right" for="isColName1">是否有列名</label>
+                <div class="col-xs-5">
+                  <input type="checkbox" name="isColName" id="isColName1" v-model="COM1getD.isColName">
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!--3-->
+          <div v-if="COM1Data.step1==2" class="tableBox_show1" style="cursor:pointer;">
+            <span style="width: 200px;left:50%;margin-left:-100px;color:#fff;"
+              @click="slideToggle1('typeInfoRadio')">选择文件格式<img src="./images/newInstallation/show.png" alt=""
+                style="height:15px;width:15px;"></span>
+          </div>
+          <div v-if="COM1Data.step1==2" class="typeInfoRadio">
+            <!--<label style="margin-right: 10px;" class="hover"><input class="format_text_1" v-model="COM1COLD.txt" name="typeinfo" type="radio" value="text" /><span>TEXT</span></label>-->
+            <label class="hover"><input name="typeinfo" type="radio" value="cjson"
+                v-model="COM1COLD.txt" /><span>JSON/CJSON</span></label>
+            <label class="hover"><input name="typeinfo" type="radio" value="db"
+                v-model="COM1COLD.txt" /><span>数据源</span></label>
+          </div>
+          <!--顶部展示数据表格-->
+          <div v-if="COM1Data.step1==2" class="http_1_col_1 http_box_2" style="padding:5px 0;">
+            <div class="http_leftBox http_2_col_1">
+              <div class="icon iconfont icon-chenggong checkbox-1" title="全选" :class="{'checkbox-1-ac':ischeckboxAll}"
+                @click="ischeckboxAll=!ischeckboxAll"></div>
+              <div title="向右侧拖拽" draggable="true" @dragstart="drag_col($event,'check-all')" class="checkbox-2"
+                :class="{'hide':!ischeckboxAll}"></div>
+
+              <ul style="position: relative;z-index: 1" id="rotate-http">
+                <li v-for="item in [{name:'1',type:1},{name:2,type:1}]"
+                  :class="{checktrue:item.checkHttp,nochecktrue:!item.checkHttp,hide:item.checkHttp}" draggable="true"
+                  @dragstart="drag_col($event,item.name,item.type)">
+                  <span class="title" :type="item.type">{{item.name}}</span>
+                </li>
+              </ul>
+            </div>
+            <div style="position: relative;width: 40px;height: 100%;">
+              <img class="imgRotate" src="./images/newInstallation/next.png" alt="">
+            </div>
+            <div class="http_rightBox http_2_col_2" @drop="drop_col($event)" @dragover="allowDrop($event)">
+              <ul id="elements-container" style="height:100%;margin-bottom:0px;">
+                <li v-for="item in COM1COLD.select" class="draggable-element">
+                  <span class="title text-ellipsis" :title="item.name" v-html="item.name"></span>
+                  <span class="text-ellipsis" :title="item.value" v-html="item.value"></span>
+                  <span class="text-ellipsis" v-for="item4 in 8" :title="item.values[item4-1]"
+                    v-html="item.values[item4-1]"></span>
+                  <div class="del iconfont icon-cuowu active" @click="tableDelOne_col($event,item)"></div>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+          <div v-if="COM1Data.step1==2" class="tableBox_show" style="cursor:pointer;">
+            <span style="width: 200px;left:50%;margin-left:-100px;color:#fff;" @click="slideToggle1('tableBox')">查看原始数据
+              <img src="./images/newInstallation/show.png" alt="" style="height:15px;width:15px;"></span>
+          </div>
+          <div v-if="COM1Data.step1==2" class="tableBox http_1_col_1">
+            <ul id="elements-container" style="height:100%;margin-bottom:0px;">
+              <li class="draggable-element" v-for="(item,index) in COM1COLD.list">
+                <span class="title text-ellipsis" :title="item.name" v-html="item.name"></span>
+                <span class="text-ellipsis" :title="item.value" v-html="item.value"></span>
+                <span class="text-ellipsis" :title="item.values[item4-1]" v-for="item4 in 8"
+                  v-html="item.values[item4-1]"></span>
+
+              </li>
+            </ul>
+          </div>
+          <!--4-->
+          <div v-if="COM1Data.step1==3" class="flex_box_2" style="margin-top: 15px;">
+            <label class="flex_2_col_1 text-center">原始模块数据</label>
+            <div style="width: 20px;height: 100%;"></div>
+            <label class="flex_2_col_1 text-center">修改后的数据</label>
+          </div>
+          <div v-if="COM1Data.step1==3" class="flex_1_col_1 flex_box_2">
+            <pre class="radioCheck flex_2_col_1" v-html="COM1ShowD.key" style="color:#ffffff;font-size: 16px;">
+                        </pre>
+            <div style="width: 20px;height: 100%;"></div>
+            <pre class="radioCheckEdit flex_2_col_1" v-html="COM1ShowD.value" style="color:#ffffff;font-size: 16px;">
+                        </pre>
+          </div>
+          <!--5-->
+          <div v-if="COM1Data.step1==4" v-show="COM1ShowD.time_Type=='c'" class="radioWeekCheck_time flex_1_col_1_ov"
+            style="font-size: 18px;color:#ffffff;">
+            <!--时间联动-->
+            <div class="form-group">
+              <span class="control-label col-xs-12 text-left">频率：</span>
+              <div class="col-xs-12">
+                <select v-model="NDaLIST1.oneD" data-size="4" data-width="100%" class="selectpicker" name="" id="">
+                  <option v-for="item in NDaLIST[NDaLIST1.one]" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group m_two">
+              <span class="control-label col-xs-12 text-left margin-10">执行间隔：</span>
+              <div class="col-xs-12" v-if="NDaLIST1.two=='day'">
+                <select v-model="NDaLIST1.twoD" data-width="100%" class="selectpicker" name="" id="">
+                  <option v-for="item in NDaLIST.day" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <div class="col-xs-12" v-if="NDaLIST1.two=='month'">
+                <select v-model="NDaLIST1.twoD" data-width="100%" class="selectpicker" name="" id="">
+                  <option v-for="item in NDaLIST.month" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <div class="col-xs-12" v-if="NDaLIST1.two=='week'">
+                <div class="m_box">
+                  <div class="col-xs-2" v-for="(item,index) in NDaLIST.week">
+                    <input v-model="NDaLIST1.twoD[index]" type="checkbox" :id="'week'+item.value">
+                    <label :for="'week'+item.value" v-html="item.name"></label>
+                  </div>
+                  <span class="" style="clear:both;width: 1px ;height: 1px;display: inline-block;"> </span>
+                </div>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <span class="control-label col-xs-12 text-left margin-10">每天频率：</span>
+              <div class="col-xs-3">
+                <select v-model="NDaLIST1.threeD[0]" data-size="4" data-width="100%" class="selectpicker" name="" id="">
+                  <option v-for="item in NDaLIST.frequency" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <label class="control-label col-xs-1">时：</label>
+              <div class="col-xs-2">
+                <select v-model="NDaLIST1.threeD[1]" data-size="4" data-width="100%" class="selectpicker" name="" id=""
+                  :disabled="!NDaLIST1.three[0]">
+                  <option v-for="item in NDaLIST.hour" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <label class="control-label col-xs-1">分：</label>
+              <div class="col-xs-2">
+                <select v-model="NDaLIST1.threeD[2]" data-size="4" data-width="100%" class="selectpicker" name="" id=""
+                  :disabled="!NDaLIST1.three[1]">
+                  <option v-for="item in NDaLIST.min" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <label class="control-label col-xs-1">秒：</label>
+              <div class="col-xs-2">
+                <select v-model="NDaLIST1.threeD[3]" data-size="4" data-width="100%" class="selectpicker" name="" id=""
+                  :disabled="!NDaLIST1.three[2]">
+                  <option v-for="item in NDaLIST.sec" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <span class="control-label col-xs-12 text-left">CronExpress：</span>
+              <div class="col-xs-12">
+                <input class="form-control" type="text" disabled :value="NDaLIST1.CronExpress">
+              </div>
+            </div>
+          </div>
+          <div v-if="COM1Data.step1==4" v-show="COM1ShowD.time_Type=='r'" class="actualTime flex_1_col_1"
+            style="text-align: center;font-size: 18px;color:#ffffff;padding-top:10px">
+            <p style="position: relative;top: 50%;margin-top: -15px;">采用实时定时器</p>
+          </div>
+          <!--button-->
+          <div class="stepBtn_firstBtn">
+            <!--<button class="btn btn-default layerbtn" v-if="COM1Data.step1==1" @click="httpCheck">校验</button>-->
+            <button class="btn btn-default layerbtn" v-if="COM1Data.step1!=1" @click="n_prev">上一步</button>
+            <button class="btn btn-default layerbtn" @click="n_next"
+              v-html="COM1Data.step1==COM1Data.steps?'保存':'下一步'"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--http--0.1-->
+    <div id="N_ftp" class="hide">
+      <div class="rowStep">
+        <ul class="step_http flex_box_1">
+          <li :class="{'active':item<COM1Data.step1+1}" class="flex_1_col_1" v-for="item in COM1Data.steps"
+            style="cursor:pointer;">
+            <span class="line_bg lbg-l" v-if="item!=1"></span>
+            <span class="num"><i v-html="item"></i></span>
+            <span class="line_bg lbg-r" v-if="item!=COM1Data.steps"></span>
+          </li>
+        </ul>
+      </div>
+      <div v-if="COM1Data.type1==2" class="data_index">
+        <div class="flex_box_1" :class="{'width-80-cen':COM1Data.step1==1&&N_FTP_1.stat==0}"
+          style="position: relative;padding-left: 20px;">
+          <div class="title_step">
+            <span class="num1"><i v-html="COM1Data.step1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="COM1Data.title1[COM1Data.type1][COM1Data.step1]"></span>
+          </div>
+          <div class="shadow"></div>
+          <!--1-->
+          <!--远程配置-->
+          <!--新建页面 双按钮-->
+          <div class="flex_1_col_1" v-if="COM1Data.step1==1&&N_FTP_1.stat==0">
+            <div @click="ftpTab(1)" class="creatNewData"><span
+                class="icon iconfont icon-xinjian"></span><span>新建远程配置</span></div>
+            <div @click="ftpTab(2)" class="creatSelectData"><span
+                class="icon iconfont icon-liebiao"></span><span>选择已有远程配置</span></div>
+            <div id="kafkaYTable-dbbtn"></div>
+          </div>
+          <!--新建页面 书写页面-->
+          <div class="flex_1_col_1_ov" v-if="COM1Data.step1==1&&N_FTP_1.stat==1">
+            <form id="customForm" class="form-horizontal">
+              <div class="form-group" v-for="(item,index) in N_FTP_1.list">
+                <label v-show="!(item.show==false)" :for="item.paramName" class="col-xs-4"
+                  v-html="item.viewName+' :'"></label>
+                <div class="col-xs-6" v-if="!item.type">
+                  <input autocomplete='new-password' :name="item.paramName" :id="item.paramName" class="form-control"
+                    v-model="item.value" :type="item.paramName=='passWord'?'passWord':'text'">
+                </div>
+                <div class="col-xs-6" v-show="!(item.show==false)" v-if="item.type=='select'">
+                  <select :name="item.paramName" v-model="item.value" :id="item.paramName" class="selectpicker"
+                    data-width="100%">
+                    <option :value="item2.value" v-html="item2.name" v-for="(item2,index2) in item.selectList"></option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="btn-box" v-if="COM1Data.step1==1&&N_FTP_1.stat==1">
+            <button @click="ftpTab(0)" class="btn btn-default layerbtn btn-box-left">退出</button>
+            <button @click="n_next()" class="btn btn-default layerbtn btn-box-right">下一步</button>
+          </div>
+          <!--选择已有页面-->
+          <div class="flex_1_col_1_ov kafkaYTable-box" v-if="COM1Data.step1==1&&N_FTP_1.stat==2">
+            <div id="LTPTool" style="width: 100%">
+              <label for="" style="float: left;">数据源ip: </label>
+              <div class="col-xs-6" style="width: 200px;">
+                <input type="text" class="form-control" id="SipAddress">
+              </div>
+              <button style="float:left;" @click="ftpSearch" class="btn btn-default layerbtn">搜索</button>
+            </div>
+            <table id="kafkaYTable-table"></table>
+          </div>
+          <div class="btn-box" v-if="COM1Data.step1==1&&N_FTP_1.stat==2">
+            <button @click="ftpTab(0)" class="btn btn-default layerbtn btn-box-left">退出</button>
+            <button @click="ftpSelect" class="btn btn-default layerbtn btn-box-right">应用此条数据</button>
+          </div>
+          <!--2-->
+          <div v-if="COM1Data.step1==2" class="flex_1_col_1_ov">
+            <div class="form-group">
+              <label class="col-xs-4 text-right" for="" v-html="COM1getD.typePath?'远程目录 :':'远程文件 :'"></label>
+              <div class="col-xs-5">
+                <!--<input class="form-control" type="text" v-model="COM1getD.remotePath">-->
+                <button :title="COM1getD.remotePath" @click="openFile" class="form-control text-left text-ellipsis"
+                  v-html="COM1getD.remotePath"></button>
+              </div>
+              <div title="多个目录用英文字符分号（';'）分隔" class="text-ellipsis col-xs-3">
+                <!--多个目录用英文字符分号（';'）分隔-->
+                <button class="btn btn-default layerbtn text-ellipsis" @click="COM1getD.typePath=!COM1getD.typePath"
+                  v-html="!COM1getD.typePath?'切换到远程目录':'切换到远程文件'"></button>
+              </div>
+            </div>
+
+            <!--文件-->
+            <div class="form-group" v-show="!COM1getD.typePath">
+              <label class="col-xs-4 text-right" for="">匹配的规则---选中的文件</label>
+              <div class="col-xs-5">
+                <!--<input class="form-control" type="text" v-model="COM1getD.remotePath">-->
+                <button :title="COM1getD.selectFile" @click="openFile" class="form-control text-left text-ellipsis"
+                  v-html="COM1getD.selectFile"></button>
+              </div>
+            </div>
+            <div class="form-group" v-show="!COM1getD.typePath">
+              <label class="col-xs-4 text-right" for="">匹配的规则---忽略的文件</label>
+              <div class="col-xs-5">
+                <!--<input class="form-control" type="text" v-model="COM1getD.remotePath">-->
+                <button :title="COM1getD.ignoreFile" @click="openFile" class="form-control text-left text-ellipsis"
+                  v-html="COM1getD.ignoreFile"></button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-xs-4 text-right" for="">要返回的类型 :</label>
+              <div class="col-xs-5">
+                <label for="fileTypeText1">text</label>
+                <input class="margin-r-8" type="radio" id="fileTypeText1" name="fileType" value="txt"
+                  v-model="COM1getD.fileType">
+                <label for="fileTypeJson1">json/cjson</label>
+                <input class="margin-r-8" type="radio" id="fileTypeJson1" name="fileType" value="json"
+                  v-model="COM1getD.fileType">
+                <label for="fileTypeXml1">xml</label>
+                <input class="margin-r-8" type="radio" id="fileTypeXml1" name="fileType" value="xml"
+                  v-model="COM1getD.fileType">
+                <label for="fileTypeExcel1">excel</label>
+                <input class="margin-r-8" type="radio" id="fileTypeExcel1" name="fileType" value="excel"
+                  v-model="COM1getD.fileType">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-4 text-right" for="">编码格式 :</label>
+              <div class="col-xs-5">
+                <select data-width="100%" class="selectpicker" v-model="COM1getD.codedFormat">
+                  <option value="UTF-8">UTF-8</option>
+                  <option value="GBK">GBK</option>
+                </select>
+              </div>
+            </div>
+            <div v-show="COM1getD.fileType=='txt'" class="form-group">
+              <label class="col-xs-4 text-right" for="">后缀名 :</label>
+              <div class="col-xs-5">
+                <input type="input" class="form-control" v-model="COM1getD.suffix">
+              </div>
+              <!--<div title="可不填" class="text-ellipsis col-xs-3">-->
+              <!--可不填-->
+              <!--</div>-->
+            </div>
+            <div v-show="COM1getD.fileType=='txt'" class="form-group">
+              <label class="col-xs-4 text-right">文件格式 :</label>
+              <div class="col-xs-5">
+                <select data-width="100%" class="selectpicker" v-model="COM1getD.fileFormat">
+                  <option value="asc">ASCII编码</option>
+                  <option value="hex">十六进制编码</option>
+                </select>
+              </div>
+            </div>
+            <div v-show="COM1getD.fileFormat=='asc'&&COM1getD.fileType=='txt'" class="form-group">
+              <label class="col-xs-4 text-right" for="">ASCII编码 :</label>
+              <div class="col-xs-5">
+                <input class="form-control" type="text" v-model="COM1getD.fileFormat1">
+              </div>
+              <div class="col-xs-3">（ 分隔符 ）</div>
+            </div>
+            <div style="overflow: auto;" v-show="COM1getD.fileFormat=='hex'&&COM1getD.fileType=='txt'"
+              class="form-group">
+              <label class="col-xs-4 text-right" for="">十六进制编码 :</label>
+              <div class="col-xs-5">
+                <div class="" style="  margin-bottom: 8px;" v-for="(item3,index3) in COM1getD.fileFormat2">
+                  <input style="padding-left: 30px;" class="form-control" v-model="item3.value" type="text">
+                  <i style="float: left;margin: -22px -30px 0 5px;">0X</i>
+                  <i style="float: right;    margin: -22px -30px 0 0;" @click="COM1getD.fileFormat2.push({value:''})"
+                    class="glyphicon glyphicon-plus" v-if="index3==0"></i>
+                  <i style="float: right;    margin: -22px -30px 0 0;" @click="COM1getD.fileFormat2.splice(index3,1)"
+                    class="glyphicon glyphicon-trash" v-if="index3!=0"></i>
+                </div>
+              </div>
+            </div>
+            <div v-show="COM1getD.fileType=='txt'" class="form-group">
+              <label class="col-xs-4 text-right" for="isColName1">是否有列名</label>
+              <div class="col-xs-5">
+                <input type="checkbox" name="isColName" id="isColName1" v-model="COM1getD.isColName">
+              </div>
+            </div>
+          </div>
+          <!--3-->
+          <div v-if="COM1Data.step1==3" class="tableBox_show1" style="cursor:pointer;">
+            <span style="width: 200px;left:50%;margin-left:-100px;color:#fff;"
+              @click="slideToggle1('typeInfoRadio')">选择文件格式<img src="./images/newInstallation/show.png" alt=""
+                style="height:15px;width:15px;"></span>
+          </div>
+          <div v-if="COM1Data.step1==3" class="typeInfoRadio">
+            <!--<label style="margin-right: 10px;" class="hover"><input class="format_text_1" v-model="COM1COLD.txt" name="typeinfo" type="radio" value="text" /><span>TEXT</span></label>-->
+            <label class="hover"><input name="typeinfo" type="radio" value="cjson"
+                v-model="COM1COLD.txt" /><span>JSON/CJSON</span></label>
+            <label class="hover"><input name="typeinfo" type="radio" value="db"
+                v-model="COM1COLD.txt" /><span>数据源</span></label>
+          </div>
+          <!--顶部展示数据表格-->
+          <div v-if="COM1Data.step1==3" class="http_1_col_1 http_box_2" style="padding:5px 0;">
+            <div class="http_leftBox http_2_col_1">
+              <div class="icon iconfont icon-chenggong checkbox-1" title="全选" :class="{'checkbox-1-ac':ischeckboxAll}"
+                @click="ischeckboxAll=!ischeckboxAll"></div>
+              <div draggable="true" title="向右侧拖拽" @dragstart="drag_col($event,'check-all')" class="checkbox-2"
+                :class="{'hide':!ischeckboxAll}"></div>
+              <ul id="rotate-http" style="position: relative;z-index: 1">
+                <li v-for="item in COM1COLD.list"
+                  :class="{checktrue:item.checkHttp,nochecktrue:!item.checkHttp,hide:item.checkHttp}" draggable="true"
+                  @dragstart="drag_col($event,item.name,item.type)">
+                  <span class="title" :type="item.type">{{item.name}}</span>
+                </li>
+              </ul>
+            </div>
+            <div style="position: relative;width: 40px;height: 100%;">
+              <img class="imgRotate" src="./images/newInstallation/next.png" alt="">
+            </div>
+            <div class="http_rightBox http_2_col_2" @drop="drop_col($event)" @dragover="allowDrop($event)">
+              <ul id="elements-container" style="height:100%;margin-bottom:0px;">
+                <li v-for="item in COM1COLD.select" class="draggable-element">
+                  <span class="title text-ellipsis" :title="item.name" v-html="item.name"></span>
+                  <span class="text-ellipsis" :title="item.value" v-html="item.value"></span>
+                  <span class="text-ellipsis" :title="item.values[item4-1]" v-for="item4 in 8"
+                    v-html="item.values[item4-1]"></span>
+                  <div class="del iconfont icon-cuowu active" @click="tableDelOne_col($event,item)"></div>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+          <div v-if="COM1Data.step1==3" class="tableBox_show" style="cursor:pointer;">
+            <span style="width: 200px;left:50%;margin-left:-100px;color:#fff;" @click="slideToggle1('tableBox')">查看原始数据
+              <img src="./images/newInstallation/show.png" alt="" style="height:15px;width:15px;"></span>
+          </div>
+          <div v-if="COM1Data.step1==3" class="tableBox http_1_col_1">
+            <ul id="elements-container" style="height:100%;margin-bottom:0px;">
+              <li class="draggable-element" v-for="(item,index) in COM1COLD.list">
+                <span class="title text-ellipsis" :title="item.name" v-html="item.name"></span>
+                <span class="text-ellipsis" :title="item.value" v-html="item.value"></span>
+                <span class="text-ellipsis" :title="item.values[item4-1]" v-for="item4 in 8"
+                  v-html="item.values[item4-1]"></span>
+              </li>
+            </ul>
+          </div>
+          <!--4-->
+          <div v-if="COM1Data.step1==4" class="flex_box_2" style="margin-top: 15px;">
+            <label class="flex_2_col_1 text-center">原始模块数据</label>
+            <div style="width: 20px;height: 100%;"></div>
+            <label class="flex_2_col_1 text-center">修改后的数据</label>
+          </div>
+          <div v-if="COM1Data.step1==4" class="flex_1_col_1 flex_box_2">
+            <pre class="radioCheck flex_2_col_1" v-html="COM1ShowD.key" style="color:#ffffff;font-size: 16px;">
+                        </pre>
+            <div style="width: 20px;height: 100%;"></div>
+            <pre class="radioCheckEdit flex_2_col_1" v-html="COM1ShowD.value" style="color:#ffffff;font-size: 16px;">
+                        </pre>
+          </div>
+          <!--5-->
+          <div v-if="COM1Data.step1==5" v-show="COM1ShowD.time_Type=='c'" class="radioWeekCheck_time flex_1_col_1"
+            style="font-size: 18px;color:#ffffff;">
+            <!--时间联动-->
+            <div class="form-group">
+              <span class="control-label col-xs-12 text-left">频率：</span>
+              <div class="col-xs-12">
+                <select v-model="NDaLIST1.oneD" data-size="4" data-width="100%" class="selectpicker" name="" id="">
+                  <option v-for="item in NDaLIST[NDaLIST1.one]" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group m_two">
+              <span class="control-label col-xs-12 text-left margin-10">执行间隔：</span>
+              <div class="col-xs-12" v-if="NDaLIST1.two=='day'">
+                <select v-model="NDaLIST1.twoD" data-width="100%" class="selectpicker" name="" id="">
+                  <option v-for="item in NDaLIST.day" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <div class="col-xs-12" v-if="NDaLIST1.two=='month'">
+                <select v-model="NDaLIST1.twoD" data-width="100%" class="selectpicker" name="" id="">
+                  <option v-for="item in NDaLIST.month" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <div class="col-xs-12" v-if="NDaLIST1.two=='week'">
+                <div class="m_box">
+                  <div class="col-xs-2" v-for="(item,index) in NDaLIST.week">
+                    <input v-model="NDaLIST1.twoD[index]" type="checkbox" :id="'week'+item.value">
+                    <label :for="'week'+item.value" v-html="item.name"></label>
+                  </div>
+                  <span class="" style="clear:both;width: 1px ;height: 1px;display: inline-block;"> </span>
+                </div>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <span class="control-label col-xs-12 text-left margin-10">每天频率：</span>
+              <div class="col-xs-3">
+                <select v-model="NDaLIST1.threeD[0]" data-size="4" data-width="100%" class="selectpicker" name="" id="">
+                  <option v-for="item in NDaLIST.frequency" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <label class="control-label col-xs-1">时：</label>
+              <div class="col-xs-2">
+                <select v-model="NDaLIST1.threeD[1]" data-size="4" data-width="100%" class="selectpicker" name="" id=""
+                  :disabled="!NDaLIST1.three[0]">
+                  <option v-for="item in NDaLIST.hour" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <label class="control-label col-xs-1">分：</label>
+              <div class="col-xs-2">
+                <select v-model="NDaLIST1.threeD[2]" data-size="4" data-width="100%" class="selectpicker" name="" id=""
+                  :disabled="!NDaLIST1.three[1]">
+                  <option v-for="item in NDaLIST.min" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+              <label class="control-label col-xs-1">秒：</label>
+              <div class="col-xs-2">
+                <select v-model="NDaLIST1.threeD[3]" data-size="4" data-width="100%" class="selectpicker" name="" id=""
+                  :disabled="!NDaLIST1.three[2]">
+                  <option v-for="item in NDaLIST.sec" :value="item.value" v-html="item.name"></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <span class="control-label col-xs-12 text-left">CronExpress：</span>
+              <div class="col-xs-12">
+                <input class="form-control" type="text" disabled :value="NDaLIST1.CronExpress">
+              </div>
+            </div>
+          </div>
+          <div v-if="COM1Data.step1==5" v-show="COM1ShowD.time_Type=='r'" class="actualTime flex_1_col_1"
+            style="text-align: center;font-size: 18px;color:#ffffff;padding-top:10px">
+            <p style="position: relative;top: 50%;margin-top: -15px;">采用实时定时器</p>
+          </div>
+          <!--button-->
+          <div v-if="COM1Data.step1!=1" class="stepBtn_firstBtn">
+            <!--<button class="btn btn-default layerbtn" v-if="COM1Data.step1==1" @click="httpCheck">校验</button>-->
+            <button class="btn btn-default layerbtn" v-if="COM1Data.step1!=1" @click="n_prev">上一步</button>
+            <button class="btn btn-default layerbtn" @click="n_next"
+              v-html="COM1Data.step1==COM1Data.steps?'保存':'下一步'"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--oracle-->
+    <div id="type_oracle" class="hide">
+      <div class="rowStep" v-if="oracleList.length>0">
+        <ul class="step_kafka flex_box_1">
+          <li class="flex_1_col_1" :class="{active:index1<oracleStep+1}" v-for="(item1,index1) in oracleList"
+            style="cursor:pointer;">
+            <span v-if="index1!=0" class="line_bg lbg-l"></span>
+            <span class="num"><i v-html="index1+1"></i></span>
+            <span class="line_bg lbg-r" v-if="oracleList.length!=index1+1"></span>
+          </li>
+        </ul>
+      </div>
+      <div class="data_index oracle_BOX" v-if="oracleList.length>0">
+        <!--远程配置-->
+        <div style="padding-left: 20px;position: relative" class="flex_box_1 " v-if="oracleStep==0">
+          <div class="title_step">
+            <span class="num1"><i v-html="oracleStep+1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="oracleList[oracleStep].titleName"></span>
+          </div>
+          <div class="shadow"></div>
+          <!--新建页面 双按钮-->
+          <div class="flex_1_col_1" v-if="oracleList[oracleStep].type==0">
+            <div @click="oracleYTab(1)" class="creatNewData"><span
+                class="icon iconfont icon-xinjian"></span><span>新建远程配置</span></div>
+            <div @click="oracleYTab(2)" class="creatSelectData"><span
+                class="icon iconfont icon-liebiao"></span><span>选择已有远程配置</span></div>
+            <div id="kafkaYTable-dbbtn"></div>
+          </div>
+          <!--新建页面 书写页面-->
+          <div class="flex_1_col_1_ov" v-if="oracleList[oracleStep].type==1">
+            <form id="customForm" class="form-horizontal">
+              <div class="form-group" v-for="(item,index) in oracleList[0].list">
+                <label :for="item.paramName" class="col-xs-4" v-html="item.viewName+' :'"></label>
+                <div class="col-xs-6">
+                  <input autocomplete='new-password' :name="item.paramName" :id="item.paramName" class="form-control"
+                    v-model="item.value" :type="item.paramName=='passWord'?'passWord':'text'">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="btn-box" v-if="oracleList[oracleStep].type==1">
+            <button @click="oracleYTab(0)" class="btn btn-default layerbtn btn-box-left">退出</button>
+            <button @click="oracleNext()" class="btn btn-default layerbtn btn-box-right">下一步</button>
+          </div>
+          <!--选择已有页面-->
+          <div class="flex_1_col_1 kafkaYTable-box" v-if="oracleList[oracleStep].type==2">
+            <div id="LTPTooloracle" style="width: 100%">
+              <label for="" style="float: left;">数据源ip: </label>
+              <div class="col-xs-6" style="width: 200px;">
+                <input type="text" class="form-control" id="SipAddressoracle">
+              </div>
+              <button style="float:left;" @click="oracleYTableSearch" class="btn btn-default layerbtn">搜索</button>
+            </div>
+            <table id="oracleYTable-table-1"></table>
+          </div>
+          <div class="btn-box" v-if="oracleList[oracleStep].type==2">
+            <button @click="oracleYTab(0)" class="btn btn-default layerbtn btn-box-left">退出</button>
+            <button @click="oracleYSelc" class="btn btn-default layerbtn btn-box-right">应用此条数据</button>
+          </div>
+        </div>
+        <!--路径配置-->
+        <div style="padding-left: 20px;position: relative" class="flex_box_1" v-if="oracleStep==1">
+          <div class="title_step">
+            <span class="num1"><i v-html="oracleStep+1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="oracleList[oracleStep].titleName"></span>
+          </div>
+          <div class="shadow"></div>
+          <div class="flex_1_col_1_ov">
+            <form id="customForm" class="form-horizontal">
+              <div class="form-group" v-for="(item,index) in oracleList[1].list">
+                <label :for="item.paramName" class="col-xs-4" v-html="item.viewName+' :'"></label>
+                <div class="col-xs-6">
+                  <input :name="item.paramName" :id="item.paramName" class="form-control" v-model="item.value"
+                    type="text">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="btn-box">
+            <button @click="oraclePrev()" class="btn btn-default layerbtn btn-box-left">上一步</button>
+            <button @click="oracleNext()" class="btn btn-default layerbtn btn-box-right">下一步</button>
+          </div>
+        </div>
+        <!--数据源配置1-->
+        <div style="padding-left: 20px;position: relative" class="flex_box_1" v-if="oracleStep==2">
+          <div class="title_step">
+            <span class="num1"><i v-html="oracleStep+1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="oracleList[oracleStep].titleName"></span>
+          </div>
+          <div class="shadow"></div>
+          <div :class="{hide:!oracleList[2].isshowTable}" class="flex_1_col_1_ov dbTableBox-box">
+            <div id="LTPTooloracle" style="width: 100%">
+              <label for="" style="float: left;">搜索数据源ip: </label>
+              <div class="col-xs-6" style="width: 200px;">
+                <input type="text" class="form-control" id="SipAddressoracle">
+              </div>
+              <button style="float:left;" @click="oracleYTableSearch" class="btn btn-default layerbtn">搜索</button>
+            </div>
+            <table id="dbTableBox"></table>
+          </div>
+          <div v-show="!oracleList[2].isshowTable" class="flex_1_col_1_ov flex_box_1 flex-line-height">
+            <div class="">
+              <div class="form-group" style="line-height: 26px;">
+                <label class="col-xs-6 text-right">数据源名称 : </label>
+                <div class="col-xs-5" v-html="oracleList[2].list[0].value"></div>
+              </div>
+              <div class="form-group" style="line-height: 26px;">
+                <label class="col-xs-6 text-right">数据源&nbsp;&nbsp;&nbsp;&nbsp;ip : </label>
+                <div class="col-xs-5" v-html="oracleList[2].list[1].value"></div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-box">
+            <button @click="oraclePrev()" class="btn btn-default layerbtn btn-box-left">上一步</button>
+            <button v-if="oracleList[2].isshowTable" @click="oracleSelectDBID" class="btn btn-default layerbtn"
+              style="z-index: 10;position: absolute;bottom: 2px;right:0px;">确认数据源</button>
+            <button v-if="!oracleList[2].isshowTable" @click="oracleNext()"
+              class="btn btn-default layerbtn btn-box-right">下一步</button>
+            <!--<button @click="oracleSave()" class="btn btn-default layerbtn btn-box-right">保存</button>-->
+          </div>
+        </div>
+
+        <!--存储表名称-->
+        <div style="padding-left: 20px;position: relative" class="flex_box_1" v-if="oracleStep==3">
+          <div class="title_step">
+            <span class="num1"><i v-html="oracleStep+1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="oracleList[oracleStep].titleName"></span>
+          </div>
+          <div class="shadow"></div>
+
+          <div class="flex_1_col_1" v-if="oracleList[3].type==0">
+            <div @click="oracleNext(0)" class="creatNewData"><span
+                class="icon iconfont icon-xinjian"></span><span>新建表名</span></div>
+            <div @click="oracleNext(1)" class="creatSelectData"><span
+                class="icon iconfont icon-liebiao"></span><span>选择已有表名</span></div>
+            <div id="kafkaYTable-dbbtn"></div>
+          </div>
+          <div v-if="oracleList[3].type==1" class="flex_1_col_1_ov flex_box_1 flex-line-height">
+            <div class="form-group">
+              <div class="form-group" style="line-height: 26px;">
+                <label class="col-xs-5 text-right">表名称 : </label>
+                <div class="col-xs-5">
+                  <input type="text" class="form-control" v-model="oracleList[3].list[0].value">
+                </div>
+              </div>
+              <div class="form-group" style="line-height: 26px;">
+                <label class="col-xs-5 text-right">入库类型 : </label>
+                <div class="col-xs-5">
+                  <select name="" id="" class="selectpicker" v-model="oracleList[3].list[1].value">
+                    <option value="real">增量</option>
+                    <option value="full">全量</option>
+                  </select>
+                </div>
+              </div>
+              <!--<div class="form-group" style="line-height: 26px;">-->
+              <!--<label class="col-xs-6 text-right">数据源&nbsp;&nbsp;&nbsp;&nbsp;ip : </label>-->
+              <!--<div  class="col-xs-5" v-html="oracleList[2].list[1].value"></div>-->
+              <!--</div>-->
+            </div>
+          </div>
+          <div v-if="oracleList[3].type==2||oracleList[3].type==3" class="flex_1_col_1_ov dbTableBox-box">
+            <div id="LTPTooloracle" style="width: 100%">
+              <label v-if="oracleList[3].type==2" for="" style="float: left;">搜索用户名: </label>
+              <label v-if="oracleList[3].type==3" for="" style="float: left;">搜索表名: </label>
+              <div class="col-xs-6" style="width: 200px;">
+                <input type="text" class="form-control" id="SipAddressoracle">
+              </div>
+              <button style="float:left;" @click="oracleYTableSearch" class="btn btn-default layerbtn">搜索</button>
+            </div>
+            <table id="dbTableBox"></table>
+          </div>
+          <div class="btn-box">
+            <button @click="oraclePrev()" class="btn btn-default layerbtn btn-box-left">上一步</button>
+            <!--<button @click="oracleNext()" class="btn btn-default layerbtn btn-box-right">下一步</button>-->
+            <!--<button v-if="oracleList[2].isshowTable" @click="oracleSelectDBID" class="btn btn-default layerbtn"  style="z-index: 10;position: absolute;bottom: 2px;right:0px;">确认数据源</button>-->
+            <button @click="oracleNext()" v-if="oracleList[3].type==1"
+              class="btn btn-default layerbtn btn-box-right">保存</button>
+            <button @click="oracleNext(0)" v-if="oracleList[3].type==1"
+              class="btn btn-default layerbtn btn-box-right">重选表</button>
+
+            <button @click="oracleNext(0)" v-if="oracleList[3].type==2||oracleList[3].type==3"
+              class="btn btn-default layerbtn btn-box-right">编辑表名称</button>
+
+            <button @click="oracleNext(1)" v-if="oracleList[3].type==2"
+              class="btn btn-default layerbtn btn-box-right">打开用户</button>
+            <button @click="oracleNext(1)" v-if="oracleList[3].type==3"
+              class="btn btn-default layerbtn btn-box-right">返回上一级</button>
+            <button @click="oracleNext(2)" v-if="oracleList[3].type==3"
+              class="btn btn-default layerbtn btn-box-right">选择表</button>
+
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!--kafka-->
+    <div id="type_kafka" class="hide">
+      <div class="kafka_version" v-if="kafkaList.length==0">
+        <div class="kafka_version_1">
+          <div class="v_t_1">类型</div>
+          <div class="v_t_1">版本</div>
+          <div class="v_t_1">信息</div>
+        </div>
+        <div class="kafka_version_2_0">
+          <div title="双击打开对应的基础配置" @dblclick="selectKafka" @click="kafkaVersionD.selectIndex=index"
+            :class="{'selsecV':kafkaVersionD.selectIndex==index}" class="kafka_version_2"
+            v-for="(item,index) in kafkaVersion">
+            <div class="v_t_1" v-html="item.name"></div>
+            <div class="v_t_1" v-html="item.version"></div>
+            <div class="v_t_1" v-html="item.details"></div>
+          </div>
+        </div>
+        <div class="kafka_version_3">
+          <button class="btn btn-default layerbtn" @click="selectKafka">选择</button>
+          <button class="btn btn-default layerbtn" @click="cancel">关闭</button>
+        </div>
+      </div>
+      <div class="rowStep" v-if="kafkaList.length>0">
+        <ul class="step_kafka flex_box_1">
+          <li class="flex_1_col_1" :class="{active:index1<kafkaStep+1}" v-for="(item1,index1) in kafkaList"
+            style="cursor:pointer;">
+            <span v-if="index1!=0" class="line_bg lbg-l"></span>
+            <span class="num"><i v-html="index1+1"></i></span>
+            <span class="line_bg lbg-r" v-if="kafkaList.length!=index1+1"></span>
+          </li>
+        </ul>
+      </div>
+      <div class="data_index kafka_BOX" v-if="kafkaList.length>0">
+        <!--远程配置-->
+        <div style="padding-left: 20px;" class="flex_box_1" v-if="kafkaList[kafkaStep].modelName=='remortConfig'">
+          <div class="title_step">
+            <span class="num1"><i v-html="kafkaStep+1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="kafkaList[kafkaStep].titleName"></span>
+          </div>
+          <div class="shadow"></div>
+          <!--新建页面 双按钮-->
+          <div class="flex_1_col_1" v-if="kafkaYStat==0">
+            <div @click="kafkaYTab(1)" class="creatNewData"><span
+                class="icon iconfont icon-xinjian"></span><span>新建远程配置</span></div>
+            <div @click="kafkaYTab(2)" class="creatSelectData"><span
+                class="icon iconfont icon-liebiao"></span><span>选择已有远程配置</span></div>
+            <div id="kafkaYTable-dbbtn"></div>
+          </div>
+          <!--新建页面 书写页面-->
+          <div class="flex_1_col_1_ov" v-if="kafkaYStat==1">
+            <form id="customForm" class="form-horizontal">
+              <div class="form-group" v-for="(item,index) in KAFremortConfig">
+                <label :for="item.paramName" class="col-xs-4" v-html="item.viewName+' :'"></label>
+                <div class="col-xs-6">
+                  <input autocomplete='new-password' :name="item.paramName" :id="item.paramName" class="form-control"
+                    v-model="item.value" :type="item.paramName=='passWord'?'passWord':'text'">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="btn-box" v-if="kafkaYStat==1">
+            <button @click="kafkaYTab(0)" class="btn btn-default layerbtn btn-box-left">退出</button>
+            <button @click="kafkaNext()" class="btn btn-default layerbtn btn-box-right">下一步</button>
+          </div>
+          <!--选择已有页面-->
+          <div class="flex_1_col_1 kafkaYTable-box" v-if="kafkaYStat==2">
+            <div id="LTPTool" style="width: 100%">
+              <label for="" style="float: left;">数据源ip: </label>
+              <div class="col-xs-6" style="width: 200px;">
+                <input type="text" class="form-control" id="SipAddress">
+              </div>
+              <button style="float:left;" @click="kafkaYTableSearch" class="btn btn-default layerbtn">搜索</button>
+            </div>
+            <table id="kafkaYTable-table"></table>
+          </div>
+          <div class="btn-box" v-if="kafkaYStat==2">
+            <button @click="kafkaYTab(0)" class="btn btn-default layerbtn btn-box-left">退出</button>
+            <button @click="kafkaYSelc" class="btn btn-default layerbtn btn-box-right">应用此条数据</button>
+          </div>
+        </div>
+        <!--路径配置-->
+        <div style="padding-left: 20px;" class="flex_box_1" v-if="kafkaList[kafkaStep].modelName=='kafkaPathConfig'">
+          <div class="title_step">
+            <span class="num1"><i v-html="kafkaStep+1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="kafkaList[kafkaStep].titleName"></span>
+          </div>
+          <div class="shadow"></div>
+          <div class="flex_1_col_1_ov">
+            <form id="customForm" class="form-horizontal">
+              <div class="form-group" v-for="(item,index) in KAFpathConfigkafka">
+                <label :for="item.paramName" class="col-xs-4" v-html="item.viewName+' :'"></label>
+                <div class="col-xs-6">
+                  <input :name="item.paramName" :id="item.paramName" class="form-control" v-model="item.value"
+                    type="text">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="btn-box">
+            <button @click="kafkaPrev()" class="btn btn-default layerbtn btn-box-left">上一步</button>
+            <button @click="kafkaNext()" class="btn btn-default layerbtn btn-box-right">下一步</button>
+          </div>
+        </div>
+        <!--目标端基础配置 dtBaseConfig-->
+        <div style="padding-left: 20px;" class="flex_box_1"
+          v-if="kafaListData.isUpdate&&kafkaList[kafkaStep].modelType=='config'">
+          <div class="title_step">
+            <span class="num1"><i v-html="kafkaStep+1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="kafkaList[kafkaStep].titleName"></span>
+          </div>
+          <div class="shadow"></div>
+          <div class="flex_1_col_1_ov">
+            <form id="customForm" class="form-horizontal">
+              <label class="form-group"
+                :class="{'col-xs-6':item1.configType=='checkbox','col-xs-12':(item1.configType=='input'||item1.configType=='select'||item1.configType=='textarea'||item1.configType=='upload'),isshowX:item1.configType=='checkbox'}"
+                v-for="(item1,index1) in kafkaList[kafkaStep].modleList">
+                <!--checkbox-->
+                <label v-if="item1.configType=='checkbox'" class="col-xs-7" v-html="item1.viewName+' :'"></label>
+                <div v-if="item1.configType=='checkbox'" class="col-xs-5">
+                  <input type="checkbox" v-model="item1.isshow">
+                </div>
+                <!--text-->
+                <label v-if="item1.configType=='input'" class="col-xs-5" v-html="item1.viewName+' :'"></label>
+                <div v-if="item1.configType=='input'" class="col-xs-5">
+                  <input :name="item1.paramName" type="text" class="form-control" v-model="item1.value">
+                </div>
+                <!--select-->
+                <label v-if="item1.configType=='select'" class="col-xs-5" v-html="item1.viewName+' :'"></label>
+                <div v-if="item1.configType=='select'" class="col-xs-5">
+                  <select :id="item1.paramName" data-size="3" data-width="100%" class="selectpicker"
+                    :name="item1.paramName" v-model="item1.value">
+                    <option value="">- 请选择 -</option>
+                    <option v-html="item2.viewName" :value="item2.value" v-for="item2 in item1.selectList"></option>
+                  </select>
+                </div>
+                <!--textarea-->
+                <label v-if="item1.configType=='textarea'" class="col-xs-5" v-html="item1.viewName+' :'"></label>
+                <div v-if="item1.configType=='textarea'" class="col-xs-5">
+                  <textarea :id="item1.paramName" class="form-control" :name="item1.paramName" v-model="item1.value">
+                                    </textarea>
+                </div>
+                <!--upload-->
+                <span v-if="item1.configType=='upload'" class="col-xs-5 text-right" v-html="item1.viewName+' :'"></span>
+                <div v-if="item1.configType=='upload'" class="col-xs-5">
+                  <input :name="item1.paramName" v-model="item1.value" :datastat="item1.ULstat" readonly type="text"
+                    :id="item1.paramName" class="form-control">
+                  <!--<input :disabled="!LNData.isconEdit" :name="item1.paramName" type="text" class="form-control" v-model="item1.value">-->
+                </div>
+                <div v-if="item1.configType=='upload'" class="col-xs-5 col-xs-offset-5" style="text-align: left;">
+                  <input @change="uploadChange(item1.paramName,index1)" class="file"
+                    style="width:70px;display:inline-block;" type="file" name="loadFile"
+                    :class="'file'+item1.paramName" />
+                  <input class="btn btn-default layerbtn upLoadfile" style="width:70px;display:inline-block;"
+                    type="button" name="upLoadfile" @click="upLoadFlie(item1.paramName,index1)" value="上传文件" />
+                </div>
+              </label>
+            </form>
+          </div>
+          <div class="btn-box">
+            <button v-if="kafkaStep!=0" @click="kafkaPrev()" class="btn btn-default layerbtn btn-box-left">上一步</button>
+            <button v-if="kafkaStep+1!=kafkaList.length" @click="kafkaNext()"
+              class="btn btn-default layerbtn btn-box-right">下一步</button>
+            <button v-if="kafkaStep+1==kafkaList.length" @click="kafkaSave()"
+              class="btn btn-default layerbtn btn-box-right">保存</button>
+
+          </div>
+        </div>
+        <!--数据源配置-->
+        <div style="padding-left: 20px;" class="flex_box_1"
+          v-if="kafaListData.isUpdate&&kafkaList[kafkaStep].modelName=='dataBaseConfig'">
+          <div class="title_step">
+            <span class="num1"><i v-html="kafkaStep+1"></i></span><span style="color:#ffffff;padding-left:30px;"
+              v-html="kafkaList[kafkaStep].titleName"></span>
+          </div>
+          <div class="shadow"></div>
+          <div :class="{hide:!kafaListData.isshowTable}" class="flex_1_col_1_ov dbTableBox-box">
+            <table id="dbTableBox"></table>
+          </div>
+          <div v-show="!kafaListData.isshowTable" class="flex_1_col_1_ov flex_box_1 flex-line-height">
+            <div class="">
+              <div class="form-group" style="line-height: 26px;">
+                <label class="col-xs-6 text-right">数据源名称 : </label>
+                <div class="col-xs-5" v-html="TLdbIDList.db_name"></div>
+              </div>
+              <div class="form-group" style="line-height: 26px;">
+                <label class="col-xs-6 text-right">数据源&nbsp;&nbsp;&nbsp;&nbsp;ip : </label>
+                <div class="col-xs-5" v-html="TLdbIDList.host_ip"></div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-box">
+            <button v-if="kafkaStep!=0" @click="kafkaPrev()" class="btn btn-default layerbtn btn-box-left">上一步</button>
+            <button v-if="kafkaStep+1!=kafkaList.length" @click="kafkaNext()"
+              class="btn btn-default layerbtn btn-box-right">下一步</button>
+            <button v-if="kafaListData.isshowTable" @click="selectDBID" class="btn btn-default layerbtn"
+              style="z-index: 10;position: absolute;bottom: 2px;right:0px;">确认数据源</button>
+            <button v-if="kafkaStep+1==kafkaList.length" @click="kafkaSave()"
+              class="btn btn-default layerbtn btn-box-right">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--上传-->
+    <div id="uploadBox" class="hide">
+      <div class="flex_box_1 uploadBox_1">
+        <div class="progress flex-grow-0">
+          <div class="progress-bar progress-bar-striped active uploadPro1" role="progressbar" aria-valuenow="0"
+            aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+            <span class="uploadPro2">0</span>
+          </div>
+        </div>
+        <div class="cmd-box-title-1 flex-grow-0" v-if="upDatas.type%2==1">
+          <i>查看详情</i>
+          <i @click="upDatas.isshow2=!upDatas.isshow2" :title="upDatas.isshow2?'向上折叠':'向下打开'"
+            :class="{'rote_180':!upDatas.isshow2,'rote_180_r':upDatas.isshow2}"
+            class="icon iconfont icon-icon-angle-double-top"></i>
+        </div>
+        <div class="cmd-box-1" v-show="(upDatas.type%2==1&&upDatas.isshow2)">
+          <div class="successCmd" v-for="(item,index) in upAllNames">
+            <i class="icon iconfont"
+              :class="{'icon-jiazaizhong runicon':item.state==0,'icon-chenggong':item.state==1,'icon-shibai danger-color':item.state==2,'icon-dengdai wait-color':item.state==3}"></i>
+            <span v-html="item.name"></span>
+            <span class="font-size-1">( <i v-show="item.state==0">加载中 ...</i><i v-show="item.state==1">成功</i><i
+                v-show="item.state==2">失败</i><i v-show="item.state==3">等待中 ...</i> )</span>
+          </div>
+        </div>
+        <div class="cmd-box-title-1 flex-grow-0" @click="upDatas.isshow=!upDatas.isshow" v-if="upDatas.type%2==1">
+          <i>查看详情</i>
+          <i :class="{'rote_180':!upDatas.isshow,'rote_180_r':upDatas.isshow}"
+            class="icon iconfont icon-icon-angle-double-top"></i>
+        </div>
+        <div class="flex_1_col_3_ov" v-show="upDatas.type%2==0||(upDatas.type%2==1&&upDatas.isshow)">
+          <div class="uploadBox_1_1">
+            <div class="uploadBox_1_2">
+              <a href="#C1" class="a_box"><span id="cmdbtn1"> </span></a>
+              <div class="uploadBox_1_1_1"></div>
+              <a name="C1" class="a_box"> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--cmd 详细配置的修改-->
+    <div id="CMDDeConfig" class="hide">
+      <div class="uploadBox_1">
+        <div class="flex_box_1 uploadBox_DeConfig">
+          <textarea class="pre uploadBox_1_2"></textarea>
+          <div class="btn-s-1 flex-grow-0">
+            <button class="btn btn-default layerbtn" @click="CMDDeConfigSave">更改信息</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--servername  修改-->
+    <div id="servernameBox_1" class="hide">
+      <!--<form class="form-horizontal" action="" id="servernameForm">-->
+      <div class="form-group" v-for="item in serverNameBox">
+        <label class="col-xs-5 control-label text-right" v-html="item.viewName"></label>
+        <div class="col-xs-5">
+          <input type="text" class="form-control" v-model="item.value" :placeholder="item.title">
+        </div>
+      </div>
+      <div class="stepBtn">
+        <button class="btn btn-default layerbtn" @click="saveServerName2">保存</button>
+        <button class="btn btn-default layerbtn" @click="cancel">关闭</button>
+      </div>
+      <!--</form>-->
+    </div>
+
+    <!--ztree-->
+    <div class="hide" id="zTreeFile" style="width: 100%;height:100%">
+      <div class="" style="width: 100%;height:100%;display: flex;flex-direction: column;">
+        <div class="form-group" style="flex:none;margin-bottom: 20px;">
+          <div class="col-xs-10 col-xs-offset-1">
+            <img @click="selectFile(2)" class="file-back" src="./images/file/back.png" alt="" title="返回上一级">
+            <input @keyup.enter="selectFile(3)" type="text" class="form-control file-root text-ellipsis"
+              :title="fileDirectory.root" v-model="fileDirectory.root">
+          </div>
+          <!--<div class="col-xs-3 text-ellipsis" title="应用的文件目录">应用的<br>文件目录</div>-->
+        </div>
+        <div class="shadow"></div>
+        <div style="flex:auto;width: 100%;height:100%;overflow-y: auto;">
+          <div v-if="!fileDirectory.selectData.length">
+            <div class="col-xs-10 col-xs-offset-1 file-child hover-1">
+              搜索不到文件
+            </div>
+          </div>
+          <div class="form-group " v-for="(item,index) in fileDirectory.selectData">
+            <div @mouseenter="fileDirectory.hoverIndex=index" @mouseleave="fileDirectory.hoverIndex=-1"
+              :class="{'slelectData':fileDirectory.index==index}" @click="selectFile(0,index)"
+              @dblclick="selectFile(1,index)" class="text-ellipsis col-xs-10 col-xs-offset-1 file-child hover-1">
+
+              <img title="忽略" v-show="fileDirectory.signList[item.name]&&fileDirectory.signList[item.name].type==0"
+                src="./images/file/ignore.png" alt="">
+              <img title="选中" v-show="fileDirectory.signList[item.name]&&fileDirectory.signList[item.name].type==1"
+                src="./images/file/selected.png" alt="">
+
+              <img v-show="item.type=='directory'" src="./images/file/folder.png" alt="">
+              <img v-show="item.type=='file'" src="./images/file/file.png" alt="">
+              <img v-show="item.type=='decompress'" src="./images/file/compression.png" alt="">
+              <span class="" :title="item.name" v-html="item.name"></span>
+
+              <div style="top:10px;"
+                v-show="fileDirectory.hoverIndex==index&&!COM1getD.typePath&&(item.type=='file'||item.type=='decompress')"
+                class="file-btn-right">
+                <img title="忽略" @click="signFile(0,index)" src="./images/file/ignore.png" alt="">
+                <img title="选中" @click="signFile(1,index)" src="./images/file/selected.png" alt="">
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="shadow"></div>
+
+        <!--目录-->
+        <div v-if="COM1getD.typePath"
+          style="flex:none;width: 100%;height:100%;max-height:128px;overflow:hidden;padding-top: 10px;">
+          <div class="form-group" style="height: 100%;margin-top: 0;">
+            <div class="col-xs-1 text-right text-ellipsis"
+              style="line-height: 34px;height: 100%;border-right: #066f98 solid 0.3px;" title="当前要应用的目录">应用<br>目录</div>
+            <div class="col-xs-10" style="overflow-y: auto;height:100%;">
+              <div class="sign-icon text-ellipsis" :class="{'sign-icon-select':fileDirectory.selectFileIndex==index}"
+                @mouseenter="fileDirectory.hoverFileIndex=index" @mouseleave="fileDirectory.hoverFileIndex=-1"
+                v-for="(item,index) in fileDirectory.selectFileList">
+                <div class="select-icon-2" v-show="fileDirectory.selectFileIndex==index"><span>编辑<br>当前</span></div>
+                <div class="select-icon-3 text-ellipsis" :title="item" v-html="item"></div>
+                <div style="float: right;line-height: 34px;position: absolute;right: 10px;top:0;"
+                  v-show="fileDirectory.hoverFileIndex==index&&fileDirectory.selectFileList.length>1">
+                  <img @click="reselectDirectory(index)" title="重新选择目录" src="./images/file/edit.png" alt="">
+                  <img @click="deleteFile(index)" title="删除" src="./images/file/delete.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-1" style="line-height: 34px;">
+              <img @click="addDirectory" title="增加目录" src="./images/file/add.png" alt="">
+            </div>
+          </div>
+        </div>
+
+        <!--文件-->
+        <div v-if="!COM1getD.typePath"
+          style="flex:none;width: 100%;height:100%;max-height:128px;overflow:hidden;padding-top: 10px;">
+          <div class="form-group" style="height: 100%;margin-top: 0px">
+            <div class="col-xs-1 text-right text-ellipsis"
+              style="line-height: 34px;height: 100%;border-right: #066f98 solid 0.3px;" title="应用的文件">应用<br>文件</div>
+            <div class="col-xs-4 file-box-left-1">
+              <div class="sign-icon text-ellipsis" :class="{'sign-icon-select':fileDirectory.selectFileIndex==index}"
+                @mouseenter="fileDirectory.hoverFileIndex=index" @mouseleave="fileDirectory.hoverFileIndex=-1"
+                v-for="(item,index) in fileDirectory.signList">
+                <!--<div class="select-icon-2" v-show="fileDirectory.selectFileIndex==index"><span>编辑<br>当前</span></div>-->
+                <img title="忽略" class="file-icon-1-1" v-show="item.type==0" src="./images/file/ignore.png" alt="">
+                <img title="选中" class="file-icon-1-1" v-show="item.type==1" src="./images/file/selected.png" alt="">
+
+                <div class="select-icon-3 text-ellipsis" :title="index" v-html="index"></div>
+                <div style="float: right;line-height: 34px;position: absolute;right: 10px;top:0;"
+                  v-show="fileDirectory.hoverFileIndex==index&&fileDirectory.selectFileList.length>1">
+                  <img @click="reselectDirectory(index)" title="重新选择目录" src="./images/file/edit.png" alt="">
+                  <img @click="deleteFile(index)" title="删除" src="./images/file/delete.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-2" style="height: 100%">
+              <div class="text-center flex_box_1" style="justify-content: center;">
+                <button @click="matchingRule" class="btn btn-default layerbth text-ellipsis" title="匹配规则">匹配规则</button>
+                <img style="width: 100%;" @click="reselectDirectory(index)" title="重新选择目录"
+                  src="./images/file/pointTo.png" alt="">
+                <!--<div>-->
+                <!--<button @click="fileDirectory.regType=0" :class="{'file-icon-1-2':fileDirectory.regType==0}" class="btn btn-default layerbth text-ellipsis" title="追加">追加</button>-->
+                <!--<button @click="fileDirectory.regType=1" :class="{'file-icon-1-2':fileDirectory.regType==1}" class="btn btn-default layerbth text-ellipsis" title="全部替换">全部替换</button>-->
+                <!--<button @click="fileDirectory.regType=2" :class="{'file-icon-1-2':fileDirectory.regType==2}" class="btn btn-default layerbth text-ellipsis" title="部分替换">部分替换</button>-->
+                <!--</div>-->
+              </div>
+            </div>
+            <div class="col-xs-4 file-box-left-1">
+              <div class="sign-icon text-ellipsis" :class="{'sign-icon-select':fileDirectory.regHoverIndex==index}"
+                @mouseenter="fileDirectory.regHoverIndex=index" @mouseleave="fileDirectory.regHoverIndex=-1"
+                v-for="(item,index) in fileDirectory.regSignList">
+                <!--<div class="select-icon-2" v-show="fileDirectory.selectFileIndex==index"><span>编辑<br>当前</span></div>-->
+                <img title="忽略" class="file-icon-1-1" v-show="item.type==0" src="./images/file/ignore.png" alt="">
+                <img title="选中" class="file-icon-1-1" v-show="item.type==1" src="./images/file/selected.png" alt="">
+
+                <div class="select-icon-3 text-ellipsis">
+                  <input type="text" class="form-control" :title="item.name" v-model="item.name"
+                    style="margin-top: 3px;">
+                </div>
+                <div class="file-btn-right" v-show="fileDirectory.regHoverIndex==index">
+                  <!--                      <img @click="editRegFile(index)" title="编辑规则内容" src="./images/file/edit.png" alt="">-->
+                  <img @click="deleteRegFile(index)" title="删除" src="./images/file/delete.png" alt="">
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+        <div class="shadow"></div>
+        <!--<ul id="treeDemo" class="ztree"></ul>-->
+        <div class="form-group" style="flex:none;text-align: center;">
+          <button class="btn btn-default layerbtn" @click="saveFile">保存</button>
+          <button class="btn btn-default layerbtn" @click="calcelFile">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <!--refresh-->
+    <span v-show="isrefresh"></span>
+  </div>
+
+</body>
+<script src='./js/jquery-3.3.1.min.js'></script>
+<script src="./public/jqueryUi/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="./public/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./public/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+<script src="./public/bootstrapTable/bootstrap-table.js"></script>
+<script src="./public/bootstrapTable/bootstrap-table-zh-CN.js"></script>
+<script src="./public/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="./public/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
+<!--<script src="../../public/layui/layui.all.js"></script>-->
+<script src="./public/layer/layer.js"></script>
+<script src='./js/vue.js'></script>
+<script src="./public/colpick/js/colpick.js"></script>
+<!--ztree-->
+<!--<script type="text/javascript" src="../public/zTree/js/jquery.ztree.core.js"></script>-->
+<!--<script type="text/javascript" src="../public/zTree/js/jquery.ztree.excheck.js"></script>-->
+<!--<script type="text/javascript" src="../public/zTree/js/jquery.ztree.exedit.js"></script>-->
+
+<!--step-->
+<script src="./public/step/js/register.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/tableInit.js"></script>
+<script src="./httpUnstructuredDataMain.js"></script>
+<script src="./ftpUnstructuredDataMain.js"></script>
+<script src="./kafkaUnstructuredDataMain.js"></script>
+<script src="./oracleUnstructuredDataMain.js"></script>
+<script src="./fnUnstructuredDataMain.js"></script>
+<script src="./unstructuredDataMain.js"></script>
+<script src="./unRotate.js"></script>
+
+</html>

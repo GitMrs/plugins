@@ -1,0 +1,175 @@
+@charset "utf-8";
+/* CSS Document */
+input:focus {outline: none} 
+.min-width{width:100%;min-width:400px;}
+.main{min-width:400px;margin:0 auto;height: 100%;}
+/*login and reg*/
+label{ margin:0; font-weight:normal;}
+.login-box-pan{ padding:50px 80px 50px 30px;}
+.login-info{ width:290px;}
+.login-info h2{ border-bottom:2px solid #eeeff3; color:#3498db; font-size:18px; font-weight:700; line-height:38px; width:100%;}
+.login-info h2 span{ border-bottom:2px solid #3498db; height:38px; display:inline-block; padding:0 10px;position:relative; bottom:-2px;}
+.login-info .item{ height:70px; width:290px;}
+.login-info .item-input{ border:1px solid #e5e5e5; height:38px; line-height:24px; padding:7px 10px;}
+.txt02{ height:24px; line-height:24px; border:0; float:left; font-size:13px;}
+.login-info .item-input .txt02{ width:220px; float:left;}
+.login-info .item-tips{ line-height:30px; font-size:12px; color:#ee1615;}
+.login-info img{ width:70px; height:30px; margin:2px 10px 0;}
+.f-h34{ height:34px; line-height:34px;}.f-h24{height:24px; line-height:24px;}
+.login-box a.c-blue:hover{ color:#ff7d27; text-decoration:underline;}
+.reg-box-pan{
+    /*padding:20px;*/
+    width:100%;
+    height:100%;}
+.txt03{width:270px;line-height: 16px;padding:9px 10px;border: 1px solid #cccccc;float: none;font-size: 14px;font-family: arial,"宋体";color: #999;overflow: hidden;}
+.reg-box .item {height:68px;line-height:34px;position: relative;z-index:5;}
+.reg-box .intelligent-label {width:100px;text-align: right;font-size: 14px;color: #666;padding-right: 10px;}
+.reg-box .intelligent-label b{font-family: "????";margin-right: 5px;font-weight: normal; color:red;}
+.reg-box .item .item-ifo{position: relative;width: 270px;}
+.reg-box .txt02{width:270px;line-height: 16px;padding:9px 10px;border: 1px solid #cccccc;float: none;font-size: 14px;font-family: arial,"宋体";color: #999;overflow: hidden;}
+.reg-box .txt03.v_error{border-color:#FF0000;}
+.reg-box .txt03:focus{border-color:#1a97d7;}
+.reg-box .blank {width:16px;height:16px; font-size:16px;position: absolute;left:280px;top:11px;float: none; color:#7abd54}
+.reg-box .close{position: absolute;top:5px;right:25px;font-size: 24px;}
+.reg-box .focus,.reg-box .focusa,.reg-box .error{line-height:34px;height:34px;position: absolute;top: 0px;left:280px;width:270px;padding: 0 5px;z-index:3; font-weight:normal; font-size:12px; color:#999}
+.reg-box .focus span,.reg-box .error span{ line-height:16px; display:block; padding:3px 0;}
+.reg-box .focus{color: #999;}
+.reg-box .valid{color: #f00;}
+.reg-box .strength {color: #999;line-height: 22px;padding-right: 10px;clear: both;float: none;position: absolute;top:39px;right: -9px; display:none}
+.reg-box .strength b {float: left;width: 108px;height:16px;overflow: hidden;margin-top: 5px; font-weight:400;}
+.reg-box .strength b i{ font-style:normal; font-size:10px; width:34px; height:16px;line-height:16px; display:inline-block; float:left; background:#dbdbdb; text-align:center; margin-left:1px; color:#fff;}
+.reg-box .strength b i.on{ background:#ff6160}
+.reg-box .btn-blue{ font-size:18px; height:44px; line-height:44px; padding:0; width:270px;}
+.reg-box .btn-gray{ height:34px; line-height:34px; padding:0 12px;}
+.reg-box .part1,.reg-box .part2,.reg-box .part3,.reg-box .part4{ width: 100%;/*box-shadow: 1px 2px 5px #ccc;*/
+    position: relative;overflow-y: hidden;overflow-x: hidden;
+    height:100%;}
+.regcon {width: 482px;height:360px;margin-left: -241px;margin-top: -180px;background: #fff;}
+.regcon pre {border: 1px solid #B2B2B2;height: 240px;margin: 10px;overflow-x: hidden;overflow-y: scroll;padding: 5px;resize: both;width: 450px;background: #fff;font-size: 12px;color: #333;line-height: 1.7em;}
+.showpwd{ display:inline-block; width:16px; height:16px; background:url(../images/showPwd.png) no-repeat center center; background-size:16px 16px; position:absolute; top:8px;right:10px; cursor:pointer;}
+.showpwd.hidepwd{ background-image:url(../images/hidePwd.png);}
+/*#verifyCheck{*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*margin-top: 10px;*/
+/*}*/
+/*变为竖向*/
+.ccBoxR .step_v_box .step{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+.ccBoxR .step_v_box .step ul{
+    height: 100%;
+    display: flex;
+    flex-direction:column;
+}
+.ccBoxR .step_v_box .reg-box{
+    width: 80%;
+    height: 100%;
+    float: left;
+    padding: 0 10px 0 20px;
+}
+.step_v_box .step li {
+    flex: 1;
+    height: 100%;
+    border-right: 1px solid #627ea5;
+}
+.step_v_box .step .active_1{
+    /*border-radius: 10px 0 0 10px;*/
+    /*border:1px solid #627ea5;*/
+    border-right: 1px solid transparent;
+
+}
+.step_v_box .step .active_1_1{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding-left: 54px;
+    left: 0;
+}
+.step_v_box .step .active_1_1_1{
+    width: 100%;
+    height: 100%;
+    box-shadow: -3px -1px 5px #627ea5,-4px -2px 6px #ffee51;
+    border-radius: 5px;
+    display: inline-block;
+}
+.step_v_box .step .active_1_2{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left:0;
+}
+.step_v_box .step .active_1_1_2{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #627ea5;
+    border-right-color: transparent;
+    /*box-shadow: -3px -1px 1px #627ea5;*/
+    border-radius: 15px 0 0 15px;
+    display: inline-block;
+    background: -moz-linear-gradient(left, #1e366d 0%, #1e406d 100%);
+    background: -webkit-gradient(linear, top left, top right, color-stop(0%,#1e366d), color-stop(100%,#1e406d));
+    background: -webkit-linear-gradient(left, #1e366d 0%,#1e406d 100%);
+    background: -o-linear-gradient(left, #1e366d 0%,#1e406d 100%);
+    background: -ms-linear-gradient(left, #1e366d 0%,#1e406d 100%);
+    background: linear-gradient(to right, #1e366d 0%,#1e406d 100%);
+}
+.step_v_box .step .active_1_2 .lbg-txt .table_2{
+    text-shadow: 1px 1px 1px #562f2f;
+}
+.step_v_box .step .lbg-l {
+    top: 0;
+}
+.step_v_box .step .line_bg {
+    width: 3px;
+    background: #d9eaf3;
+    display: inline-block;
+    height: 50%;
+    /*left: 50%;*/
+    left: 26px;
+    position: absolute;
+    z-index: 1;
+}
+.step_v_box .step .lbg-r {
+    bottom: 0;
+}
+.step_v_box .step .num{
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    left: 0;
+}
+.step_v_box .step .lbg-txt{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding-left: 54px;
+    padding-right: 20px;
+}
+.step_v_box .step .lbg-txt>span{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table_0{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.table_1{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.table_1 form,
+.table_2{
+    display: table-cell;
+    vertical-align: middle;
+}
+.partbox{
+    overflow: auto;
+}

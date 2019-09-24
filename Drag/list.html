@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DSG---安装部署</title>
+  <!--common-->
+  <link rel="stylesheet" href="./public/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./public/bootstrapTable/bootstrap-table.min.css">
+  <link rel="stylesheet" href="./public/bootstrapvalidator/css/bootstrapValidator.min.css">
+  <link rel="stylesheet" href="./public/bootstrap-select/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="./fonts/font1/iconfont.css">
+  <link rel="stylesheet" href="./public/buttonHover/main.css">
+  <link rel="stylesheet" href="./flowModel/menu_r/menu.css">
+  <link rel="stylesheet" href="./flowModel/step_r/step.css">
+  <link rel="stylesheet" href="./flowModel/form_r/form.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/publicCss.css">
+  <link rel="stylesheet" href="./css/colorMatchingVersion.css">
+  <link rel="stylesheet" href="./installDeploymentCopy.css">
+</head>
+
+<body>
+
+
+  <div id="vueBox" class="wh-100-hid">
+
+    <!--1.0--header*************************************************************************************************-->
+    <div class="FL-header flex-box-1">
+      <div class="FL-header-login flex-none">
+        <img src="././images/base/logo1.png" alt="">
+      </div>
+      <div class="FL-header-function flex-auto">
+        <div :title="item.title" @dragstart="hDMsg(1)" @click="item.fn"
+          class="FL-header-function-1 hover-1 text-ellipsis" v-for="(item,index) in FLHeaderFn">
+          <span>
+            <i class="icon iconfont" :class="item.icon"></i>
+          </span>
+          <span v-html="item.title"></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="FL-header-msg flex-none">
+        <div class="stylized-font-1" v-for="(item,index) in FLHeaderMsg">
+          <span v-html="item.name"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--2.0--qunee******************************************************************************************************-->
+    <div id="flowContainer" class="q-box-2 FL-qunee" @drop="bQdrop($event)" @dragenter="bQenter($event)"
+      @dragover="allowDrop($event)">
+      <div id="canvas" style="width: 100%; height: 100%; margin: auto;"></div>
+    </div>
+
+    <!--3.0--组件--组件只能修改每个组件的box id值***************************************************-->
+
+    <!--3.0.0.1辅助--工具栏-->
+    <!--左侧-->
+    <span @mouseenter="layerTips(item.title,$event)" @click="toolLeftFn(index)" class="toolLeft"
+      :style="{left:item.left+'px',top:item.top+'px'}" v-for="(item,index) in toolLeft">
+      <i class="icon iconfont" :class="item.icon" :title="item.title"></i>
+    </span>
+
+    <!--左侧---搜索-->
+    <transition name="v-anim-2" enter-active-class="v-enter-2" leave-active-class="v-leave-2">
+      <div :style="{left:tlData.tlSearchLeft+'px',top:tlData.tlSearchTop+'px'}" class="tlSearchBox"
+        v-if="tlData.tlSearchShow">
+        <input placeholder="--- 请输入要搜索的内容 ---" @keyup="tlSearchFn()" type="text" class="form-control"
+          v-model="tlData.tlSearch">
+      </div>
+    </transition>
+    <!--左侧--一键整理-->
+    <transition name="v-anim-2" enter-active-class="v-enter-2" leave-active-class="v-leave-2">
+      <div :style="{left:tlData.tlSearchListLeft+'px',top:tlData.tlSearchListTop+'px'}"
+        class="tlSearchBoxList flex-box-2" v-if="tlData.tlSearchListShow">
+        <div class="tlSearchBoxList-1" v-if="tlData.tlSearchList.length==0">
+          无搜索项
+        </div>
+        <div class="tlSearchBoxList-2 flex-none flex-box-1" v-if="tlData.tlSearchList.length">
+          <span class="flex-auto text-ellipsis">名称</span>
+          <span class="flex-auto text-ellipsis">版本</span>
+        </div>
+        <div class="flex-auto overflow-y">
+          <div @click="selectSearch(index)" class="tlSearchBoxList-3 flex-box-1"
+            v-for="(item,index) in tlData.tlSearchList">
+            <span class="flex-auto text-ellipsis" v-for="item2 in item.view" v-html="item2"></span>
+          </div>
+        </div>
+      </div>
+    </transition>
+    <!--左侧--设置-->
+    <transition name="v-anim-2" enter-active-class="v-enter-2" leave-active-class="v-leave-2">
+      <div :style="{left:tlData.tlSetUpLeft+'px',top:tlData.tlSetUpTop+'px'}" class="tlSetUpBox wh-100-hid flex-box-2"
+        v-if="tlData.tlSetUpShow">
+        <div class="title-style-1">设置</div>
+      </div>
+    </transition>
+
+    <!--组件模块的展示-->
+    <transition name="ballmove" enter-active-class="bouncein" leave-active-class="rollout">
+      <div class="componentShow" v-if="hDComponent.isShowing"
+        :style="{left:hDComponent.left+'px',top:hDComponent.top+'px'}">
+        <div @click="hDMsg(0)" draggable="true" @dragstart="hDDrag($event,index1)" class="fhTool-box flex-box-2"
+          :title="item1.title" v-for="(item1,index1) in hDDataDrag">
+          <span class="fhTool-box-1">
+            <i class="icon iconfont" :class="item1.icon"></i>
+          </span>
+          <span class="fhTool-box-2 text-ellipsis" v-html="item1.title"></span>
+        </div>
+      </div>
+    </transition>
+
+    <!--3.0.1.1表头--模块--弹出的组件-->
+    <transition name="v-anim-1" enter-active-class="v-enter-1" leave-active-class="v-leave-1">
+      <div :style="{left:vueAnimate.left1+'px',top:vueAnimate.top1+'px'}" class="FL-header-model-1 vue-an-init"
+        v-if="vueAnimate.show1">
+        <!--drag-->
+
+        <div :title="item.title" @click="hDMsg(item.disabled?3:0)" draggable="true"
+          @dragstart="item.disabled?hDMsg(4):hDDrag($event,index)" :class="{'hover-1':!item.disabled}"
+          class="FL-header-function-1  text-ellipsis" v-for="(item,index) in FLHeaderFn3">
+          <span>
+            <i class="icon iconfont" :class="item.icon"></i>
+          </span>
+          <span class="text-ellipsis" v-html="item.title"></span>
+          <span></span>
+        </div>
+
+        <div @dragstart="hDMsg(1)" :title="item.title" @click="item.disabled?hDMsg(3):item.fn()"
+          :class="{'hover-1':!item.disabled}" class="FL-header-function-1 text-ellipsis"
+          v-for="(item,index) in FLHeaderFn2">
+          <span>
+            <i class="icon iconfont" :class="item.icon"></i>
+          </span>
+          <span class="text-ellipsis" v-html="item.title"></span>
+          <span></span>
+        </div>
+      </div>
+    </transition>
+    <!--3.0.1.2表头--模块--弹出的组件--可拖拽模块-->
+    <!--<transition name="v-anim-2"  enter-active-class="v-enter-2" leave-active-class="v-leave-2">-->
+    <!--<div :style="{left:vueAnimate.left2+'px',top:vueAnimate.top2+'px'}" class="FL-header-model-2 vue-an-init"  v-if="vueAnimate.show2">-->
+    <!--<div :title="item.title" @click="hDMsg(item.disabled?3:0)" draggable="true" @dragstart="item.disabled?hDMsg(4):hDDrag($event,index)" :class="{'hover-1':!item.disabled}" class="FL-header-function-1  text-ellipsis" v-for="(item,index) in FLHeaderFn3">-->
+    <!--<span>-->
+    <!--<i class="icon iconfont" :class="item.icon"></i>-->
+    <!--</span>-->
+    <!--<span class="text-ellipsis" v-html="item.title"></span>-->
+    <!--<span></span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</transition>-->
+
+    <!--3.0.2.1搜索展示项--三级搜索-->
+    <div id="searchShow1" class="hide searchShow1" v-if="customPlugInD.level3Search">
+      <!--conmonAdd.searchShow1on-->
+      <div class="searchShow1-box flex-box-2" v-if="customPlugInD.level3Search.searchShow1on">
+        <div class="searchShow1-1 flex-box-1">
+          <div class="searchShow1-1-1 flex-none">
+            <select @change="toggleSearch(0)" v-model="customPlugInD.level3Search.searchShow1onId" class="selectpicker"
+              name="" id="" data-width="100%" data-query="true" data-size="4">
+              <option :value="item.id" v-for="(item,index) in customPlugInD.level3Search.searchShow1on"
+                v-html="item.name"></option>
+            </select>
+          </div>
+          <div class="searchShow1-1-3 flex-none">
+          </div>
+          <div class="searchShow1-1-2">
+            <input @keyup="searchInput()" v-model="customPlugInD.level3Search.searchShowInput"
+              placeholder="-- 请输入组件名称 --" type="text" class="form-control">
+          </div>
+        </div>
+        <div class="searchShow1-2 flex-box-1">
+          <div class="searchShow1-2-1  flex-none overflow-y">
+            <div @click="toggleSearch(1,customPlugInD.level3Search.searchShow1twId=item.tid)"
+              v-show="customPlugInD.level3Search.searchShow1onId==item.gid" class="sim1-button"
+              :class="[{'activeBd':customPlugInD.level3Search.searchShow1twId==item.tid},'button'+buttonRandom()]"
+              :data-text="item.name" v-for="(item,index) in customPlugInD.level3Search.searchShow1tw">
+              <span v-html="item.name"></span>
+            </div>
+          </div>
+          <div class="searchShow1-2-3 flex-none">
+          </div>
+          <div class="searchShow1-2-2 overflow-y">
+            <div @dblclick="createModel(index)" @mouseenter="layerTips('双击生成组件',$event)"
+              v-if="(customPlugInD.level3Search.searchShow1onId==item.gid&&item.tid.split(',').indexOf(customPlugInD.level3Search.searchShow1twId)!=-1&&!customPlugInD.level3Search.searchShowInputIds.length)||(customPlugInD.level3Search.searchShowInputIds&&customPlugInD.level3Search.searchShowInputIds.indexOf(item.id)!=-1)"
+              :title="'名称 ：'+item.name+'\n版本 ：'+item.version+'\n详细 ：'+item.details" class="hover-1 flex-box-1"
+              v-for="(item,index) in customPlugInD.level3Search.searchShow1th">
+              <span v-html="item.name" class="text-ellipsis flex-auto"></span>
+              <span v-html="item.version" class="text-ellipsis flex-auto"></span>
+              <span v-html="item.details" class="text-ellipsis flex-auto"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--3.0.3.1 --右键菜单-->
+    <div id="menu-n" @click="isShowMenu($event)" @contextmenu="isShowMenu($event)" v-show="mNData.isshow">
+      <ul id="menu-n-box" class="menu-n-1" :style="{left:mNData.left1+'px',top:mNData.top1+'px'}">
+        <li
+          :class="{'menu-n-title1':item1.title1&&!item1.hrTwo,'text-hr-1':item1.hrTwo,'menu-n-data':!item1.title1&&!item1.hrTwo}"
+          v-for="(item1,index1) in mNData.data" @mouseenter="item1.isshowChild=true"
+          @mouseleave="item1.isshowChild=false">
+          <span class="menu-n-1-a text-ellipsis hover_1" href="" @click="mNSelect(0,index1)">
+            <i class="icon iconfont menu-n-1-1" :class="item1.icon"></i>
+            <i v-html="item1.name" :title="item1.name" class="menu-n-1-2"></i>
+            <i v-if="item1.child.length!=0" class="icon iconfont icon-youjiantou menu-n-1-3"></i>
+          </span>
+          <ul class="menu-n-2" v-show="item1.child.length&&item1.isshowChild">
+            <li v-for="(item2,index2) in item1.child">
+              <span class="menu-n-2-a hover_1 text-ellipsis" href="" @click="mNSelect(1,index1,index2)">
+                <i class="icon iconfont menu-n-2-1" :class="item2.icon"></i>
+                <i v-html="item2.name" :title="item2.name" class="menu-n-2-2"></i>
+              </span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!--3.1--表单类组件-->
+    <div v-if="customPlugIn.length&&customPlugIn.indexOf('form')!=-1" id="customFormLayer" @drop="bFdrop($event)"
+      @dragenter="bFenter($event)" @dragover="allowDrop($event)" class="hide wh-100-hid"
+      :class="'stepC_'+customPlugInD.customFormD.styleIndex">
+      <div @dragstart="bFDrag($event)" :draggable="customPlugInD.customFormD.adjustment" class="stepBox-1 flex-none"
+        v-if="customPlugInD.customFormD.isPaginate">
+        <ul class="stepBox-1-1">
+          <li @click="selectStep(index)" class="flex-auto" v-for="(item,index) in customPlugInD.customFormD.list"
+            :class="{'on':index<customPlugInD.customFormIndex+1,'active':index==customPlugInD.customFormIndex,'hover-1':customPlugInD.customFormD.adjustment}">
+            <span class="stepC_l" v-if="index!=0"></span>
+            <span class="stepC_i" :data-number="index+1"></span>
+            <span class="stepC_t wh-100-auto"><i><i :title="item.stepTitle" v-html="item.stepTitle"></i></i></span>
+            <span class="stepC_r" v-if="index+1!=customPlugInD.customFormD.stepLength"></span>
+          </li>
+        </ul>
+      </div>
+      <div v-if="index==customPlugInD.customFormIndex" v-for="(item,index) in customPlugInD.customFormD.list"
+        class="stepBox-2 flex-1 wh-100-hid flex-box-2">
+        <div class="stepBox-2-1 wh-100-hid flex-1">
+          <div v-if="item.stepBoxTitle&&item.stepBoxTitle!=''" class="stepC-title text-ellipsis"
+            v-html="item.stepBoxTitle" :title="item.stepBoxTitle1?item.stepBoxTitle1:item.stepBoxTitle">
+          </div>
+          <!--不分栏-->
+          <div v-if="!item.stepType" class="stepC-box wh-100-y">
+            <div v-if="!item.tableDisable" class="wh-100-y"
+              :class="{'table_0':!(item.type=='table'&&item.typeTable=='2')}">
+              <form style="position: relative;" v-show="item.typeTable=='0'||!item.typeTable" id="customForm"
+                class="form-horizontal table_1">
+                <div class="box-t-1" @dragstart="bFDrag($event)" :draggable="customPlugInD.customFormD.adjustment"
+                  v-for="(item1,index1) in item.forms">
+                  <div :class="{allDisabled:customPlugInD.customFormD.adjustment}">
+                    <label class="form-group"
+                      :class="{'col-xs-6':item1.configType=='checkbox','col-xs-12':(item1.configType=='input'||item1.configType=='select'||item1.configType=='textarea'||item1.configType=='upload'||item1.configType=='password'||item1.configType=='label'||item1.configType=='input_region'||item1.configType=='input_mac'),isshowX:item1.configType=='checkbox'}">
+                      <!--checkbox-->
+                      <span v-if="item1.configType=='checkbox'" class="col-xs-5 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='checkbox'" class="col-xs-6">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" type="checkbox"
+                          v-model="item1.isshow">
+                      </div>
+                      <!--text-->
+                      <span v-if="item1.configType=='input'" class="col-xs-3 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='input'&&!item1.type.length" class="col-xs-6">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          :name="item1.paramName" type="text" class="form-control" v-model="item1.value">
+                      </div>
+                      <div v-if="item1.configType=='input'&&item1.type.length" class="col-xs-6">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" autocomplete="off"
+                          @focus="datalistKey($event,1,item1)" @blur="datalistKey($event,0,item1)" :id="item1.paramName"
+                          :name="item1.paramName" type="text" class="form-control" v-model="item1.value">
+                      </div>
+                      <!--input_region-->
+                      <span v-if="item1.configType=='input_region'" class="col-xs-3 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='input_region'&&!item1.type.length" class="col-xs-6 ">
+                        <input :min="item1.selectList[0]" :max="item1.selectList[1]"
+                          :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          :name="item1.paramName" type="number" class="form-control" v-model="item1.value">
+                      </div>
+                      <!--<div v-if="item1.configType=='input_region'&&!item1.type.length" class="col-xs-2 col-xs-offset-1">-->
+                      <!--<input :placeholder="item1.placeholder?item1.placeholder:'&#45;&#45; 请输入 &#45;&#45;'" :id="item1.paramName"  :name="item1.paramName" type="text" class="form-control" v-model="item1.selectList[1]">-->
+                      <!--</div>-->
+                      <!--input_mac-->
+                      <span v-if="item1.configType=='input_mac'" class="col-xs-3 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='input_mac'&&!item1.type.length" class="col-xs-3 ">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          :name="item1.paramName" type="text" class="form-control" v-model="item1.value[0]">
+                      </div>
+                      <div v-if="item1.configType=='input_mac'&&!item1.type.length" class="col-xs-3">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          :name="item1.paramName" type="text" class="form-control" v-model="item1.value[1]">
+                      </div>
+                      <!--password -->
+                      <span v-if="item1.configType=='password'" class="col-xs-3 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='password'" class="col-xs-6">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          :name="item1.paramName" type="password" class="form-control" v-model="item1.value">
+                      </div>
+
+                      <!--label -->
+                      <span v-if="item1.configType=='label'" class="col-xs-3 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='label'" class="col-xs-6">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          :name="item1.paramName" type="password" class="form-control" v-model="item1.value">
+                      </div>
+
+                      <!--select-->
+                      <span v-if="item1.configType=='select'" class="col-xs-3 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='select'" class="col-xs-6">
+                        <select :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          data-size="3" data-width="100%" class="selectpicker" :name="item1.paramName"
+                          v-model="item1.value">
+                          <option value="">- 请选择 -</option>
+                          <option v-html="item2.viewName?item2.viewName:item2.name" :value="item2.value"
+                            v-for="item2 in item1.selectList"></option>
+                        </select>
+                      </div>
+                      <!--textarea-->
+                      <span v-if="item1.configType=='textarea'" class="col-xs-3 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='textarea'" class="col-xs-6">
+                        <textarea :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          class="form-control" :name="item1.paramName" v-model="item1.value">
+                                                </textarea>
+                      </div>
+                      <!--upload-->
+                      <span v-if="item1.configType=='upload'" class="col-xs-3 text-right control-label"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='upload'" class="col-xs-6">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :name="item1.paramName"
+                          v-model="item1.value" :uploadState="item1.uploadState" readonly type="text"
+                          :id="item1.paramName" class="form-control">
+                        <!--<input :disabled="!LNData.isconEdit" :name="item1.paramName" type="text" class="form-control" v-model="item1.value">-->
+                      </div>
+                      <div v-if="item1.configType=='upload'" class="col-xs-6 text-right control-label col-xs-offset-3"
+                        style="text-align: left;">
+                        <div style="position: relative;display: inline-block;" class="load-box-1">
+                          <input :for="'#file'+item1.paramName+'File'" type="button"
+                            class="btn btn-default btn-info load-box-1-1" value="选择文件">
+                          <input @change="uploadChange(item1.paramName,item1.viewName,index1)" class="file loadBtn"
+                            type="file" name="loadFile" :id="'file'+item1.paramName+'File'"
+                            :class="'file'+item1.paramName" />
+                        </div>
+                        <input class="btn btn-default" style="display:inline-block;" type="button" name="upLoadfile"
+                          :class="'upLoadfile'+item1.paramName"
+                          @click="upLoadFlie(item1.paramName,item1.viewName,index1)" value="上传文件" />
+                      </div>
+                      <div v-if="item1.describe" v-html="item1.describe" :title="item1.describe"
+                        class="col-xs-2 text-ellipsis control-label text-left"></div>
+                    </label>
+                  </div>
+                  <span @click="formEditDel(index,index1)" v-if="customPlugInD.customFormD.adjustment"
+                    class="icon iconfont icon-_shanchu hover-2 customIcon-2"></span>
+                </div>
+                <div class="btns-box clear-1" v-show="item.typeTable=='0'">
+                  <div class="btns-box-1">
+                    <div @click="item.tFn2(index)" class="sim1-button btn-normal button4 btn-custom-1"
+                      data-text="重选主机信息">
+                      <span>重选主机信息</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="position: absolute;left:0;top:0;" class="wh-100-hid"
+                  :class="{'hide':!customPlugInD.customFormD.disable}">
+                </div>
+              </form>
+
+              <div v-if="item.type=='table'" class="flex-box-1 wh-100-hid" v-show="item.typeTable=='1'">
+                <div class="box-1 flex-1 table_0 wh-100-hid">
+                  <div class="table_1 text-center">
+                    <span class="box-1-1 hover-1" @click="item.tFn1(index)">新建数据</span>
+                  </div>
+                </div>
+                <div class="box-1 flex-1 table_0 wh-100-hid">
+                  <div class="table_1 text-center">
+                    <span class="box-1-1 hover-1" @click="item.tFn2(index)">选择已有数据</span>
+                  </div>
+                </div>
+              </div>
+              <div v-if="item.type=='table'" class="wh-100-hid" v-show="item.typeTable=='2'">
+                <div id="tableSearch">
+                  <label class="float-left pd-r-20 text-right" for="" v-html="item.tableSearch.title"></label>
+                  <div class="float-left pd-r-20">
+                    <input type="text" class="form-control" :placeholder="item.tableSearch.pl"
+                      v-model="item.tableSearch.value">
+                  </div>
+                  <div @click="item.tableSearch.fn" :class="item.tableSearch.class"
+                    class="sim1-button btn-normal button4 float-left" :data-text="item.tableSearch.btnName">
+                    <span v-html="item.tableSearch.btnName"></span>
+                  </div>
+                </div>
+                <table id="showExisting"></table>
+                <div class="btns-box-1">
+                  <div @click="item.tFn3(index)" class="sim1-button btn-normal button4" data-text="退出已有数据">
+                    <span>退出已有数据</span>
+                  </div>
+                  <div @click="item.tFn4(index)" class="sim1-button btn-normal button4 btn-custom-1" data-text="选择数据">
+                    <span>选择数据</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div style="position: relative;" v-if="item.tableDisable" class="wh-100-y"
+              :class="{'table_0':!(item.type=='table'&&item.typeTable=='2')}">
+              <form v-show="item.tableDisable=='0'" id="customForm" class="form-horizontal table_1">
+                <div class="box-t-1" @dragstart="bFDrag($event)" :draggable="customPlugInD.customFormD.adjustment"
+                  v-for="(item1,index1) in item.forms">
+                  <div :class="{allDisabled:customPlugInD.customFormD.adjustment}">
+                    <label class="form-group"
+                      :class="{'col-xs-6':item1.configType=='checkbox','col-xs-12':(item1.configType=='input'||item1.configType=='select'||item1.configType=='textarea'||item1.configType=='upload'||item1.configType=='password'||item1.configType=='label'),isshowX:item1.configType=='checkbox'}">
+                      <!--checkbox-->
+                      <span v-if="item1.configType=='checkbox'" class="col-xs-7 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='checkbox'" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" type="checkbox"
+                          v-model="item1.isshow">
+                      </div>
+                      <!--text-->
+                      <span v-if="item1.configType=='input'" class="col-xs-5 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='input'&&!item1.type.length" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          :name="item1.paramName" type="text" class="form-control" v-model="item1.value">
+                      </div>
+                      <div v-if="item1.configType=='input'&&item1.type.length" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" autocomplete="off"
+                          @focus="datalistKey($event,1,item1)" @blur="datalistKey($event,0,item1)" :id="item1.paramName"
+                          :name="item1.paramName" type="text" class="form-control" v-model="item1.value">
+                      </div>
+                      <!--password -->
+                      <span v-if="item1.configType=='password'" class="col-xs-5 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='password'" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          :name="item1.paramName" type="password" class="form-control" v-model="item1.value">
+                      </div>
+
+                      <!--label -->
+                      <span v-if="item1.configType=='label'" class="col-xs-5 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='label'" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          :name="item1.paramName" type="text" disabled class="form-control" v-model="item1.value">
+                      </div>
+
+                      <!--select-->
+                      <span v-if="item1.configType=='select'" class="col-xs-5 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='select'" class="col-xs-5">
+                        <select :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          data-size="3" data-width="100%" class="selectpicker" :name="item1.paramName"
+                          v-model="item1.value">
+                          <option value="">- 请选择 -</option>
+                          <option v-html="item2.viewName" :value="item2.value" v-for="item2 in item1.selectList">
+                          </option>
+                        </select>
+                      </div>
+                      <!--textarea-->
+                      <span v-if="item1.configType=='textarea'" class="col-xs-5 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='textarea'" class="col-xs-5">
+                        <textarea :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          class="form-control" :name="item1.paramName" v-model="item1.value">
+                                                </textarea>
+                      </div>
+                      <!--upload-->
+                      <span v-if="item1.configType=='upload'" class="col-xs-5 text-right control-label"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='upload'" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :name="item1.paramName"
+                          v-model="item1.value" :uploadState="item1.uploadState" readonly type="text"
+                          :id="item1.paramName" class="form-control">
+                        <!--<input :disabled="!LNData.isconEdit" :name="item1.paramName" type="text" class="form-control" v-model="item1.value">-->
+                      </div>
+                      <div v-if="item1.configType=='upload'" class="col-xs-5 text-right control-label col-xs-offset-5"
+                        style="text-align: left;">
+                        <div style="position: relative;display: inline-block;" class="load-box-1">
+                          <input :for="'#file'+item1.paramName+'File'" type="button"
+                            class="btn btn-default btn-info load-box-1-1" value="选择文件">
+                          <input @change="uploadChange(item1.paramName,item1.viewName,index1)" class="file loadBtn"
+                            type="file" name="loadFile" :id="'file'+item1.paramName+'File'"
+                            :class="'file'+item1.paramName" />
+                        </div>
+                        <input class="btn btn-default" style="display:inline-block;" type="button" name="upLoadfile"
+                          :class="'upLoadfile'+item1.paramName"
+                          @click="upLoadFlie(item1.paramName,item1.viewName,index1)" value="上传文件" />
+                      </div>
+                    </label>
+                  </div>
+                  <span @click="formEditDel(index,index1)" v-if="customPlugInD.customFormD.adjustment"
+                    class="icon iconfont icon-_shanchu hover-2 customIcon-2"></span>
+                </div>
+              </form>
+              <div v-if="item.type=='tableDisable'" class="wh-100-hid" v-show="item.tableDisable=='2'">
+                <div id="tableSearch">
+                  <label class="float-left pd-r-20 text-right" for="" v-html="item.tableSearch.title"></label>
+                  <div class="float-left pd-r-20">
+                    <input type="text" class="form-control" :placeholder="item.tableSearch.pl"
+                      v-model="item.tableSearch.value">
+                  </div>
+                  <div @click="item.tableSearch.fn" :class="item.tableSearch.class"
+                    class="sim1-button btn-normal button4 float-left" :data-text="item.tableSearch.btnName">
+                    <span v-html="item.tableSearch.btnName"></span>
+                  </div>
+                </div>
+                <table id="showExisting"></table>
+                <div class="btns-box-1">
+                  <div @click="item.tFn4(index)" class="sim1-button btn-normal button4 btn-custom-1" data-text="选择数据">
+                    <span>选择数据</span>
+                  </div>
+                </div>
+              </div>
+              <div style="position: absolute;left:0;top:0;" class="wh-100-hid"
+                :class="{'hide':!customPlugInD.customFormD.disable}">
+              </div>
+            </div>
+
+
+
+          </div>
+
+
+
+          <div v-if="item.type=='tableDisable'" class="wh-100-hid" v-show="item.typeTable=='2'">
+            <div id="tableSearch">
+              <label class="float-left pd-r-20 text-right" for="" v-html="item.tableSearch.title"></label>
+              <div class="float-left pd-r-20">
+                <input type="text" class="form-control" :placeholder="item.tableSearch.pl"
+                  v-model="item.tableSearch.value">
+              </div>
+              <div @click="item.tableSearch.fn" :class="item.tableSearch.class"
+                class="sim1-button btn-normal button4 float-left" :data-text="item.tableSearch.btnName">
+                <span v-html="item.tableSearch.btnName"></span>
+              </div>
+            </div>
+            <table id="showExisting"></table>
+            <div class="btns-box-1">
+              <div @click="item.tFn4(index)" class="sim1-button btn-normal button4 btn-custom-1" data-text="选择数据">
+                <span>选择数据</span>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!--分栏 item.stepType==1-->
+          <div v-if="item.stepType==1" class="stepC-box wh-100-auto">
+            <div class="wh-100-auto flex-box-2">
+              <!--title-->
+              <div class="flex-none stepC-title-child-1 flex-box-1">
+                <div v-html="items" class="flex-1 stepC-title-child-2 text-ellipsis"
+                  v-for="(items,indexs) in item.subfieldMsg.titles">
+
+                </div>
+              </div>
+              <form style="position: relative;" id="customForm" class="form-horizontal wh-100-auto flex-box-1">
+                <div class="flex-1 wh-100-auto table_0" v-for="(items,indexs) in item.forms">
+                  <div class="table_1">
+                    <label v-if="!item1.visHid" class="form-group"
+                      :class="{'col-xs-6':item1.configType=='checkbox','col-xs-12':(item1.configType=='input'||item1.configType=='select'||item1.configType=='textarea'||item1.configType=='upload'),isshowX:item1.configType=='checkbox'}"
+                      v-for="(item1,index1) in items">
+                      <!--checkbox-->
+                      <span v-if="item1.configType=='checkbox'" class="col-xs-7 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='checkbox'" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" type="checkbox"
+                          v-model="item1.isshow">
+                      </div>
+                      <!--text-->
+                      <span v-if="item1.configType=='input'" class="col-xs-5 control-label text-right text-ellipsis"
+                        :title="item1.viewName" v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='input'&&!item1.type.length" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :title="item1.paramName"
+                          :id="item1.paramName" :name="item1.paramName" type="text" class="form-control"
+                          v-model="item1.value">
+                      </div>
+                      <div v-if="item1.configType=='input'&&item1.type.length" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" autocomplete="off"
+                          @focus="datalistKey($event,1,item1)" @blur="datalistKey($event,0,item1)" :id="item1.paramName"
+                          :name="item1.paramName" type="text" class="form-control" v-model="item1.value">
+                      </div>
+                      <!--select-->
+                      <span v-if="item1.configType=='select'" class="col-xs-5 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='select'" class="col-xs-5">
+                        <select :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          data-size="3" data-width="100%" class="selectpicker" :name="item1.paramName"
+                          v-model="item1.value">
+                          <option value="">- 请选择 -</option>
+                          <option v-html="item2.viewName" :value="item2.value" v-for="item2 in item1.selectList">
+                          </option>
+                        </select>
+                      </div>
+                      <!--textarea-->
+                      <span v-if="item1.configType=='textarea'" class="col-xs-5 control-label text-right"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='textarea'" class="col-xs-5">
+                        <textarea :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :id="item1.paramName"
+                          class="form-control" :name="item1.paramName" v-model="item1.value">
+                                                </textarea>
+                      </div>
+                      <!--upload-->
+                      <span v-if="item1.configType=='upload'" class="col-xs-5 text-right control-label"
+                        v-html="item1.viewName+' :'"></span>
+                      <div v-if="item1.configType=='upload'" class="col-xs-5">
+                        <input :placeholder="item1.placeholder?item1.placeholder:'-- 请输入 --'" :name="item1.paramName"
+                          v-model="item1.value" readonly type="text" :id="item1.paramName" class="form-control">
+                        <!--<input :disabled="!LNData.isconEdit" :name="item1.paramName" type="text" class="form-control" v-model="item1.value">-->
+                      </div>
+                      <div v-if="item1.configType=='upload'" class="col-xs-5 text-right control-label col-xs-offset-5"
+                        style="text-align: left;">
+                        <input @change="uploadChange(item1.paramName,item1.viewName,index1)" class="file"
+                          style="width:70px;display:inline-block;" type="file" name="loadFile"
+                          :class="'file'+item1.paramName" />
+                        <input class="btn btn-default layerbtn" style="width:70px;display:inline-block;" type="button"
+                          name="upLoadfile" :class="'upLoadfile'+item1.paramName"
+                          @click="upLoadFlie(item1.paramName,item1.viewName)" value="上传文件" />
+                      </div>
+                    </label>
+
+                  </div>
+                </div>
+                <div style="position: absolute;left:0;top:0;" class="wh-100-hid"
+                  :class="{'hide':!customPlugInD.customFormD.disable}">
+                </div>
+              </form>
+
+            </div>
+          </div>
+          <!--不分栏--item.stepType==2--展示参数的值（自定义页面）-->
+          <div v-if="item.stepType==2" class="stepC-box wh-100-hid">
+            <div class="wh-100-hid">
+              <form id="customForm" class="form-horizontal flex-box-2 wh-100-hid">
+                <label for="" class="flex-none form-group hr-style-1">
+                  <span class="col-xs-2 text-ellipsis col-xs-offset-1" title="参数名">参数名</span>
+                  <span class="col-xs-2 text-ellipsis" title="参数值">参数值</span>
+                  <span class="col-xs-3 text-ellipsis text-center" title="修改参数的值">修改参数的值</span>
+                  <span class="col-xs-2 text-ellipsis" title="填写的值">填写的值</span>
+                  <span class="col-xs-2 text-ellipsis text-center" title="应用于环境变量">应用于环境变量</span>
+                </label>
+                <div class="flex-auto wh-100-auto ov-x-hid">
+                  <div style="position: relative;">
+                    <div v-for="(item1,index1) in item.forms">
+                      <div class="form-group pd-l-20">
+                        <span class="title-style-2" v-html="'流程步骤--'+(index1+1)"></span>
+                      </div>
+                      <div @click="item2.p5=!item2.p5" for="" style="line-height: 34px;"
+                        class="form-group hover-1 custom-box-1" v-for="(item2,index2) in item1">
+                        <span :class="{'checkbox-0-1-ac':item2.p5}"
+                          class="col-xs-2 line-hight-34 text-ellipsis col-xs-offset-1" v-html="item2.p1"
+                          :title="item2.p1"></span>
+                        <span :class="{'checkbox-0-1-ac':item2.p5}" class="col-xs-2 line-hight-34 text-ellipsis"
+                          :title="item2.p2" v-html="item2.p2"></span>
+                        <span class="col-xs-3 text-ellipsis" :title="item2.p3">
+                          <input :placeholder="item2.placeholder?item2.placeholder:'-- 请输入 --'" :id="item2.paramName"
+                            :name="item2.paramName" type="text" v-model="item2.value" class="form-control">
+                        </span>
+                        <span :class="{'checkbox-0-1-ac':item2.p5}" class="col-xs-2 text-ellipsis" :title="item2.p4"
+                          v-html="item2.p4"></span>
+                        <span class="col-xs-2 text-ellipsis text-center">
+                          <span class="hover-2 icon iconfont checkbox-1" :class="{'checkbox-1-ac':item2.p5}"></span>
+                        </span>
+                      </div>
+                    </div>
+                    <div style="position: absolute;left:0;top:0;" class="wh-100-hid"
+                      :class="{'hide':!customPlugInD.customFormD.disable}">
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+
+
+          </div>
+        </div>
+        <div class="flex-none btns-box"
+          :class="{'hide':customPlugInD.customFormD.noEdit||customPlugInD.customFormD.disable}">
+          <div class="btns-box-1">
+            <div @click="item2.fn" v-for="(item2,index2) in item.btns" :class="item2.class"
+              class="sim1-button btn-normal button4" :data-text="item2.name">
+              <span v-html="item2.name"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--3.1.1---自定义 表单 的特殊方法-->
+    <div @click="cancelLoad" v-show="FCData.isload" id="FC-BOX-1-load"
+      :style="{left:FCData.left1+'px',top:FCData.top1+'px'}">
+      加载可选项，请稍等 ...
+    </div>
+    <div v-show="FCData.isShow" id="FC-BOX-1" :style="{left:FCData.left1+'px',top:FCData.top1+'px'}">
+      <div class="datalist">
+        <span @click="datalistSelect(item1)" class="datalist-item" v-for="item1 in FCData.data" v-html="item1"></span>
+      </div>
+      <div @click="cancelLoad" v-if="!FCData.data.length">
+        无可选项
+      </div>
+    </div>
+
+    <!--3.2.1--cmd弹框-->
+    <div v-if="customPlugIn.length&&customPlugIn.indexOf('cmd')!=-1" id="cmdLayer" class="hide wh-100-hid flex-box-2">
+      <textarea class="flex-auto cmdLayerBox overflow-y pre" :disabled="!customPlugInD.mNCmdEdit"></textarea>
+      <!--<div class="flex-auto cmdLayerBox overflow-y pre-line" :contentEditable="customPlugInD.mNCmdEdit">-->
+      <!--&lt;!&ndash;cmd msg&ndash;&gt;-->
+      <!--&lt;!&ndash;<br>&ndash;&gt;-->
+      <!--&lt;!&ndash;cmd msg&ndash;&gt;-->
+      <!--&lt;!&ndash;<br>&ndash;&gt;-->
+      <!--&lt;!&ndash;cmd msg cmd msg cmd msg&ndash;&gt;-->
+      <!--&lt;!&ndash;cmd msg&ndash;&gt;-->
+      <!--&lt;!&ndash;cmd msg&ndash;&gt;-->
+      <!--</div>-->
+      <div class="flex-none btns-box">
+        <div class="btns-box-1">
+          <div @click="item.fn" class="sim1-button btn-normal button5" :class="item.class" :data-text="item.name"
+            v-for="(item,index) in customPlugInD.mNCmdBtns">
+            <span v-html="item.name"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--3.2.2--cmd--带进度条的窗口 循环调用-->
+    <div v-if="customPlugIn.length&&customPlugIn.indexOf('cmd')!=-1" id="cmdProssLayer"
+      class="hide wh-100-hid flex-box-2">
+      <div class="progressBox flex-none" v-show="customPlugInD.mNCmdMsg.pross">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+            <span class="">0%</span>
+          </div>
+        </div>
+      </div>
+      <div class="folding-title flex-none" v-show="customPlugInD.mNCmdMsg.title">
+        <span>进行的状态</span>
+        <span @click="foldingIcon($event)" data-state="1" data-box="folding-box-1"
+          class="icon iconfont icon-xiangxia folding-state-1 folding-state-2">
+          <!--folding-state-2 折叠状态样式--></span>
+      </div>
+      <div class="folding-box flex-1 overflow-y folding-box-1" v-show="customPlugInD.mNCmdMsg.title">
+        无内容
+      </div>
+      <div class="folding-title flex-none" v-show="customPlugInD.mNCmdMsg.pross||customPlugInD.mNCmdMsg.title">
+        <span>详细信息</span>
+        <span @click="foldingIcon($event)" data-state="1" data-box="folding-box-2"
+          class="icon iconfont icon-xiangxia folding-state-1 folding-state-2">
+          <!--folding-state-2 折叠状态样式--></span>
+      </div>
+      <div :class="{'margin-t-0':!(customPlugInD.mNCmdMsg.pross||customPlugInD.mNCmdMsg.title)}"
+        class="flex-auto cmdLayerBox wh-100-hid flex-1 folding-box-2" v-show="customPlugInD.mNCmdMsg.box">
+        <div class="wh-100-auto pre-line">
+          <a href="#navigation" class="navigation-1"> <span id="navigation-1-1" class="navigation-1-1"> </span></a>
+          <div class="cmdLayerBox-1"></div>
+          <a name="navigation" class="cmdLayerBox-2"> </a>
+
+        </div>
+      </div>
+      <div class="flex-none btns-box">
+        <div class="btns-box-1">
+          <div @click="item.fn" class="sim1-button btn-normal button5" :class="item.class" :data-text="item.name"
+            v-for="(item,index) in customPlugInD.mNCmdBtns">
+            <span v-html="item.name"></span>
+          </div>
+        </div>
+        <div class="prossState-icon">
+          <span class="color-0 hide"><i class="icon iconfont icon-jiazaizhong"></i><span>进行中</span></span>
+          <span class="color-1 hide"><i class="icon iconfont icon-chenggong"></i><span>已完成</span></span>
+          <span class="color-2 hide"><i class="icon iconfont icon-shibai"></i><span>失败</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!--3.2.3--cmd--单条编辑--cmd-->
+    <div v-if="customPlugIn.length&&customPlugIn.indexOf('cmd')!=-1" id="cmdProssLayer1"
+      class="hide wh-100-hid flex-box-2">
+      <div class="flex-auto cmdLayerBox wh-100-hid flex-1 folding-box-2">
+        <div class="wh-100-auto pre-line">
+          <a href="#navigation" class="navigation-1"> <span id="navigation-1-1" class="navigation-1-1"> </span></a>
+          <div class="cmdLayerBox-1">
+            <div class="form-group textarea-style-3" v-for="(item1,index1) in customPlugInD.mNCmdMsg.boxData">
+              <div class="col-xs-5">
+                <textarea class="textarea-style-1" :class="{'textarea-style-2':item1.edit=='0'}"
+                  :disabled="item1.edit=='0'" v-model="item1.viewName"></textarea>
+              </div>
+              <div class="col-xs-7">
+                <div class="" v-for="(item2,index2) in customPlugInD.mNCmdMsg.boxDataBtn"
+                  v-show="item1[item2.correlation[0]]==item2.show[0]&&(item2.show.length==1||item2.show.length>1&&item1[item2.correlation[1]]==item2.show[1])">
+                  <div v-if="!item2.btnType" @click="item2.fn(index1)"
+                    class="sim1-button btn-normal button5 margin-r-10 margin-t-10" :class="item2.class"
+                    :data-text="item2.name">
+                    <span class="text-ellipsis" v-html="item2.name"></span>
+                  </div>
+                  <div v-if="item2.btnType=='checkbox'" class="float-left margin-r-10 margin-t-10">
+                    <span v-html="item2.name"></span>
+                    <span class="icon iconfont icon-duihao icon-1-0"
+                      @click="item1[item2.correlationValue]=item1[item2.correlationValue]=='0'?'1':'0'"
+                      :class="{'icon-1-ac':item1[item2.correlationValue]=='1'}"></span>
+                  </div>
+                  <input :placeholder="item2.pl" v-model="item1[item2.correlationValue]" v-if="item2.btnType=='input'"
+                    class="float-left margin-t-10 bd-trans margin-r-10" type="text">
+                  <div class="float-left margin-t-10" v-if="item2.btnType=='select'">
+                    <select v-model="item1[item2.correlationValue]" @change="item2.fn(index1)" name="" id=""
+                      class="selectpicker margin-r-10" data-width="80px">
+                      <option v-for="item3 in item2.btnTypeSelect" v-html="item3.name" :value="item3.value"></option>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div v-if="customPlugInD.mNCmdMsg.boxData.length==0" class="text-center">
+              无内容信息
+            </div>
+          </div>
+          <a name="navigation" class="cmdLayerBox-2"> </a>
+        </div>
+      </div>
+      <div class="flex-none btns-box">
+        <div class="btns-box-1">
+          <div @click="item.fn" class="sim1-button btn-normal button5" :class="item.class" :data-text="item.name"
+            v-for="(item,index) in customPlugInD.mNCmdBtns">
+            <span v-html="item.name"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!--3.3.1---多级table的展示-->
+    <div id="MultiLevelTable" v-if="customPlugIn.length&&customPlugIn.indexOf('multiTable')!=-1"
+      class="wh-100-hid flex-box-2 hide">
+      <div id="MLTTool" class="flex-box-1 flex-none pd-t-10" v-if="customPlugInD.vagentd.index!=-1">
+        <div v-for="(item,index) in customPlugInD.vagentd.list[customPlugInD.vagentd.index].search">
+          <label for="" v-html="item.name" v-if="item.type=='label'" class="label-1"></label>
+          <input :type="item.type2" v-model="item.value" v-if="item.type=='input'" class="input-1 form-control">
+          <div v-if="item.type=='button'" @click="item.fn" class="sim1-button btn-normal button2" :class="item.class"
+            :data-text="item.name">
+            <span v-html="item.name"></span>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 wh-100-hid pd-0-20">
+        <table id="MLTTable"></table>
+      </div>
+      <div class="flex-none btns-box" v-if="customPlugInD.vagentd.index!=-1">
+        <div class="btns-box-1">
+          <div @click="item.fn" class="sim1-button btn-normal button5" :class="item.class" :data-text="item.name"
+            v-for="(item,index) in customPlugInD.vagentd.list[customPlugInD.vagentd.index].btns">
+            <span v-html="item.name"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--3.3.2多级table的展示--的变种1-->
+    <div v-if="customPlugIn.length&&customPlugIn.indexOf('multiTable1')!=-1" id="MultiLevelTable1" class="hide">
+
+    </div>
+
+    <!--3.3.3单table本地的展示-->
+    <div v-if="customPlugIn.length&&customPlugIn.indexOf('multiTable')!=-1" id="oneTable1"
+      class="hide pd-0-20 wh-100-hid">
+      <div id="oneTableT1tool" class="flex-none">
+        <div class="">
+          <div @click="item.fn" :class="[{'margin-l-0':index==0},item.class]" class="sim1-button btn-normal button5"
+            :data-text="item.name" v-for="(item,index) in customPlugInD.selectData">
+            <span v-html="item.name"></span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <table id="oneTableT1"></table>
+      </div>
+    </div>
+
+    <!--3.4.1--VI-->
+    <div v-if="customPlugIn.length&&customPlugIn.indexOf('vi')!=-1" id="editVI" class="hide wh-100-hid flex-box-2">
+      <textarea placeholder="-- Please edit the content ！ ！ ！ --" @mousedown="viRetrieval($event,0)"
+        @mouseup="viRetrieval($event,1)" @keydown="viRetrieval($event,2)" @keyup="viRetrieval($event,3)"
+        class="flex-auto cmdLayerBox overflow-y">
+
+            </textarea>
+      <div v-show="customPlugInD.editVIListPor.isshow"
+        :style="{left:customPlugInD.editVIListPor.x-20+'px',top:customPlugInD.editVIListPor.y+24+'px'}"
+        class="wh-100-hid editVIAssociation">
+        <span class="editVIAssociation-1">预选值</span>
+        <span @click="selectVIData(index)" class="editVIAssociation-2" v-for="(item,index) in customPlugInD.editVIList">
+          <i v-html="item.name"></i>
+        </span>
+      </div>
+      <div class="flex-none btns-box">
+        <div class="btns-box-1">
+          <div @click="item.fn" class="sim1-button btn-normal button28" :class="item.class" :data-text="item.name"
+            v-for="(item,index) in customPlugInD.mNCmdBtns">
+            <span v-html="item.name"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--4.0--other******************************************************************************************************-->
+
+
+
+
+    <!--5.0--custom******************************************************************************************************-->
+
+  </div>
+
+
+</body>
+<!--commmon-->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="./public/layui/layui.all.js"></script>
+<script src="./public/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./public/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+<script src="./public/bootstrapTable/bootstrap-table.js"></script>
+<script src="./public/bootstrapTable/bootstrap-table-zh-CN.js"></script>
+<script src="./public/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="./public/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
+<script src="./js/vue.js"></script>
+<script src="./public/qunee/lib/qunee-min.js"></script>
+<script src="./public/qunee/js/common.js"></script>
+<script src="./public/qunee/js/graphs.js"></script>
+<script src="./public/qunee/js/i18n.js"></script>
+<script src="./public/qunee/js/check-IE678.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/initVue.js"></script>
+<script src="./js/initQunee.js"></script>
+<script src="./js/installDeploymentCopy.js"></script>
+<!--custom-->
+<!--<script src="js/custom_1.js"></script>-->
+<!--<script src="js/config_1.js"></script>-->
+<script src="./installDeploymentCopy.js"></script>
+
+</html>
