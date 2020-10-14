@@ -1,0 +1,1532 @@
+2017-09-20 16:01:21,865 WARN [org.springframework.beans.factory.config.CustomEditorConfigurer] - <Passing PropertyEditor instances into CustomEditorConfigurer is deprecated: use PropertyEditorRegistrars or PropertyEditor class names instead. Offending key [org.codehaus.xfire.service.ServiceFactory; offending editor instance: org.codehaus.xfire.spring.editors.ServiceFactoryEditor@6d782f9>
+2017-09-20 16:01:28,385 WARN [org.hibernate.engine.jdbc.internal.JdbcServicesImpl] - <HHH000342: Could not obtain connection to query metadata : Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.>
+2017-09-20 16:01:28,388 ERROR [org.logicalcobwebs.proxool.proxoolDataSource] - <Prototype>
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2214)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:781)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.logicalcobwebs.proxool.DefaultConnectionBuilder.buildConnection(DefaultConnectionBuilder.java:39)
+	at org.logicalcobwebs.proxool.Prototyper.buildConnection(Prototyper.java:159)
+	at org.logicalcobwebs.proxool.Prototyper.sweep(Prototyper.java:102)
+	at org.logicalcobwebs.proxool.PrototyperThread.run(PrototyperThread.java:44)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:343)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	... 15 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:292)
+	... 16 more
+2017-09-20 16:01:29,980 WARN [org.hibernate.id.UUIDHexGenerator] - <HHH000409: Using org.hibernate.id.UUIDHexGenerator which does not generate IETF RFC 4122 compliant UUID values; consider using org.hibernate.id.UUIDGenerator instead>
+2017-09-20 16:01:33,643 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - <HHH000319: Could not get database metadata>
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2214)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:781)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.logicalcobwebs.proxool.DefaultConnectionBuilder.buildConnection(DefaultConnectionBuilder.java:39)
+	at org.logicalcobwebs.proxool.Prototyper.buildConnection(Prototyper.java:159)
+	at org.logicalcobwebs.proxool.ConnectionPool.getConnection(ConnectionPool.java:211)
+	at org.logicalcobwebs.proxool.ProxoolDataSource.getConnection(ProxoolDataSource.java:97)
+	at org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:141)
+	at org.hibernate.tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.prepare(SuppliedConnectionProviderConnectionHelper.java:51)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:194)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:178)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:480)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1740)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1778)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBuilder.buildSessionFactory(LocalSessionFactoryBuilder.java:189)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:350)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:335)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:848)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:790)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:707)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:478)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:284)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1106)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:343)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	... 93 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:292)
+	... 94 more
+2017-09-20 16:01:33,661 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - <HHH000299: Could not complete schema update>
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2214)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:781)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.logicalcobwebs.proxool.DefaultConnectionBuilder.buildConnection(DefaultConnectionBuilder.java:39)
+	at org.logicalcobwebs.proxool.Prototyper.buildConnection(Prototyper.java:159)
+	at org.logicalcobwebs.proxool.ConnectionPool.getConnection(ConnectionPool.java:211)
+	at org.logicalcobwebs.proxool.ProxoolDataSource.getConnection(ProxoolDataSource.java:97)
+	at org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:141)
+	at org.hibernate.tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.prepare(SuppliedConnectionProviderConnectionHelper.java:51)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:194)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:178)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:480)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1740)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1778)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBuilder.buildSessionFactory(LocalSessionFactoryBuilder.java:189)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:350)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:335)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:848)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:790)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:707)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:478)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:284)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1106)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:343)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	... 93 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:292)
+	... 94 more
+2017-09-20 16:01:34,145 WARN [com.bst.common.util.GenericsUtils] - <ActionDetailsService$$EnhancerByCGLIB$$992701d9's superclass not ParameterizedType>
+2017-09-20 16:01:34,215 WARN [com.bst.common.util.GenericsUtils] - <ADResultService$$EnhancerByCGLIB$$9b94b2ad's superclass not ParameterizedType>
+2017-09-20 16:01:34,255 WARN [com.bst.common.util.GenericsUtils] - <AlarmBoundaryService$$EnhancerByCGLIB$$8c2f3fb4's superclass not ParameterizedType>
+2017-09-20 16:01:34,316 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogGeneralDevResService$$EnhancerByCGLIB$$f3b0c89d's superclass not ParameterizedType>
+2017-09-20 16:01:34,355 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogGeneralDevStateService$$EnhancerByCGLIB$$d7d04ea2's superclass not ParameterizedType>
+2017-09-20 16:01:34,398 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogGeneralVideoStateService$$EnhancerByCGLIB$$c761544's superclass not ParameterizedType>
+2017-09-20 16:01:34,467 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogInteVDService$$EnhancerByCGLIB$$83c587d0's superclass not ParameterizedType>
+2017-09-20 16:01:34,512 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogInteVFService$$EnhancerByCGLIB$$6964ca7a's superclass not ParameterizedType>
+2017-09-20 16:01:34,853 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogInteVSService$$EnhancerByCGLIB$$3deffbcb's superclass not ParameterizedType>
+2017-09-20 16:01:34,895 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogSuperService$$EnhancerByCGLIB$$7e0326e5's superclass not ParameterizedType>
+2017-09-20 16:01:34,945 WARN [com.bst.common.util.GenericsUtils] - <PersonFaceService$$EnhancerByCGLIB$$db69e6e7's superclass not ParameterizedType>
+2017-09-20 16:01:35,005 WARN [com.bst.common.util.GenericsUtils] - <FaceService$$EnhancerByCGLIB$$37241e8e's superclass not ParameterizedType>
+2017-09-20 16:01:35,044 WARN [com.bst.common.util.GenericsUtils] - <FaceStorageService$$EnhancerByCGLIB$$368b9c73's superclass not ParameterizedType>
+2017-09-20 16:01:35,099 WARN [com.bst.common.util.GenericsUtils] - <PrivilegeService$$EnhancerByCGLIB$$9a0ca602's superclass not ParameterizedType>
+2017-09-20 16:01:35,145 WARN [com.bst.common.util.GenericsUtils] - <ThirdPartyPlatService$$EnhancerByCGLIB$$b64e84d3's superclass not ParameterizedType>
+2017-09-20 16:01:35,179 WARN [com.bst.common.util.GenericsUtils] - <ArithmeticConfigService$$EnhancerByCGLIB$$bb0db29's superclass not ParameterizedType>
+2017-09-20 16:01:35,221 WARN [com.bst.common.util.GenericsUtils] - <BHeatMapPointService$$EnhancerByCGLIB$$94d38bdb's superclass not ParameterizedType>
+2017-09-20 16:01:35,257 WARN [com.bst.common.util.GenericsUtils] - <BMapPointService$$EnhancerByCGLIB$$defb158b's superclass not ParameterizedType>
+2017-09-20 16:01:35,297 WARN [com.bst.common.util.GenericsUtils] - <CameraDeviceService$$EnhancerByCGLIB$$4670e164's superclass not ParameterizedType>
+2017-09-20 16:01:35,339 WARN [com.bst.common.util.GenericsUtils] - <CPUService$$EnhancerByCGLIB$$22196305's superclass not ParameterizedType>
+2017-09-20 16:01:35,376 WARN [com.bst.common.util.GenericsUtils] - <DeviceForChannelGroupService$$EnhancerByCGLIB$$1668d918's superclass not ParameterizedType>
+2017-09-20 16:01:35,415 WARN [com.bst.common.util.GenericsUtils] - <DeviceForChannelService$$EnhancerByCGLIB$$4ecff25d's superclass not ParameterizedType>
+2017-09-20 16:01:35,479 WARN [com.bst.common.util.GenericsUtils] - <DeviceIdBakService$$EnhancerByCGLIB$$8cd68cd4's superclass not ParameterizedType>
+2017-09-20 16:01:35,521 WARN [com.bst.common.util.GenericsUtils] - <ElectronMapPointService$$EnhancerByCGLIB$$69e8d7b's superclass not ParameterizedType>
+2017-09-20 16:01:35,560 WARN [com.bst.common.util.GenericsUtils] - <ElectronMapService$$EnhancerByCGLIB$$dfda40df's superclass not ParameterizedType>
+2017-09-20 16:01:35,610 WARN [com.bst.common.util.GenericsUtils] - <FaceJudgeResultService$$EnhancerByCGLIB$$9528bc0's superclass not ParameterizedType>
+2017-09-20 16:01:35,647 WARN [com.bst.common.util.GenericsUtils] - <FaceJudgeService$$EnhancerByCGLIB$$439c45ff's superclass not ParameterizedType>
+2017-09-20 16:01:35,684 WARN [com.bst.common.util.GenericsUtils] - <GroupService$$EnhancerByCGLIB$$84730768's superclass not ParameterizedType>
+2017-09-20 16:01:35,737 WARN [com.bst.common.util.GenericsUtils] - <IFDResultService$$EnhancerByCGLIB$$e1a75cf1's superclass not ParameterizedType>
+2017-09-20 16:01:35,778 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultDayService$$EnhancerByCGLIB$$dcff2208's superclass not ParameterizedType>
+2017-09-20 16:01:35,817 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultHourService$$EnhancerByCGLIB$$24d14c42's superclass not ParameterizedType>
+2017-09-20 16:01:35,876 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultMinuteService$$EnhancerByCGLIB$$eb3f39f2's superclass not ParameterizedType>
+2017-09-20 16:01:35,935 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultMonthService$$EnhancerByCGLIB$$e35551fc's superclass not ParameterizedType>
+2017-09-20 16:01:35,967 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultService$$EnhancerByCGLIB$$a51b796e's superclass not ParameterizedType>
+2017-09-20 16:01:36,025 WARN [com.bst.common.util.GenericsUtils] - <IVDResultService$$EnhancerByCGLIB$$f679ada1's superclass not ParameterizedType>
+2017-09-20 16:01:36,063 WARN [com.bst.common.util.GenericsUtils] - <JobCollectService$$EnhancerByCGLIB$$d9c3471e's superclass not ParameterizedType>
+2017-09-20 16:01:36,099 WARN [com.bst.common.util.GenericsUtils] - <JobFaceService$$EnhancerByCGLIB$$6dcac0ff's superclass not ParameterizedType>
+2017-09-20 16:01:36,153 WARN [com.bst.common.util.GenericsUtils] - <JobIadService$$EnhancerByCGLIB$$e5ef80e8's superclass not ParameterizedType>
+2017-09-20 16:01:36,189 WARN [com.bst.common.util.GenericsUtils] - <JobIvdService$$EnhancerByCGLIB$$dbeec40f's superclass not ParameterizedType>
+2017-09-20 16:01:36,228 WARN [com.bst.common.util.GenericsUtils] - <JobMaintenanceService$$EnhancerByCGLIB$$6346cefb's superclass not ParameterizedType>
+2017-09-20 16:01:36,290 WARN [com.bst.common.util.GenericsUtils] - <JobVideoStructureService$$EnhancerByCGLIB$$95e15176's superclass not ParameterizedType>
+2017-09-20 16:01:36,332 WARN [com.bst.common.util.GenericsUtils] - <JobWrpService$$EnhancerByCGLIB$$7d08f005's superclass not ParameterizedType>
+2017-09-20 16:01:36,372 WARN [com.bst.common.util.GenericsUtils] - <NetworkCardService$$EnhancerByCGLIB$$4eb6a173's superclass not ParameterizedType>
+2017-09-20 16:01:36,409 WARN [com.bst.common.util.GenericsUtils] - <OperatorService$$EnhancerByCGLIB$$944b7b21's superclass not ParameterizedType>
+2017-09-20 16:01:36,449 WARN [com.bst.common.util.GenericsUtils] - <PassersByStorageService$$EnhancerByCGLIB$$5daadc08's superclass not ParameterizedType>
+2017-09-20 16:01:36,500 WARN [com.bst.common.util.GenericsUtils] - <PersonLocusQueryResultService$$EnhancerByCGLIB$$acc18819's superclass not ParameterizedType>
+2017-09-20 16:01:36,541 WARN [com.bst.common.util.GenericsUtils] - <PersonLocusQueryService$$EnhancerByCGLIB$$73b1b918's superclass not ParameterizedType>
+2017-09-20 16:01:36,577 WARN [com.bst.common.util.GenericsUtils] - <PicMouldComparePicScoreService$$EnhancerByCGLIB$$d5b5e0b9's superclass not ParameterizedType>
+2017-09-20 16:01:36,634 WARN [com.bst.common.util.GenericsUtils] - <PicMouldCompareResultService$$EnhancerByCGLIB$$4a7a8a12's superclass not ParameterizedType>
+2017-09-20 16:01:36,669 WARN [com.bst.common.util.GenericsUtils] - <PicMouldCompareService$$EnhancerByCGLIB$$88ede9d1's superclass not ParameterizedType>
+2017-09-20 16:01:36,713 WARN [com.bst.common.util.GenericsUtils] - <PicPicCompareResultService$$EnhancerByCGLIB$$d05ebf07's superclass not ParameterizedType>
+2017-09-20 16:01:36,767 WARN [com.bst.common.util.GenericsUtils] - <PicPicCompareService$$EnhancerByCGLIB$$7863a86's superclass not ParameterizedType>
+2017-09-20 16:01:36,805 WARN [com.bst.common.util.GenericsUtils] - <PTZPointService$$EnhancerByCGLIB$$ca9685ef's superclass not ParameterizedType>
+2017-09-20 16:01:36,844 WARN [com.bst.common.util.GenericsUtils] - <ResourceService$$EnhancerByCGLIB$$1dc7bf53's superclass not ParameterizedType>
+2017-09-20 16:01:36,896 WARN [com.bst.common.util.GenericsUtils] - <ResultMatchService$$EnhancerByCGLIB$$1c03e105's superclass not ParameterizedType>
+2017-09-20 16:01:36,933 WARN [com.bst.common.util.GenericsUtils] - <RoleService$$EnhancerByCGLIB$$753651db's superclass not ParameterizedType>
+2017-09-20 16:01:36,968 WARN [com.bst.common.util.GenericsUtils] - <ServerDeviceForUnitService$$EnhancerByCGLIB$$e9bc7781's superclass not ParameterizedType>
+2017-09-20 16:01:37,047 WARN [com.bst.common.util.GenericsUtils] - <ServerDeviceService$$EnhancerByCGLIB$$9a5c54da's superclass not ParameterizedType>
+2017-09-20 16:01:37,082 WARN [com.bst.common.util.GenericsUtils] - <StorageService$$EnhancerByCGLIB$$e3c78c14's superclass not ParameterizedType>
+2017-09-20 16:01:37,130 WARN [com.bst.common.util.GenericsUtils] - <StoreCompareResultContentService$$EnhancerByCGLIB$$2b88ddd5's superclass not ParameterizedType>
+2017-09-20 16:01:37,197 WARN [com.bst.common.util.GenericsUtils] - <StoreCompareResultService$$EnhancerByCGLIB$$e985ea02's superclass not ParameterizedType>
+2017-09-20 16:01:37,237 WARN [com.bst.common.util.GenericsUtils] - <StoreCompareService$$EnhancerByCGLIB$$ac3bfdc1's superclass not ParameterizedType>
+2017-09-20 16:01:37,277 WARN [com.bst.common.util.GenericsUtils] - <StructureConfigService$$EnhancerByCGLIB$$90a8beb6's superclass not ParameterizedType>
+2017-09-20 16:01:37,339 WARN [com.bst.common.util.GenericsUtils] - <SynDataService$$EnhancerByCGLIB$$2cc7f6b7's superclass not ParameterizedType>
+2017-09-20 16:01:37,376 WARN [com.bst.common.util.GenericsUtils] - <SystemLogService$$EnhancerByCGLIB$$396660b6's superclass not ParameterizedType>
+2017-09-20 16:01:37,418 WARN [com.bst.common.util.GenericsUtils] - <TemplateCatchImageService$$EnhancerByCGLIB$$3ac6c02f's superclass not ParameterizedType>
+2017-09-20 16:01:37,482 WARN [com.bst.common.util.GenericsUtils] - <TemplateTimePartService$$EnhancerByCGLIB$$46c527af's superclass not ParameterizedType>
+2017-09-20 16:01:37,520 WARN [com.bst.common.util.GenericsUtils] - <TemplateWholeService$$EnhancerByCGLIB$$7a0fd91e's superclass not ParameterizedType>
+2017-09-20 16:01:37,559 WARN [com.bst.common.util.GenericsUtils] - <TrackPicService$$EnhancerByCGLIB$$8ba64c98's superclass not ParameterizedType>
+2017-09-20 16:01:37,615 WARN [com.bst.common.util.GenericsUtils] - <UserService$$EnhancerByCGLIB$$fdea6a14's superclass not ParameterizedType>
+2017-09-20 16:01:37,653 WARN [com.bst.common.util.GenericsUtils] - <UserTestService$$EnhancerByCGLIB$$18bc07ae's superclass not ParameterizedType>
+2017-09-20 16:01:37,689 WARN [com.bst.common.util.GenericsUtils] - <VideoPlanTempleteService$$EnhancerByCGLIB$$db3a5e47's superclass not ParameterizedType>
+2017-09-20 16:01:37,744 WARN [com.bst.common.util.GenericsUtils] - <VideoServiceConnectChannelBackupService$$EnhancerByCGLIB$$2f0481c6's superclass not ParameterizedType>
+2017-09-20 16:01:37,780 WARN [com.bst.common.util.GenericsUtils] - <VideoServiceConnectChannelService$$EnhancerByCGLIB$$ec95c0fc's superclass not ParameterizedType>
+2017-09-20 16:01:37,817 WARN [com.bst.common.util.GenericsUtils] - <VideoWallDeviceService$$EnhancerByCGLIB$$aaebdfb4's superclass not ParameterizedType>
+2017-09-20 16:01:37,873 WARN [com.bst.common.util.GenericsUtils] - <WallScreenService$$EnhancerByCGLIB$$5562bdbb's superclass not ParameterizedType>
+2017-09-20 16:01:37,913 WARN [com.bst.common.util.GenericsUtils] - <WallScreenXMLService$$EnhancerByCGLIB$$2186ca72's superclass not ParameterizedType>
+2017-09-20 16:01:38,104 INFO [com.bst.common.util.Parameter] - <oper_code:12029,启动服务设置配置信息:参数初始化cmsIp:192.168.2.96,cmsPort:9125,rmiPort:9124,superiorIp:0.0.0.0,dataScn:1111,hasSubordinate:0,triggerTime:30,idletime:120,eSmtpAddress:smtp.boostiv.cn,eServerAddress:yalei.zhang@boostiv.cn,eServerUserName:yalei.zhang,eServerPassword:s2009430532,mSendUrl:http://utf8.sms.webchinese.cn,mSendUid:s41282,mSendKey:3d2a90e5f576e1dee501,esIp:null,esPort:0,httpClientPoolMax:0,httpClientTimeOut:0facePerSendNum:100,facePerSendSleepTime:5000platformIvasDouble:1>
+2017-09-20 16:01:38,377 ERROR [org.springframework.web.context.ContextLoader] - <Context initialization failed>
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serverMain' defined in class path resource [resources/spring-config.xml]: Invocation of init method failed; nested exception is java.lang.UnsatisfiedLinkError: no DiskID in java.library.path
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: java.lang.UnsatisfiedLinkError: no DiskID in java.library.path
+	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1867)
+	at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+	at java.lang.System.loadLibrary(System.java:1122)
+	at chenmin.io.DiskID.<clinit>(Unknown Source)
+	at com.bst.common.util.key.CAS.getHardpan(CAS.java:126)
+	at com.bst.app.cms.network.server.BindService.bindServer(BindService.java:165)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1581)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1522)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	... 53 more
+2017-09-25 09:18:05,170 WARN [org.springframework.beans.factory.config.CustomEditorConfigurer] - <Passing PropertyEditor instances into CustomEditorConfigurer is deprecated: use PropertyEditorRegistrars or PropertyEditor class names instead. Offending key [org.codehaus.xfire.service.ServiceFactory; offending editor instance: org.codehaus.xfire.spring.editors.ServiceFactoryEditor@520034a>
+2017-09-25 09:18:10,499 WARN [org.hibernate.engine.jdbc.internal.JdbcServicesImpl] - <HHH000342: Could not obtain connection to query metadata : Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.>
+2017-09-25 09:18:10,499 ERROR [org.logicalcobwebs.proxool.proxoolDataSource] - <Prototype>
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2214)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:781)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.logicalcobwebs.proxool.DefaultConnectionBuilder.buildConnection(DefaultConnectionBuilder.java:39)
+	at org.logicalcobwebs.proxool.Prototyper.buildConnection(Prototyper.java:159)
+	at org.logicalcobwebs.proxool.Prototyper.sweep(Prototyper.java:102)
+	at org.logicalcobwebs.proxool.PrototyperThread.run(PrototyperThread.java:44)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:343)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	... 15 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:292)
+	... 16 more
+2017-09-25 09:18:11,593 WARN [org.hibernate.id.UUIDHexGenerator] - <HHH000409: Using org.hibernate.id.UUIDHexGenerator which does not generate IETF RFC 4122 compliant UUID values; consider using org.hibernate.id.UUIDGenerator instead>
+2017-09-25 09:18:14,828 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - <HHH000319: Could not get database metadata>
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2214)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:781)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.logicalcobwebs.proxool.DefaultConnectionBuilder.buildConnection(DefaultConnectionBuilder.java:39)
+	at org.logicalcobwebs.proxool.Prototyper.buildConnection(Prototyper.java:159)
+	at org.logicalcobwebs.proxool.ConnectionPool.getConnection(ConnectionPool.java:211)
+	at org.logicalcobwebs.proxool.ProxoolDataSource.getConnection(ProxoolDataSource.java:97)
+	at org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:141)
+	at org.hibernate.tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.prepare(SuppliedConnectionProviderConnectionHelper.java:51)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:194)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:178)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:480)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1740)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1778)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBuilder.buildSessionFactory(LocalSessionFactoryBuilder.java:189)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:350)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:335)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:848)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:790)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:707)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:478)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:284)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1106)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:343)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	... 93 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:292)
+	... 94 more
+2017-09-25 09:18:14,843 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - <HHH000299: Could not complete schema update>
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2214)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:781)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.logicalcobwebs.proxool.DefaultConnectionBuilder.buildConnection(DefaultConnectionBuilder.java:39)
+	at org.logicalcobwebs.proxool.Prototyper.buildConnection(Prototyper.java:159)
+	at org.logicalcobwebs.proxool.ConnectionPool.getConnection(ConnectionPool.java:211)
+	at org.logicalcobwebs.proxool.ProxoolDataSource.getConnection(ProxoolDataSource.java:97)
+	at org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:141)
+	at org.hibernate.tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.prepare(SuppliedConnectionProviderConnectionHelper.java:51)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:194)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:178)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:480)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1740)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1778)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBuilder.buildSessionFactory(LocalSessionFactoryBuilder.java:189)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:350)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:335)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:848)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:790)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:707)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:478)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:284)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1106)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:343)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	... 93 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:292)
+	... 94 more
+2017-09-25 09:18:15,281 WARN [com.bst.common.util.GenericsUtils] - <ActionDetailsService$$EnhancerByCGLIB$$43f6e4ac's superclass not ParameterizedType>
+2017-09-25 09:18:15,328 WARN [com.bst.common.util.GenericsUtils] - <ADResultService$$EnhancerByCGLIB$$46649580's superclass not ParameterizedType>
+2017-09-25 09:18:15,359 WARN [com.bst.common.util.GenericsUtils] - <AlarmBoundaryService$$EnhancerByCGLIB$$36ff2287's superclass not ParameterizedType>
+2017-09-25 09:18:15,406 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogGeneralDevResService$$EnhancerByCGLIB$$9e80ab70's superclass not ParameterizedType>
+2017-09-25 09:18:15,437 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogGeneralDevStateService$$EnhancerByCGLIB$$82a03175's superclass not ParameterizedType>
+2017-09-25 09:18:15,468 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogGeneralVideoStateService$$EnhancerByCGLIB$$b745f817's superclass not ParameterizedType>
+2017-09-25 09:18:15,515 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogInteVDService$$EnhancerByCGLIB$$2e956aa3's superclass not ParameterizedType>
+2017-09-25 09:18:15,547 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogInteVFService$$EnhancerByCGLIB$$1434ad4d's superclass not ParameterizedType>
+2017-09-25 09:18:15,578 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogInteVSService$$EnhancerByCGLIB$$e8bfde9e's superclass not ParameterizedType>
+2017-09-25 09:18:15,609 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogSuperService$$EnhancerByCGLIB$$28d309b8's superclass not ParameterizedType>
+2017-09-25 09:18:15,656 WARN [com.bst.common.util.GenericsUtils] - <PersonFaceService$$EnhancerByCGLIB$$8639c9ba's superclass not ParameterizedType>
+2017-09-25 09:18:15,687 WARN [com.bst.common.util.GenericsUtils] - <FaceService$$EnhancerByCGLIB$$e1f40161's superclass not ParameterizedType>
+2017-09-25 09:18:15,718 WARN [com.bst.common.util.GenericsUtils] - <FaceStorageService$$EnhancerByCGLIB$$e15b7f46's superclass not ParameterizedType>
+2017-09-25 09:18:15,765 WARN [com.bst.common.util.GenericsUtils] - <PrivilegeService$$EnhancerByCGLIB$$44dc88d5's superclass not ParameterizedType>
+2017-09-25 09:18:15,797 WARN [com.bst.common.util.GenericsUtils] - <ThirdPartyPlatService$$EnhancerByCGLIB$$611e67a6's superclass not ParameterizedType>
+2017-09-25 09:18:15,828 WARN [com.bst.common.util.GenericsUtils] - <ArithmeticConfigService$$EnhancerByCGLIB$$b680bdfc's superclass not ParameterizedType>
+2017-09-25 09:18:15,859 WARN [com.bst.common.util.GenericsUtils] - <BHeatMapPointService$$EnhancerByCGLIB$$3fa36eae's superclass not ParameterizedType>
+2017-09-25 09:18:15,890 WARN [com.bst.common.util.GenericsUtils] - <BMapPointService$$EnhancerByCGLIB$$89caf85e's superclass not ParameterizedType>
+2017-09-25 09:18:15,922 WARN [com.bst.common.util.GenericsUtils] - <CameraDeviceService$$EnhancerByCGLIB$$f140c437's superclass not ParameterizedType>
+2017-09-25 09:18:15,953 WARN [com.bst.common.util.GenericsUtils] - <CPUService$$EnhancerByCGLIB$$cce945d8's superclass not ParameterizedType>
+2017-09-25 09:18:15,984 WARN [com.bst.common.util.GenericsUtils] - <DeviceForChannelGroupService$$EnhancerByCGLIB$$c138bbeb's superclass not ParameterizedType>
+2017-09-25 09:18:16,015 WARN [com.bst.common.util.GenericsUtils] - <DeviceForChannelService$$EnhancerByCGLIB$$f99fd530's superclass not ParameterizedType>
+2017-09-25 09:18:16,047 WARN [com.bst.common.util.GenericsUtils] - <DeviceIdBakService$$EnhancerByCGLIB$$37a66fa7's superclass not ParameterizedType>
+2017-09-25 09:18:16,078 WARN [com.bst.common.util.GenericsUtils] - <ElectronMapPointService$$EnhancerByCGLIB$$b16e704e's superclass not ParameterizedType>
+2017-09-25 09:18:16,125 WARN [com.bst.common.util.GenericsUtils] - <ElectronMapService$$EnhancerByCGLIB$$8aaa23b2's superclass not ParameterizedType>
+2017-09-25 09:18:16,156 WARN [com.bst.common.util.GenericsUtils] - <FaceJudgeResultService$$EnhancerByCGLIB$$b4226e93's superclass not ParameterizedType>
+2017-09-25 09:18:16,187 WARN [com.bst.common.util.GenericsUtils] - <FaceJudgeService$$EnhancerByCGLIB$$ee6c28d2's superclass not ParameterizedType>
+2017-09-25 09:18:16,218 WARN [com.bst.common.util.GenericsUtils] - <GroupService$$EnhancerByCGLIB$$2f42ea3b's superclass not ParameterizedType>
+2017-09-25 09:18:16,250 WARN [com.bst.common.util.GenericsUtils] - <IFDResultService$$EnhancerByCGLIB$$8c773fc4's superclass not ParameterizedType>
+2017-09-25 09:18:16,281 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultDayService$$EnhancerByCGLIB$$87cf04db's superclass not ParameterizedType>
+2017-09-25 09:18:16,328 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultHourService$$EnhancerByCGLIB$$cfa12f15's superclass not ParameterizedType>
+2017-09-25 09:18:16,359 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultMinuteService$$EnhancerByCGLIB$$960f1cc5's superclass not ParameterizedType>
+2017-09-25 09:18:16,390 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultMonthService$$EnhancerByCGLIB$$8e2534cf's superclass not ParameterizedType>
+2017-09-25 09:18:16,422 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultService$$EnhancerByCGLIB$$4feb5c41's superclass not ParameterizedType>
+2017-09-25 09:18:16,437 WARN [com.bst.common.util.GenericsUtils] - <IVDResultService$$EnhancerByCGLIB$$a1499074's superclass not ParameterizedType>
+2017-09-25 09:18:16,468 WARN [com.bst.common.util.GenericsUtils] - <JobCollectService$$EnhancerByCGLIB$$849329f1's superclass not ParameterizedType>
+2017-09-25 09:18:16,500 WARN [com.bst.common.util.GenericsUtils] - <JobFaceService$$EnhancerByCGLIB$$189aa3d2's superclass not ParameterizedType>
+2017-09-25 09:18:16,531 WARN [com.bst.common.util.GenericsUtils] - <JobIadService$$EnhancerByCGLIB$$90bf63bb's superclass not ParameterizedType>
+2017-09-25 09:18:16,562 WARN [com.bst.common.util.GenericsUtils] - <JobIvdService$$EnhancerByCGLIB$$86bea6e2's superclass not ParameterizedType>
+2017-09-25 09:18:16,875 WARN [com.bst.common.util.GenericsUtils] - <JobMaintenanceService$$EnhancerByCGLIB$$e16b1ce's superclass not ParameterizedType>
+2017-09-25 09:18:16,906 WARN [com.bst.common.util.GenericsUtils] - <JobVideoStructureService$$EnhancerByCGLIB$$40b13449's superclass not ParameterizedType>
+2017-09-25 09:18:16,937 WARN [com.bst.common.util.GenericsUtils] - <JobWrpService$$EnhancerByCGLIB$$27d8d2d8's superclass not ParameterizedType>
+2017-09-25 09:18:16,969 WARN [com.bst.common.util.GenericsUtils] - <NetworkCardService$$EnhancerByCGLIB$$f9868446's superclass not ParameterizedType>
+2017-09-25 09:18:17,000 WARN [com.bst.common.util.GenericsUtils] - <OperatorService$$EnhancerByCGLIB$$3f1b5df4's superclass not ParameterizedType>
+2017-09-25 09:18:17,031 WARN [com.bst.common.util.GenericsUtils] - <PassersByStorageService$$EnhancerByCGLIB$$87abedb's superclass not ParameterizedType>
+2017-09-25 09:18:17,062 WARN [com.bst.common.util.GenericsUtils] - <PersonLocusQueryResultService$$EnhancerByCGLIB$$57916aec's superclass not ParameterizedType>
+2017-09-25 09:18:17,094 WARN [com.bst.common.util.GenericsUtils] - <PersonLocusQueryService$$EnhancerByCGLIB$$1e819beb's superclass not ParameterizedType>
+2017-09-25 09:18:17,125 WARN [com.bst.common.util.GenericsUtils] - <PicMouldComparePicScoreService$$EnhancerByCGLIB$$8085c38c's superclass not ParameterizedType>
+2017-09-25 09:18:17,140 WARN [com.bst.common.util.GenericsUtils] - <PicMouldCompareResultService$$EnhancerByCGLIB$$f54a6ce5's superclass not ParameterizedType>
+2017-09-25 09:18:17,183 WARN [com.bst.common.util.GenericsUtils] - <PicMouldCompareService$$EnhancerByCGLIB$$33bdcca4's superclass not ParameterizedType>
+2017-09-25 09:18:17,215 WARN [com.bst.common.util.GenericsUtils] - <PicPicCompareResultService$$EnhancerByCGLIB$$7b2ea1da's superclass not ParameterizedType>
+2017-09-25 09:18:17,246 WARN [com.bst.common.util.GenericsUtils] - <PicPicCompareService$$EnhancerByCGLIB$$b2561d59's superclass not ParameterizedType>
+2017-09-25 09:18:17,277 WARN [com.bst.common.util.GenericsUtils] - <PTZPointService$$EnhancerByCGLIB$$756668c2's superclass not ParameterizedType>
+2017-09-25 09:18:17,308 WARN [com.bst.common.util.GenericsUtils] - <ResourceService$$EnhancerByCGLIB$$c897a226's superclass not ParameterizedType>
+2017-09-25 09:18:17,340 WARN [com.bst.common.util.GenericsUtils] - <ResultMatchService$$EnhancerByCGLIB$$c6d3c3d8's superclass not ParameterizedType>
+2017-09-25 09:18:17,371 WARN [com.bst.common.util.GenericsUtils] - <RoleService$$EnhancerByCGLIB$$200634ae's superclass not ParameterizedType>
+2017-09-25 09:18:17,402 WARN [com.bst.common.util.GenericsUtils] - <ServerDeviceForUnitService$$EnhancerByCGLIB$$948c5a54's superclass not ParameterizedType>
+2017-09-25 09:18:17,418 WARN [com.bst.common.util.GenericsUtils] - <ServerDeviceService$$EnhancerByCGLIB$$452c37ad's superclass not ParameterizedType>
+2017-09-25 09:18:17,449 WARN [com.bst.common.util.GenericsUtils] - <StorageService$$EnhancerByCGLIB$$8e976ee7's superclass not ParameterizedType>
+2017-09-25 09:18:17,496 WARN [com.bst.common.util.GenericsUtils] - <StoreCompareResultContentService$$EnhancerByCGLIB$$d658c0a8's superclass not ParameterizedType>
+2017-09-25 09:18:17,511 WARN [com.bst.common.util.GenericsUtils] - <StoreCompareResultService$$EnhancerByCGLIB$$9455ccd5's superclass not ParameterizedType>
+2017-09-25 09:18:17,543 WARN [com.bst.common.util.GenericsUtils] - <StoreCompareService$$EnhancerByCGLIB$$570be094's superclass not ParameterizedType>
+2017-09-25 09:18:17,574 WARN [com.bst.common.util.GenericsUtils] - <StructureConfigService$$EnhancerByCGLIB$$3b78a189's superclass not ParameterizedType>
+2017-09-25 09:18:17,605 WARN [com.bst.common.util.GenericsUtils] - <SynDataService$$EnhancerByCGLIB$$d797d98a's superclass not ParameterizedType>
+2017-09-25 09:18:17,636 WARN [com.bst.common.util.GenericsUtils] - <SystemLogService$$EnhancerByCGLIB$$e4364389's superclass not ParameterizedType>
+2017-09-25 09:18:17,683 WARN [com.bst.common.util.GenericsUtils] - <TemplateCatchImageService$$EnhancerByCGLIB$$e596a302's superclass not ParameterizedType>
+2017-09-25 09:18:17,715 WARN [com.bst.common.util.GenericsUtils] - <TemplateTimePartService$$EnhancerByCGLIB$$f1950a82's superclass not ParameterizedType>
+2017-09-25 09:18:17,730 WARN [com.bst.common.util.GenericsUtils] - <TemplateWholeService$$EnhancerByCGLIB$$24dfbbf1's superclass not ParameterizedType>
+2017-09-25 09:18:17,761 WARN [com.bst.common.util.GenericsUtils] - <TrackPicService$$EnhancerByCGLIB$$36762f6b's superclass not ParameterizedType>
+2017-09-25 09:18:17,793 WARN [com.bst.common.util.GenericsUtils] - <UserService$$EnhancerByCGLIB$$a8ba4ce7's superclass not ParameterizedType>
+2017-09-25 09:18:17,824 WARN [com.bst.common.util.GenericsUtils] - <UserTestService$$EnhancerByCGLIB$$c38bea81's superclass not ParameterizedType>
+2017-09-25 09:18:17,855 WARN [com.bst.common.util.GenericsUtils] - <VideoPlanTempleteService$$EnhancerByCGLIB$$860a411a's superclass not ParameterizedType>
+2017-09-25 09:18:17,886 WARN [com.bst.common.util.GenericsUtils] - <VideoServiceConnectChannelBackupService$$EnhancerByCGLIB$$d9d46499's superclass not ParameterizedType>
+2017-09-25 09:18:17,918 WARN [com.bst.common.util.GenericsUtils] - <VideoServiceConnectChannelService$$EnhancerByCGLIB$$9765a3cf's superclass not ParameterizedType>
+2017-09-25 09:18:17,949 WARN [com.bst.common.util.GenericsUtils] - <VideoWallDeviceService$$EnhancerByCGLIB$$55bbc287's superclass not ParameterizedType>
+2017-09-25 09:18:17,980 WARN [com.bst.common.util.GenericsUtils] - <WallScreenService$$EnhancerByCGLIB$$32a08e's superclass not ParameterizedType>
+2017-09-25 09:18:18,012 WARN [com.bst.common.util.GenericsUtils] - <WallScreenXMLService$$EnhancerByCGLIB$$cc56ad45's superclass not ParameterizedType>
+2017-09-25 09:18:18,121 INFO [com.bst.common.util.Parameter] - <oper_code:12029,启动服务设置配置信息:参数初始化cmsIp:192.168.2.96,cmsPort:9125,rmiPort:9124,superiorIp:0.0.0.0,dataScn:1111,hasSubordinate:0,triggerTime:30,idletime:120,eSmtpAddress:smtp.boostiv.cn,eServerAddress:yalei.zhang@boostiv.cn,eServerUserName:yalei.zhang,eServerPassword:s2009430532,mSendUrl:http://utf8.sms.webchinese.cn,mSendUid:s41282,mSendKey:3d2a90e5f576e1dee501,esIp:null,esPort:0,httpClientPoolMax:0,httpClientTimeOut:0facePerSendNum:100,facePerSendSleepTime:5000platformIvasDouble:1>
+2017-09-25 09:18:18,324 ERROR [org.springframework.web.context.ContextLoader] - <Context initialization failed>
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serverMain' defined in class path resource [resources/spring-config.xml]: Invocation of init method failed; nested exception is java.lang.UnsatisfiedLinkError: no DiskID in java.library.path
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: java.lang.UnsatisfiedLinkError: no DiskID in java.library.path
+	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1867)
+	at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+	at java.lang.System.loadLibrary(System.java:1122)
+	at chenmin.io.DiskID.<clinit>(Unknown Source)
+	at com.bst.common.util.key.CAS.getHardpan(CAS.java:126)
+	at com.bst.app.cms.network.server.BindService.bindServer(BindService.java:165)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1581)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1522)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	... 53 more
+2018-01-08 10:56:01,550 WARN [org.springframework.beans.factory.config.CustomEditorConfigurer] - <Passing PropertyEditor instances into CustomEditorConfigurer is deprecated: use PropertyEditorRegistrars or PropertyEditor class names instead. Offending key [org.codehaus.xfire.service.ServiceFactory; offending editor instance: org.codehaus.xfire.spring.editors.ServiceFactoryEditor@59456e1>
+2018-01-08 10:56:05,874 WARN [org.hibernate.engine.jdbc.internal.JdbcServicesImpl] - <HHH000342: Could not obtain connection to query metadata : Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.>
+2018-01-08 10:56:05,875 ERROR [org.logicalcobwebs.proxool.proxoolDataSource] - <Prototype>
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2214)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:781)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.logicalcobwebs.proxool.DefaultConnectionBuilder.buildConnection(DefaultConnectionBuilder.java:39)
+	at org.logicalcobwebs.proxool.Prototyper.buildConnection(Prototyper.java:159)
+	at org.logicalcobwebs.proxool.Prototyper.sweep(Prototyper.java:102)
+	at org.logicalcobwebs.proxool.PrototyperThread.run(PrototyperThread.java:44)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:343)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	... 15 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:292)
+	... 16 more
+2018-01-08 10:56:07,034 WARN [org.hibernate.id.UUIDHexGenerator] - <HHH000409: Using org.hibernate.id.UUIDHexGenerator which does not generate IETF RFC 4122 compliant UUID values; consider using org.hibernate.id.UUIDGenerator instead>
+2018-01-08 10:56:09,989 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - <HHH000319: Could not get database metadata>
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2214)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:781)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.logicalcobwebs.proxool.DefaultConnectionBuilder.buildConnection(DefaultConnectionBuilder.java:39)
+	at org.logicalcobwebs.proxool.Prototyper.buildConnection(Prototyper.java:159)
+	at org.logicalcobwebs.proxool.ConnectionPool.getConnection(ConnectionPool.java:211)
+	at org.logicalcobwebs.proxool.ProxoolDataSource.getConnection(ProxoolDataSource.java:97)
+	at org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:141)
+	at org.hibernate.tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.prepare(SuppliedConnectionProviderConnectionHelper.java:51)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:194)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:178)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:480)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1740)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1778)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBuilder.buildSessionFactory(LocalSessionFactoryBuilder.java:189)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:350)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:335)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:848)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:790)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:707)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:478)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:284)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1106)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:343)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	... 93 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:292)
+	... 94 more
+2018-01-08 10:56:09,992 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - <HHH000299: Could not complete schema update>
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2214)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:781)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:46)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:352)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:284)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.logicalcobwebs.proxool.DefaultConnectionBuilder.buildConnection(DefaultConnectionBuilder.java:39)
+	at org.logicalcobwebs.proxool.Prototyper.buildConnection(Prototyper.java:159)
+	at org.logicalcobwebs.proxool.ConnectionPool.getConnection(ConnectionPool.java:211)
+	at org.logicalcobwebs.proxool.ProxoolDataSource.getConnection(ProxoolDataSource.java:97)
+	at org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:141)
+	at org.hibernate.tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.prepare(SuppliedConnectionProviderConnectionHelper.java:51)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:194)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:178)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:480)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1740)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1778)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBuilder.buildSessionFactory(LocalSessionFactoryBuilder.java:189)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:350)
+	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:335)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:848)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:790)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:707)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:478)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:284)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1106)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:343)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2137)
+	... 93 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:253)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:292)
+	... 94 more
+2018-01-08 10:56:10,268 WARN [com.bst.common.util.GenericsUtils] - <ActionDetailsService$$EnhancerByCGLIB$$a4e8a4ba's superclass not ParameterizedType>
+2018-01-08 10:56:10,305 WARN [com.bst.common.util.GenericsUtils] - <ADResultService$$EnhancerByCGLIB$$a756558e's superclass not ParameterizedType>
+2018-01-08 10:56:10,337 WARN [com.bst.common.util.GenericsUtils] - <AlarmBoundaryService$$EnhancerByCGLIB$$97f0e295's superclass not ParameterizedType>
+2018-01-08 10:56:10,367 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogGeneralDevResService$$EnhancerByCGLIB$$ff726b7e's superclass not ParameterizedType>
+2018-01-08 10:56:10,404 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogGeneralDevStateService$$EnhancerByCGLIB$$e391f183's superclass not ParameterizedType>
+2018-01-08 10:56:10,438 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogGeneralVideoStateService$$EnhancerByCGLIB$$1837b825's superclass not ParameterizedType>
+2018-01-08 10:56:10,469 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogInteVDService$$EnhancerByCGLIB$$8f872ab1's superclass not ParameterizedType>
+2018-01-08 10:56:10,495 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogInteVFService$$EnhancerByCGLIB$$75266d5b's superclass not ParameterizedType>
+2018-01-08 10:56:10,521 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogInteVSService$$EnhancerByCGLIB$$49b19eac's superclass not ParameterizedType>
+2018-01-08 10:56:10,547 WARN [com.bst.common.util.GenericsUtils] - <AlarmLogSuperService$$EnhancerByCGLIB$$89c4c9c6's superclass not ParameterizedType>
+2018-01-08 10:56:10,581 WARN [com.bst.common.util.GenericsUtils] - <PersonFaceService$$EnhancerByCGLIB$$e72b89c8's superclass not ParameterizedType>
+2018-01-08 10:56:10,602 WARN [com.bst.common.util.GenericsUtils] - <FaceService$$EnhancerByCGLIB$$42e5c16f's superclass not ParameterizedType>
+2018-01-08 10:56:10,625 WARN [com.bst.common.util.GenericsUtils] - <FaceStorageService$$EnhancerByCGLIB$$424d3f54's superclass not ParameterizedType>
+2018-01-08 10:56:10,656 WARN [com.bst.common.util.GenericsUtils] - <PrivilegeService$$EnhancerByCGLIB$$a5ce48e3's superclass not ParameterizedType>
+2018-01-08 10:56:10,676 WARN [com.bst.common.util.GenericsUtils] - <ThirdPartyPlatService$$EnhancerByCGLIB$$c21027b4's superclass not ParameterizedType>
+2018-01-08 10:56:10,700 WARN [com.bst.common.util.GenericsUtils] - <ArithmeticConfigService$$EnhancerByCGLIB$$17727e0a's superclass not ParameterizedType>
+2018-01-08 10:56:10,720 WARN [com.bst.common.util.GenericsUtils] - <BHeatMapPointService$$EnhancerByCGLIB$$a0952ebc's superclass not ParameterizedType>
+2018-01-08 10:56:10,739 WARN [com.bst.common.util.GenericsUtils] - <BMapPointService$$EnhancerByCGLIB$$eabcb86c's superclass not ParameterizedType>
+2018-01-08 10:56:10,762 WARN [com.bst.common.util.GenericsUtils] - <CameraDeviceService$$EnhancerByCGLIB$$52328445's superclass not ParameterizedType>
+2018-01-08 10:56:10,783 WARN [com.bst.common.util.GenericsUtils] - <CPUService$$EnhancerByCGLIB$$2ddb05e6's superclass not ParameterizedType>
+2018-01-08 10:56:10,802 WARN [com.bst.common.util.GenericsUtils] - <DeviceForChannelGroupService$$EnhancerByCGLIB$$222a7bf9's superclass not ParameterizedType>
+2018-01-08 10:56:10,821 WARN [com.bst.common.util.GenericsUtils] - <DeviceForChannelService$$EnhancerByCGLIB$$5a91953e's superclass not ParameterizedType>
+2018-01-08 10:56:10,845 WARN [com.bst.common.util.GenericsUtils] - <DeviceIdBakService$$EnhancerByCGLIB$$98982fb5's superclass not ParameterizedType>
+2018-01-08 10:56:10,879 WARN [com.bst.common.util.GenericsUtils] - <ElectronMapPointService$$EnhancerByCGLIB$$1260305c's superclass not ParameterizedType>
+2018-01-08 10:56:10,904 WARN [com.bst.common.util.GenericsUtils] - <ElectronMapService$$EnhancerByCGLIB$$eb9be3c0's superclass not ParameterizedType>
+2018-01-08 10:56:10,960 WARN [com.bst.common.util.GenericsUtils] - <FaceJudgeResultService$$EnhancerByCGLIB$$15142ea1's superclass not ParameterizedType>
+2018-01-08 10:56:10,986 WARN [com.bst.common.util.GenericsUtils] - <FaceJudgeService$$EnhancerByCGLIB$$4f5de8e0's superclass not ParameterizedType>
+2018-01-08 10:56:11,009 WARN [com.bst.common.util.GenericsUtils] - <GroupService$$EnhancerByCGLIB$$9034aa49's superclass not ParameterizedType>
+2018-01-08 10:56:11,028 WARN [com.bst.common.util.GenericsUtils] - <IFDResultService$$EnhancerByCGLIB$$ed68ffd2's superclass not ParameterizedType>
+2018-01-08 10:56:11,046 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultDayService$$EnhancerByCGLIB$$e8c0c4e9's superclass not ParameterizedType>
+2018-01-08 10:56:11,067 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultHourService$$EnhancerByCGLIB$$3092ef23's superclass not ParameterizedType>
+2018-01-08 10:56:11,091 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultMinuteService$$EnhancerByCGLIB$$f700dcd3's superclass not ParameterizedType>
+2018-01-08 10:56:11,111 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultMonthService$$EnhancerByCGLIB$$ef16f4dd's superclass not ParameterizedType>
+2018-01-08 10:56:11,135 WARN [com.bst.common.util.GenericsUtils] - <IvasCountResultService$$EnhancerByCGLIB$$b0dd1c4f's superclass not ParameterizedType>
+2018-01-08 10:56:11,157 WARN [com.bst.common.util.GenericsUtils] - <IVDResultService$$EnhancerByCGLIB$$23b5082's superclass not ParameterizedType>
+2018-01-08 10:56:11,175 WARN [com.bst.common.util.GenericsUtils] - <JobCollectService$$EnhancerByCGLIB$$e584e9ff's superclass not ParameterizedType>
+2018-01-08 10:56:11,198 WARN [com.bst.common.util.GenericsUtils] - <JobFaceService$$EnhancerByCGLIB$$798c63e0's superclass not ParameterizedType>
+2018-01-08 10:56:11,221 WARN [com.bst.common.util.GenericsUtils] - <JobIadService$$EnhancerByCGLIB$$f1b123c9's superclass not ParameterizedType>
+2018-01-08 10:56:11,241 WARN [com.bst.common.util.GenericsUtils] - <JobIvdService$$EnhancerByCGLIB$$e7b066f0's superclass not ParameterizedType>
+2018-01-08 10:56:11,265 WARN [com.bst.common.util.GenericsUtils] - <JobMaintenanceService$$EnhancerByCGLIB$$6f0871dc's superclass not ParameterizedType>
+2018-01-08 10:56:11,287 WARN [com.bst.common.util.GenericsUtils] - <JobVideoStructureService$$EnhancerByCGLIB$$a1a2f457's superclass not ParameterizedType>
+2018-01-08 10:56:11,313 WARN [com.bst.common.util.GenericsUtils] - <JobWrpService$$EnhancerByCGLIB$$88ca92e6's superclass not ParameterizedType>
+2018-01-08 10:56:11,332 WARN [com.bst.common.util.GenericsUtils] - <NetworkCardService$$EnhancerByCGLIB$$5a784454's superclass not ParameterizedType>
+2018-01-08 10:56:11,355 WARN [com.bst.common.util.GenericsUtils] - <OperatorService$$EnhancerByCGLIB$$a00d1e02's superclass not ParameterizedType>
+2018-01-08 10:56:11,376 WARN [com.bst.common.util.GenericsUtils] - <PassersByStorageService$$EnhancerByCGLIB$$696c7ee9's superclass not ParameterizedType>
+2018-01-08 10:56:11,397 WARN [com.bst.common.util.GenericsUtils] - <PersonLocusQueryResultService$$EnhancerByCGLIB$$b8832afa's superclass not ParameterizedType>
+2018-01-08 10:56:11,420 WARN [com.bst.common.util.GenericsUtils] - <PersonLocusQueryService$$EnhancerByCGLIB$$7f735bf9's superclass not ParameterizedType>
+2018-01-08 10:56:11,445 WARN [com.bst.common.util.GenericsUtils] - <PicMouldComparePicScoreService$$EnhancerByCGLIB$$e177839a's superclass not ParameterizedType>
+2018-01-08 10:56:11,465 WARN [com.bst.common.util.GenericsUtils] - <PicMouldCompareResultService$$EnhancerByCGLIB$$563c2cf3's superclass not ParameterizedType>
+2018-01-08 10:56:11,488 WARN [com.bst.common.util.GenericsUtils] - <PicMouldCompareService$$EnhancerByCGLIB$$94af8cb2's superclass not ParameterizedType>
+2018-01-08 10:56:11,513 WARN [com.bst.common.util.GenericsUtils] - <PicPicCompareResultService$$EnhancerByCGLIB$$dc2061e8's superclass not ParameterizedType>
+2018-01-08 10:56:11,534 WARN [com.bst.common.util.GenericsUtils] - <PicPicCompareService$$EnhancerByCGLIB$$1347dd67's superclass not ParameterizedType>
+2018-01-08 10:56:11,559 WARN [com.bst.common.util.GenericsUtils] - <PTZPointService$$EnhancerByCGLIB$$d65828d0's superclass not ParameterizedType>
+2018-01-08 10:56:11,590 WARN [com.bst.common.util.GenericsUtils] - <ResourceService$$EnhancerByCGLIB$$29896234's superclass not ParameterizedType>
+2018-01-08 10:56:11,611 WARN [com.bst.common.util.GenericsUtils] - <ResultMatchService$$EnhancerByCGLIB$$27c583e6's superclass not ParameterizedType>
+2018-01-08 10:56:11,636 WARN [com.bst.common.util.GenericsUtils] - <RoleService$$EnhancerByCGLIB$$80f7f4bc's superclass not ParameterizedType>
+2018-01-08 10:56:11,660 WARN [com.bst.common.util.GenericsUtils] - <ServerDeviceForUnitService$$EnhancerByCGLIB$$f57e1a62's superclass not ParameterizedType>
+2018-01-08 10:56:11,677 WARN [com.bst.common.util.GenericsUtils] - <ServerDeviceService$$EnhancerByCGLIB$$a61df7bb's superclass not ParameterizedType>
+2018-01-08 10:56:11,697 WARN [com.bst.common.util.GenericsUtils] - <StorageService$$EnhancerByCGLIB$$ef892ef5's superclass not ParameterizedType>
+2018-01-08 10:56:11,718 WARN [com.bst.common.util.GenericsUtils] - <StoreCompareResultContentService$$EnhancerByCGLIB$$374a80b6's superclass not ParameterizedType>
+2018-01-08 10:56:11,737 WARN [com.bst.common.util.GenericsUtils] - <StoreCompareResultService$$EnhancerByCGLIB$$f5478ce3's superclass not ParameterizedType>
+2018-01-08 10:56:11,763 WARN [com.bst.common.util.GenericsUtils] - <StoreCompareService$$EnhancerByCGLIB$$b7fda0a2's superclass not ParameterizedType>
+2018-01-08 10:56:11,779 WARN [com.bst.common.util.GenericsUtils] - <StructureConfigService$$EnhancerByCGLIB$$9c6a6197's superclass not ParameterizedType>
+2018-01-08 10:56:11,802 WARN [com.bst.common.util.GenericsUtils] - <SynDataService$$EnhancerByCGLIB$$38899998's superclass not ParameterizedType>
+2018-01-08 10:56:11,827 WARN [com.bst.common.util.GenericsUtils] - <SystemLogService$$EnhancerByCGLIB$$45280397's superclass not ParameterizedType>
+2018-01-08 10:56:11,847 WARN [com.bst.common.util.GenericsUtils] - <TemplateCatchImageService$$EnhancerByCGLIB$$46886310's superclass not ParameterizedType>
+2018-01-08 10:56:11,876 WARN [com.bst.common.util.GenericsUtils] - <TemplateTimePartService$$EnhancerByCGLIB$$5286ca90's superclass not ParameterizedType>
+2018-01-08 10:56:11,903 WARN [com.bst.common.util.GenericsUtils] - <TemplateWholeService$$EnhancerByCGLIB$$85d17bff's superclass not ParameterizedType>
+2018-01-08 10:56:11,926 WARN [com.bst.common.util.GenericsUtils] - <TrackPicService$$EnhancerByCGLIB$$9767ef79's superclass not ParameterizedType>
+2018-01-08 10:56:11,948 WARN [com.bst.common.util.GenericsUtils] - <UserService$$EnhancerByCGLIB$$9ac0cf5's superclass not ParameterizedType>
+2018-01-08 10:56:11,971 WARN [com.bst.common.util.GenericsUtils] - <UserTestService$$EnhancerByCGLIB$$247daa8f's superclass not ParameterizedType>
+2018-01-08 10:56:11,994 WARN [com.bst.common.util.GenericsUtils] - <VideoPlanTempleteService$$EnhancerByCGLIB$$e6fc0128's superclass not ParameterizedType>
+2018-01-08 10:56:12,012 WARN [com.bst.common.util.GenericsUtils] - <VideoServiceConnectChannelBackupService$$EnhancerByCGLIB$$3ac624a7's superclass not ParameterizedType>
+2018-01-08 10:56:12,030 WARN [com.bst.common.util.GenericsUtils] - <VideoServiceConnectChannelService$$EnhancerByCGLIB$$f85763dd's superclass not ParameterizedType>
+2018-01-08 10:56:12,048 WARN [com.bst.common.util.GenericsUtils] - <VideoWallDeviceService$$EnhancerByCGLIB$$b6ad8295's superclass not ParameterizedType>
+2018-01-08 10:56:12,071 WARN [com.bst.common.util.GenericsUtils] - <WallScreenService$$EnhancerByCGLIB$$6124609c's superclass not ParameterizedType>
+2018-01-08 10:56:12,096 WARN [com.bst.common.util.GenericsUtils] - <WallScreenXMLService$$EnhancerByCGLIB$$2d486d53's superclass not ParameterizedType>
+2018-01-08 10:56:12,169 INFO [com.bst.common.util.Parameter] - <oper_code:12029,启动服务设置配置信息:参数初始化cmsIp:192.168.2.96,cmsPort:9125,rmiPort:9124,superiorIp:0.0.0.0,dataScn:1111,hasSubordinate:0,triggerTime:30,idletime:120,eSmtpAddress:smtp.boostiv.cn,eServerAddress:yalei.zhang@boostiv.cn,eServerUserName:yalei.zhang,eServerPassword:s2009430532,mSendUrl:http://utf8.sms.webchinese.cn,mSendUid:s41282,mSendKey:3d2a90e5f576e1dee501,esIp:null,esPort:0,httpClientPoolMax:0,httpClientTimeOut:0facePerSendNum:100,facePerSendSleepTime:5000platformIvasDouble:1>
+2018-01-08 10:56:33,261 ERROR [org.apache.mina.core.service.SimpleIoProcessorPool] - <Failed to create a new instance of org.apache.mina.transport.socket.nio.NioProcessor:null>
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.apache.mina.core.service.SimpleIoProcessorPool.<init>(SimpleIoProcessorPool.java:198)
+	at org.apache.mina.core.service.SimpleIoProcessorPool.<init>(SimpleIoProcessorPool.java:115)
+	at org.apache.mina.core.polling.AbstractPollingIoAcceptor.<init>(AbstractPollingIoAcceptor.java:115)
+	at org.apache.mina.transport.socket.nio.NioSocketAcceptor.<init>(NioSocketAcceptor.java:61)
+	at com.bst.app.cms.network.server.BindService.bindServer(BindService.java:163)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1581)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1522)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: org.apache.mina.core.RuntimeIoException: Failed to open a selector.
+	at org.apache.mina.transport.socket.nio.NioProcessor.<init>(NioProcessor.java:64)
+	... 69 more
+Caused by: java.io.IOException: Unable to establish loopback connection
+	at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:94)
+	at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:61)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.nio.ch.PipeImpl.<init>(PipeImpl.java:171)
+	at sun.nio.ch.SelectorProviderImpl.openPipe(SelectorProviderImpl.java:50)
+	at java.nio.channels.Pipe.open(Pipe.java:155)
+	at sun.nio.ch.WindowsSelectorImpl.<init>(WindowsSelectorImpl.java:127)
+	at sun.nio.ch.WindowsSelectorProvider.openSelector(WindowsSelectorProvider.java:44)
+	at java.nio.channels.Selector.open(Selector.java:227)
+	at org.apache.mina.transport.socket.nio.NioProcessor.<init>(NioProcessor.java:62)
+	... 69 more
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at sun.nio.ch.Net.connect0(Native Method)
+	at sun.nio.ch.Net.connect(Net.java:454)
+	at sun.nio.ch.Net.connect(Net.java:446)
+	at sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:648)
+	at java.nio.channels.SocketChannel.open(SocketChannel.java:189)
+	at sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:127)
+	at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:76)
+	... 78 more
+2018-01-08 10:56:33,303 ERROR [org.springframework.web.context.ContextLoader] - <Context initialization failed>
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'serverMain' defined in class path resource [resources/spring-config.xml]: Invocation of init method failed; nested exception is org.apache.mina.core.RuntimeIoException: Failed to create a new instance of org.apache.mina.transport.socket.nio.NioProcessor:null
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4734)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5196)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:752)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:728)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:734)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:952)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1823)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:738)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:407)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1551)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:284)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:976)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1439)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1429)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:793)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:656)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:355)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:495)
+Caused by: org.apache.mina.core.RuntimeIoException: Failed to create a new instance of org.apache.mina.transport.socket.nio.NioProcessor:null
+	at org.apache.mina.core.service.SimpleIoProcessorPool.<init>(SimpleIoProcessorPool.java:220)
+	at org.apache.mina.core.service.SimpleIoProcessorPool.<init>(SimpleIoProcessorPool.java:115)
+	at org.apache.mina.core.polling.AbstractPollingIoAcceptor.<init>(AbstractPollingIoAcceptor.java:115)
+	at org.apache.mina.transport.socket.nio.NioSocketAcceptor.<init>(NioSocketAcceptor.java:61)
+	at com.bst.app.cms.network.server.BindService.bindServer(BindService.java:163)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1581)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1522)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	... 53 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.apache.mina.core.service.SimpleIoProcessorPool.<init>(SimpleIoProcessorPool.java:198)
+	... 64 more
+Caused by: org.apache.mina.core.RuntimeIoException: Failed to open a selector.
+	at org.apache.mina.transport.socket.nio.NioProcessor.<init>(NioProcessor.java:64)
+	... 69 more
+Caused by: java.io.IOException: Unable to establish loopback connection
+	at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:94)
+	at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:61)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.nio.ch.PipeImpl.<init>(PipeImpl.java:171)
+	at sun.nio.ch.SelectorProviderImpl.openPipe(SelectorProviderImpl.java:50)
+	at java.nio.channels.Pipe.open(Pipe.java:155)
+	at sun.nio.ch.WindowsSelectorImpl.<init>(WindowsSelectorImpl.java:127)
+	at sun.nio.ch.WindowsSelectorProvider.openSelector(WindowsSelectorProvider.java:44)
+	at java.nio.channels.Selector.open(Selector.java:227)
+	at org.apache.mina.transport.socket.nio.NioProcessor.<init>(NioProcessor.java:62)
+	... 69 more
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at sun.nio.ch.Net.connect0(Native Method)
+	at sun.nio.ch.Net.connect(Net.java:454)
+	at sun.nio.ch.Net.connect(Net.java:446)
+	at sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:648)
+	at java.nio.channels.SocketChannel.open(SocketChannel.java:189)
+	at sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:127)
+	at sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:76)
+	... 78 more
