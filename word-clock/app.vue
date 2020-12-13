@@ -94,6 +94,11 @@ body {
 }
 
 .home {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   ul {
     list-style-type: none;
     padding: 0;
