@@ -2,7 +2,7 @@
   "dependencies": {
     "js-cookie": "^2.2.1",
     "js-cookies": "^1.0.4",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^10.1.0",
     "screenfull": "^5.0.2",
     "vue-i18n": "^8.22.2",
