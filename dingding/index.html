@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      height: 400px;
+    }
+
+    .footer {
+      height: 800px;
+    }
+
+    .playground {
+      background-color: rgba(0, 0, 0, 0.473);
+      height: 150vh;
+      position: relative;
+    }
+
+    .animation-container {
+      /* position: fixed; */
+      padding: 40px;
+      position: sticky;
+      top: 100px;
+      /* bottom: 100px; */
+      /* background-color: rgba(0, 0, 0, 0.918); */
+    }
+
+    .list {
+      margin: 0 auto;
+      width: 1100px;
+      overflow: hidden;
+    }
+
+    .list-item {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      float: left;
+      border-radius: 100%;
+      margin: 50px;
+      opacity: 0;
+    }
+  </style>
+
+  <body>
+    <div class="header">header</div>
+    <div class="playground">
+      <div class="animation-container">
+        <div class="list">
+          <div data-order="0" class="list-item"></div>
+          <div data-order="1" class="list-item"></div>
+          <div data-order="2" class="list-item"></div>
+          <div data-order="3" class="list-item"></div>
+          <div data-order="2" class="list-item"></div>
+          <div data-order="1" class="list-item"></div>
+          <div data-order="0" class="list-item"></div>
+          <div data-order="0" class="list-item"></div>
+          <div data-order="1" class="list-item"></div>
+          <div data-order="2" class="list-item"></div>
+          <div data-order="3" class="list-item"></div>
+          <div data-order="2" class="list-item"></div>
+          <div data-order="1" class="list-item"></div>
+          <div data-order="0" class="list-item"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">footer</div>
+  </body>
+  <script>
+    const items = document.querySelectorAll(".list-item");
+    const playground = document.querySelector(".playground");
+    const list = document.querySelector(".list");
+    console.log(list);
+    function createAnimation(scrollStart, scrollEnd, valueStart, valueEnd) {
+      return function (scroll) {
+        console.log(scroll);
+        if (scroll <= scrollStart) {
+          return valueStart;
+        }
+        if (scroll >= scrollEnd) {
+          return valueEnd;
+        }
+        return (
+          valueStart +
+          ((valueEnd - valueStart) * (scroll - scrollStart)) /
+            (scrollEnd - scrollStart)
+        );
+      };
+    }
+    const animationMap = new Map();
+
+    function getDomAnimation(scrollStart, scrollEnd, dom) {
+      scrollStart = scrollStart + dom.dataset.order * 100;
+      const opcityAnimation = createAnimation(scrollStart, scrollEnd, 0, 1);
+      const scaleAnimation = createAnimation(scrollStart, scrollEnd, 0.5, 1);
+      const xAnimation = createAnimation(
+        scrollStart,
+        scrollEnd,
+        playground.clientWidth / 2 - dom.offsetLeft - dom.clientWidth / 2,
+        0
+      );
+      const yAnimation = createAnimation(
+        scrollStart,
+        scrollEnd,
+        list.clientHeight / 2 - dom.offsetTop - dom.clientHeight / 2,
+        0
+      );
+
+      const opacity = function (scroll) {
+        return opcityAnimation(scroll);
+      };
+      const transform = function (scroll) {
+        return `translate(${xAnimation(scroll)}px,${yAnimation(
+          scroll
+        )}px) scale(${scaleAnimation(scroll)})`;
+      };
+      return {
+        opacity,
+        transform,
+      };
+    }
+
+    function updateMap() {
+      animationMap.clear();
+      const playGroundRect = playground.getBoundingClientRect();
+      const scrollStart = playGroundRect.top + window.scrollY;
+      const scrollEnd =
+        playGroundRect.bottom + window.scrollY - window.innerHeight;
+      for (const item of items) {
+        animationMap.set(item, getDomAnimation(scrollStart, scrollEnd, item));
+      }
+    }
+    updateMap();
+    function updateStyles() {
+      const scoll = window.scrollY;
+      for (const [dom, value] of animationMap) {
+        for (const cssProp in value) {
+          dom.style[cssProp] = value[cssProp](scoll);
+        }
+      }
+    }
+    window.addEventListener("scroll", updateStyles);
+  </script>
+</html>
